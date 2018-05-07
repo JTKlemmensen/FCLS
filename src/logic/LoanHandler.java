@@ -28,7 +28,7 @@ public class LoanHandler
 	return 0.0;
     }
 
-
+    RKIandBank rkiandBank = new RKIandBank(loanAgreement.getCustomer().getCPR(), this);
 
 	public void setRating(Rating rating) {
 		this.rating = rating;

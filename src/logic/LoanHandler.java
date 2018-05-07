@@ -4,15 +4,15 @@ import com.ferrari.finances.dk.rki.Rating;
 
 public class LoanHandler
 {
+	private Rating rating;
+	private double rate;
 
-	public double setRating(Rating rate) {
-		// TODO Auto-generated method stub
-		
+	public void setRating(Rating rating) {
+		this.rating = rating;
 	}
 
-	public void setRate(double d) {
-		// TODO Auto-generated method stub
-		
+	public void setRate(double rate) {
+		this.rate = rate;
 	}
 
 }

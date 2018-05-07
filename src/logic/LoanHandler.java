@@ -22,29 +22,17 @@ public class LoanHandler extends Observable
     
     public void setupLoanAgreement(CustomerDataModel customer)
     {
-	
     	RKIandBank rkiandBank = new RKIandBank(loanAgreement.getCustomer().getCPR(), this);
     }
     
     private double calculateRate(double dailyRate, Rating rating, String carPrice, String downPayment, String duration)
     {
-<<<<<<< HEAD
 	switch(rating)
 	{
 	case A: dailyRate+=1; break;
 	case B: dailyRate+=2; break;
 	default: dailyRate+=3; break;
-=======
-	return 0.0;
-    }
 
-    
-
-	public void setRating(Rating rating) {
-		this.rating = rating;
->>>>>>> 7fe8d9840d903027b305ce0dcd1f28cb0ddb6b7e
-	}
-	
 	BigDecimal percentageOfCarPaid = new BigDecimal(downPayment).divide(new BigDecimal(carPrice));
 	
 	if(percentageOfCarPaid.compareTo(new BigDecimal(0.5))<0)

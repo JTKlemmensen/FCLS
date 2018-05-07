@@ -21,6 +21,7 @@ public class LoanHandler
     public void setupLoanAgreement(CustomerDataModel customer)
     {
 	
+    	RKIandBank rkiandBank = new RKIandBank(loanAgreement.getCustomer().getCPR(), this);
     }
     
     private double calculateRate(double dailyRate, Rating rating, String carPrice, String downPayment, String duration)
@@ -28,7 +29,7 @@ public class LoanHandler
 	return 0.0;
     }
 
-    RKIandBank rkiandBank = new RKIandBank(loanAgreement.getCustomer().getCPR(), this);
+    
 
 	public void setRating(Rating rating) {
 		this.rating = rating;

@@ -14,9 +14,12 @@ public class RKIandBank extends Thread{
 		this.loanHandler = loanHandler;
 	}
 	
-	public void run(){		
-		this.loanHandler.setRating(CreditRator.i().rate(this.CPR));
-		this.loanHandler.setRate((InterestRate.i().todaysRate()));
+	public void run(){	
+		Rating rating = CreditRator.i().rate(this.CPR);
+		this.loanHandler.setRating(rating);
+		
+		if(Rating.D != rating)
+			this.loanHandler.setRate((InterestRate.i().todaysRate()));
 	}
 	
 }

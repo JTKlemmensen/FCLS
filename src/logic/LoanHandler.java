@@ -21,8 +21,8 @@ public class LoanHandler
 	
     }
     
-    private void calculateRate(double dailyRate, Rating rating, String carPrice, String downPayment, String duration)
+    private double calculateRate(double dailyRate, Rating rating, String carPrice, String downPayment, String duration)
     {
-	
+	return 0.0;
     }
 }

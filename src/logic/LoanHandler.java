@@ -26,7 +26,10 @@ public class LoanHandler extends Observable {
 	}
 
 	public void setupLoanAgreement(CustomerDataModel customer) {
+		loanAgreement = new LoanAgreementDataModel(customer);
 		RKIandBank rkiandBank = new RKIandBank(loanAgreement.getCustomer().getCPR(), this);
+		Thread t = new Thread(rkiandBank);
+		t.start();
 	}
 
 	private double calculateRate(BigDecimal carPrice, BigDecimal downPayment,
@@ -51,14 +54,18 @@ public class LoanHandler extends Observable {
 			dailyRate += 1;
 
 		return dailyRate;
-
 	}
 
 	public void setRating(Rating rating) {
 		this.rating = rating;
+		notifyObservers();
+	}
+	
+	public boolean isRatingApproved() {
+		return rating != Rating.D;
 	}
 
-	public void setRate(double rate) {
-		this.dailyRate = rate;
+	public void setRate(double dailyRate) {
+		this.dailyRate = dailyRate;
 	}
 }

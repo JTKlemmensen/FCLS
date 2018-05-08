@@ -10,10 +10,18 @@ public class LoanHandler extends Observable {
 	private double dailyRate;
 	private Rating rating;
 
-	public LoanAgreementDataModel requestLoanAgreement(String carPrice, String downPayment, Date StartDate,
+	public LoanAgreementDataModel requestLoanAgreement(String carPrice, String downPayment, Date startDate,
 			String duration, CarDataModel car) {
-		double rate = calculateRate(dailyRate, rating, carPrice, downPayment, duration);
-
+		loanAgreement.setCarPrice(new BigDecimal(carPrice));
+		loanAgreement.setDownPayment(new BigDecimal(downPayment));
+		loanAgreement.setStartDate(startDate);
+		loanAgreement.setDuration(Integer.parseInt(duration));
+		loanAgreement.setCar(car);
+		
+		double rate = calculateRate(loanAgreement.getCarPrice(), loanAgreement.getDownPayment(), loanAgreement.getDuration());
+		
+		loanAgreement.setRate(rate);
+		
 		return null;
 	}
 
@@ -21,8 +29,8 @@ public class LoanHandler extends Observable {
 		RKIandBank rkiandBank = new RKIandBank(loanAgreement.getCustomer().getCPR(), this);
 	}
 
-	private double calculateRate(double dailyRate, Rating rating, String carPrice, String downPayment,
-			String duration) {
+	private double calculateRate(BigDecimal carPrice, BigDecimal downPayment,
+			int duration) {
 		switch (rating) {
 		case A:
 			dailyRate += 1;
@@ -34,12 +42,12 @@ public class LoanHandler extends Observable {
 			dailyRate += 3;
 			break;
 		}
-		BigDecimal percentageOfCarPaid = new BigDecimal(downPayment).divide(new BigDecimal(carPrice));
+		BigDecimal percentageOfCarPaid = downPayment.divide(carPrice);
 
 		if (percentageOfCarPaid.compareTo(new BigDecimal(0.5)) < 0)
 			dailyRate += 1;
 
-		if (Integer.parseInt(duration) > 3)
+		if (duration > 3)
 			dailyRate += 1;
 
 		return dailyRate;

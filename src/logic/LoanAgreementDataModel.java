@@ -10,7 +10,7 @@ public class LoanAgreementDataModel
 	private CarDataModel car;
 	private Date startDate;
 	private int duration;
-	private BigDecimal offer;
+	private BigDecimal carPrice;
 	private BigDecimal downPayment;
 	private double rate;
 	private boolean approved;
@@ -59,12 +59,12 @@ public class LoanAgreementDataModel
 		this.duration = duration;
 	}
 
-	public BigDecimal getOffer() {
-		return offer;
+	public BigDecimal getCarPrice() {
+		return carPrice;
 	}
 
-	public void setOffer(BigDecimal offer) {
-		this.offer = offer;
+	public void setCarPrice(BigDecimal offer) {
+		this.carPrice = offer;
 	}
 
 	public BigDecimal getDownPayment() {

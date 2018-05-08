@@ -4,22 +4,22 @@ import java.math.BigDecimal;
 
 public class CarDataModel
 {
-    private String name;
-    private BigDecimal limit;
+    private String stelNumber;
+    private BigDecimal startPrice;
     
-    public CarDataModel(String name, BigDecimal limit)
+    public CarDataModel(String stelNumber, BigDecimal startPrice)
     {
-	this.name = name;
-	this.limit = limit;
+	this.stelNumber = stelNumber;
+	this.startPrice = startPrice;
     }
     
-    public String getName()
+    public String getStelNumber()
     {
-	return name;
+	return stelNumber;
     }
     
-    public BigDecimal limit()
+    public BigDecimal getStartPrice()
     {
-	return limit;
+	return startPrice;
     }
 }

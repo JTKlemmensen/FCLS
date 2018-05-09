@@ -21,8 +21,6 @@ public class RKIandBank extends Thread{
 		Rating rating = CreditRator.i().rate(this.CPR);
 		this.loanHandler.setRating(rating);
 		
-		System.out.println("got Rating");
-		rating=Rating.D;
 		if(Rating.D != rating)
 		{
 			this.loanHandler.setRate((InterestRate.i().todaysRate()));
@@ -32,8 +30,6 @@ public class RKIandBank extends Thread{
 				loanHandler.setCanReturnLoanAgreement(true);
 			}
 			});
-			
-			System.out.println("got Interest rate");
 		}
 		else
 		{

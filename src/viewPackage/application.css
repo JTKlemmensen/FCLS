@@ -1,0 +1,22 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.root {
+     -fx-background-image: url("background.jpg");
+     }
+     
+.hyperlink:hover {
+    -fx-underline: true;
+    -fx-text-fill:rgb(0,105,155);
+    -fx-border-color: transparent;
+}
+
+.hyperlink:visited {
+    -fx-underline: true;
+    -fx-text-fill: rgb(0,128,192);
+     -fx-border-color: transparent;
+}
+
+.hyperlink {
+    -fx-underline: true;
+    -fx-text-fill: rgb(0,128,192);
+     -fx-border-color: transparent;
+}

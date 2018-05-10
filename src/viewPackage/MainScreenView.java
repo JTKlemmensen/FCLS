@@ -30,26 +30,29 @@ public class MainScreenView
 		
 		//create top part
 		HBox topMenuContainer= new HBox();
-		topMenuContainer.setStyle("-fx-background-color: #8a909b; -fx-border-color: #93959b; -fx-border-width: 1;");
-		topMenuContainer.getChildren().add(new Label("Current user : admin"));
+		topMenuContainer.setId("top_bar");
+		Label currentUserLabel=new Label("Current user : admin");
+		currentUserLabel.setId("dark_label");
+		topMenuContainer.getChildren().add(currentUserLabel);
 		topMenuContainer.getChildren().add(new Hyperlink("Change User"));
 		topMenuContainer.setPrefHeight(26);
 		topMenuContainer.setAlignment(Pos.CENTER_RIGHT);
 		
 		//create bottom part
 		HBox bottomPartContainer= new HBox();
-		bottomPartContainer.setStyle("-fx-background-color: #8a909b; -fx-border-color: #93959b; -fx-border-width: 1;");
+		bottomPartContainer.setId("bottom_bar");
 		bottomPartContainer.setPrefHeight(26);
 		
 		//create left actionMenu
 		VBox actionMenu= new VBox();
 		actionMenu.setPrefWidth(180);
-		actionMenu.setStyle("-fx-background-color: linear-gradient(#939fa5 0%, #6e7573 50%, #939fa5 100%); -fx-border-color: #828889; -fx-border-width: 2;");
+		actionMenu.setId("menu_backdrop");
 		actionMenu.setAlignment(Pos.TOP_CENTER);
 		actionMenu.setPadding(new Insets(12, 0 ,0 ,0));
 		
 		//create actionbuttons
 		Button searchCustomerButton= new Button("Find Kunde");
+		searchCustomerButton.setId("menu_button");
 		searchCustomerButton.setPadding(new Insets(4));
 		searchCustomerButton.setPrefSize(120, 30);
 		

@@ -22,7 +22,7 @@ public class FindCustomerView
 		theController=new FindCustomerController();
 		
 		StackPane root = new StackPane();
-		root.setStyle("-fx-background-color: #bdc7cc; -fx-border-color: #828889; -fx-border-width: 2;");
+		root.setId("view_screen");
 		
 		VBox containerBox=new VBox();
 		root.getChildren().add(containerBox);

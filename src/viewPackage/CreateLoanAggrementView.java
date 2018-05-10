@@ -1,13 +1,19 @@
 package viewPackage;
 
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
+import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -17,10 +23,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.converter.NumberStringConverter;
+import jdk.nashorn.internal.runtime.regexp.joni.Warnings;
 
 public class CreateLoanAggrementView
 {
 	private CreateLoanAggrementController theController;
+	private VBox warningContainer;
 	
 	public CreateLoanAggrementView(CreateLoanAggrementController controller)
 	{
@@ -30,15 +39,23 @@ public class CreateLoanAggrementView
 	public StackPane getSceneGUI()
 	{
 		StackPane root = new StackPane();
-		root.setStyle("-fx-background-color: #bdc7cc; -fx-border-color: #828889; -fx-border-width: 2;");
-		root.setPadding(new Insets(8));
+		root.setId("view_screen");
+		root.setPadding(new Insets(14));
 		
 		VBox containerBox=new VBox();
 		root.getChildren().add(containerBox);
+		containerBox.getChildren().add(createCustomerInfoGrid());
+		containerBox.getChildren().add(createLoanInfoGrid());
+		containerBox.getChildren().add(createLoanPeriodContainer());
+		containerBox.getChildren().add(createCarInfoGrid());
+		containerBox.getChildren().add(createButtonContainer());
 		
-		//create customerinfoGrid
+		return root;
+	}
+	
+	private GridPane createCustomerInfoGrid()
+	{
 		GridPane customerInformationGrid=new GridPane();
-		containerBox.getChildren().add(customerInformationGrid);
 		
 		Label customerInformationHeader=new Label("Kundeinformation :");
 		customerInformationHeader.setId("part_header_label");
@@ -77,26 +94,46 @@ public class CreateLoanAggrementView
 		customerInformationGrid.add(customerCPRHeader, 1, 3);
 		customerInformationGrid.add(customerCPRLabel, 1, 4);
 		
-		//create loaninfoPart
+		return customerInformationGrid;
+	}
+	
+	private GridPane createLoanInfoGrid()
+	{
 		GridPane loanInformationGrid=new GridPane();
-		containerBox.getChildren().add(loanInformationGrid);
-		containerBox.setMargin(loanInformationGrid, new Insets(6, 0, 6, 0));
+		loanInformationGrid.setPadding(new Insets(8, 0, 0, 0));
 		
-		Label loanInfoLabel=new Label("låneinfo :");
+		Label loanInfoLabel=new Label("Låneinfo :");
 		loanInfoLabel.setId("part_header_label");
 		
-		Label carPriceHeader = new Label("købspris");
+		Label carPriceHeader = new Label("Købspris");
 		carPriceHeader.setId("header_label");
 		
+		//TODO
+		//somehow change , to . so bigdecimals will eat it
 		TextField carPriceField = new TextField();
-		carPriceField.textProperty().bindBidirectional(theController.carPriceProperty());
+		carPriceField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                	carPriceField.setText(oldValue);
+                }
+                theController.setCarPrice(carPriceField.getText());
+            }
+        });
 		
-		Label downPaymentHeader = new Label("kunde udbetaling");
+		Label downPaymentHeader = new Label("Kunde udbetaling");
 		downPaymentHeader.setId("header_label");
 		
 		TextField downPaymentField = new TextField();
-		downPaymentField.textProperty().bindBidirectional(theController.downPaymentProperty());
-		
+		downPaymentField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                	downPaymentField.setText(oldValue);
+                }
+                theController.setDownPayment(downPaymentField.getText());
+            }
+        });
 		
 		loanInformationGrid.add(loanInfoLabel, 0, 0);
 		loanInformationGrid.add(carPriceHeader, 0, 1);
@@ -104,19 +141,42 @@ public class CreateLoanAggrementView
 		loanInformationGrid.add(downPaymentHeader, 1, 1);
 		loanInformationGrid.add(downPaymentField, 1, 2);
 		
-		//loan duration
-		HBox loanContainer= new HBox();
-		containerBox.getChildren().add(loanContainer);
+		loanInformationGrid.setMargin(carPriceField, new Insets(0, 16, 0, 0));
+		
+		return loanInformationGrid;
+	}
+	
+	private HBox createLoanPeriodContainer()
+	{
+		HBox loanPeriodContainer= new HBox();
 		
 		VBox dateContainer=new VBox();
-		loanContainer.getChildren().add(dateContainer);
+		loanPeriodContainer.getChildren().add(dateContainer);
 		
 		Label startDateHeader=new Label("Start Dato");
 		startDateHeader.setId("header_label");
 		
 		DatePicker datePicker=new DatePicker();
+		
+		
 		datePicker.setOnAction(event -> {
-		    LocalDate date = datePicker.getValue();
+			//lock date to the first of the month
+		    LocalDate date = datePicker.getValue().with(TemporalAdjusters.firstDayOfMonth());
+		    //if date is earlier than current day, set to next month
+		    LocalDate currentDate=LocalDate.now();
+		    if(date.isBefore(currentDate))
+		    {
+		    	if(currentDate.getDayOfMonth()==1)
+		    	{
+		    		date=currentDate;
+		    	}
+		    	else
+		    	{
+		    		date=currentDate.with(TemporalAdjusters.firstDayOfNextMonth());
+		    	}
+		    }
+		    datePicker.setValue(date);
+		    theController.setStartDate(date);
 		});
 		
 		dateContainer.getChildren().add(startDateHeader);
@@ -127,44 +187,56 @@ public class CreateLoanAggrementView
 		Label loanPeriodHeader=new Label("Lånets løbetid");
 		loanPeriodHeader.setId("header_label");
 		
-		Slider periodSlider=new Slider();
-		periodSlider.setMin(2);
-		periodSlider.setMax(10);
-		periodSlider.setValue(5);
-		periodSlider.setMajorTickUnit(4);
-		periodSlider.setMinorTickCount(4);
+		Slider periodSlider=new Slider(2, 10, 6);
+		periodSlider.setMajorTickUnit(2);
+		periodSlider.setMinorTickCount(0);
 		periodSlider.setBlockIncrement(1);
 		periodSlider.setShowTickLabels(true);
 		periodSlider.setSnapToTicks(true);
 		periodSlider.setShowTickMarks(true);
+		Bindings.bindBidirectional(theController.loanDurationProperty(), periodSlider.valueProperty(), new NumberStringConverter());
 		
 		periodContainer.getChildren().add(loanPeriodHeader);
 		periodContainer.getChildren().add(periodSlider);
 		
-		loanContainer.getChildren().add(periodContainer);
-		//car part
+		loanPeriodContainer.getChildren().add(periodContainer);
+		
+		return loanPeriodContainer;
+	}
+	
+	private GridPane createCarInfoGrid()
+	{
 		GridPane carInformationGrid=new GridPane();
-		containerBox.getChildren().add(carInformationGrid);
 
 		Label carInformationHeader= new Label("Bil ID");
 		carInformationHeader.setId("header_label");
 		
-		TextField carIDNumberField= new TextField();
-		
+		TextField carIDNumberField= new TextField("1292");
 		carIDNumberField.textProperty().bindBidirectional(theController.carIDProperty());
 		
 		Button findCarButton=new Button("Find Bil");
+		findCarButton.setId("view_button");
 		
-		Label carInformationLabel=new Label("Bilinformation");
+		Label carInformationLabel=new Label("Bilinformation : Ferrari 488 Pista - 2018, udstillingsmodel");
 		
 		carInformationGrid.add(carInformationHeader, 0, 0);
 		carInformationGrid.add(carIDNumberField, 0, 1);
 		carInformationGrid.add(findCarButton, 1, 1);
-		carInformationGrid.add(carInformationLabel, 2, 1);
+		carInformationGrid.add(carInformationLabel, 0, 2, 2,1);
 		
-		//buttons
+		return carInformationGrid;
+	}
+	
+	private VBox createButtonContainer()
+	{
+		VBox buttonContainer= new VBox();
+		buttonContainer.setPadding(new Insets(14));
+		
 		HBox buttonHolder=new HBox();
+		buttonContainer.getChildren().add(buttonHolder);
+		
 		Button calculateAggrementButton = new Button("Beregn låneaftale");
+		calculateAggrementButton.setId("view_button");
 		calculateAggrementButton.setDisable(true);
 		
 		calculateAggrementButton.setOnAction(new EventHandler<ActionEvent>() 
@@ -172,25 +244,30 @@ public class CreateLoanAggrementView
 		    @Override
 		    public void handle(ActionEvent e) 
 		    {
+		    	warningContainer.getChildren().clear();
 		    	theController.createLoanAggrement();
 		    }
 		});
 		
 		Button cancelButton = new Button("Annuller");
+		cancelButton.setId("view_button");
 		cancelButton.setOnAction(new EventHandler<ActionEvent>() 
 		{
 		    @Override
 		    public void handle(ActionEvent e) 
 		    {
-		    	theController.createLoanAggrement();
+		    	theController.cancelLoanAgreement();
 		    }
 		});
 		
 		buttonHolder.getChildren().add(calculateAggrementButton);
 		buttonHolder.getChildren().add(cancelButton);
+		buttonHolder.setMargin(calculateAggrementButton, new Insets(6));
+		buttonHolder.setMargin(cancelButton, new Insets(6));
 		
 		//setup listener
 				Label waitingLabel= new Label("Indhenter kundens kreditvurdering og daglig rente...");
+				buttonContainer.getChildren().add(waitingLabel);
 				
 				theController.getHandler().canReturnLoanAgreementProperty().addListener(new ChangeListener() {
 			        @Override public void changed(ObservableValue o,Object oldVal, 
@@ -209,8 +286,15 @@ public class CreateLoanAggrementView
 			        }
 			      });
 		
-		containerBox.getChildren().add(buttonHolder);
-		containerBox.getChildren().add(waitingLabel);
-		return root;
+		warningContainer = new VBox();
+		buttonContainer.getChildren().add(warningContainer);
+		return buttonContainer;
 	}
+	
+	public void addWarning(String warning)
+	{
+		Label warningLabel=new Label(warning);
+		warningContainer.getChildren().add(warningLabel);
+	}
+	
 }

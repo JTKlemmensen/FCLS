@@ -1,6 +1,7 @@
 package logic;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -12,7 +13,7 @@ public class LoanAgreementDataModel
 	private sellerDataModel seller;
 	private CarDataModel car;
 	
-	private Date startDate;
+	private LocalDate startDate;
 	private boolean approved;
 	
 	public CustomerDataModel getCustomer() {
@@ -39,11 +40,11 @@ public class LoanAgreementDataModel
 		this.car = car;
 	}
 	
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 	

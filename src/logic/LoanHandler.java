@@ -2,6 +2,7 @@ package logic;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Observable;
 import com.ferrari.finances.dk.rki.Rating;
@@ -22,7 +23,7 @@ public class LoanHandler extends Observable {
 	public final void setCanReturnLoanAgreement(Boolean value){canReturnLoanAgreement.set(value);}
 	public BooleanProperty canReturnLoanAgreementProperty(){return canReturnLoanAgreement;}
 
-	public LoanAgreementDataModel requestLoanAgreement(String carPrice, String downPayment, Date startDate,
+	public LoanAgreementDataModel requestLoanAgreement(String carPrice, String downPayment, LocalDate startDate,
 			String duration, CarDataModel car) {
 		loanAgreement.setAskingPrice(carPrice);
 		loanAgreement.setDownPayment(downPayment);

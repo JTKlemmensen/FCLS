@@ -27,15 +27,16 @@ private ShowLoanAggrementController theController;
 	public StackPane getSceneGUI()
 	{
 		StackPane root = new StackPane();
-		root.setStyle("-fx-background-color: #bdc7cc; -fx-border-color: #828889; -fx-border-width: 2;");
-		root.setPadding(new Insets(8));
+		root.setId("view_screen");
+		root.setPadding(new Insets(14));
 		
 		VBox containerBox=new VBox();
 		root.getChildren().add(containerBox);
 		
+		
 		//create customerinfoGrid
 		GridPane customerInformationGrid=new GridPane();
-		containerBox.getChildren().add(customerInformationGrid);
+		//containerBox.getChildren().add(customerInformationGrid);
 		
 		Label customerInformationHeader=new Label("Kundeinformation :");
 		customerInformationHeader.setId("part_header_label");
@@ -58,7 +59,7 @@ private ShowLoanAggrementController theController;
 		Label customerTlfLabel=new Label();
 		customerTlfLabel.textProperty().bind(theController.getLoanAgreement().getCustomer().customerPhoneProperty());
 		
-		customerInformationGrid.add(customerInformationHeader, 0, 0);
+		customerInformationGrid.add(customerInformationHeader, 0, 0, 2,1);
 		customerInformationGrid.add(customerNameHeader, 0, 1);
 		customerInformationGrid.add(customerNameLabel, 0, 2);
 		customerInformationGrid.add(customerAdressHeader, 1, 1);
@@ -68,7 +69,7 @@ private ShowLoanAggrementController theController;
 
 		//create SellerInfoGRid
 				GridPane sellerInfoGrid=new GridPane();
-				containerBox.getChildren().add(sellerInfoGrid);
+				//containerBox.getChildren().add(sellerInfoGrid);
 				
 				Label sellerInformationHeader=new Label("Sælgerinformation :");
 				sellerInformationHeader.setId("part_header_label");
@@ -85,7 +86,7 @@ private ShowLoanAggrementController theController;
 
 				//create BankInfoGRid
 				GridPane bankInfoGrid=new GridPane();
-				containerBox.getChildren().add(bankInfoGrid);
+				//containerBox.getChildren().add(bankInfoGrid);
 				
 				Label bankInformationHeader=new Label("Bankinformation :");
 				bankInformationHeader.setId("part_header_label");
@@ -101,7 +102,7 @@ private ShowLoanAggrementController theController;
 				
 				//create carInfoGRid
 				GridPane carInfoGrid=new GridPane();
-				containerBox.getChildren().add(carInfoGrid);
+				//containerBox.getChildren().add(carInfoGrid);
 				
 				Label carInformationHeader=new Label("Bilinformation :");
 				carInformationHeader.setId("part_header_label");
@@ -116,8 +117,20 @@ private ShowLoanAggrementController theController;
 				carInfoGrid.add(carNameHeader, 0, 1);
 				carInfoGrid.add(carNameLabel, 0, 2);
 		
+				//create mainContainergrid
+				GridPane containerGrid=new GridPane();
+				containerBox.getChildren().add(containerGrid);
+				
+				containerGrid.add(customerInformationGrid, 0, 0);
+				containerGrid.add(sellerInfoGrid, 1, 0);
+				containerGrid.add(bankInfoGrid, 0, 1);
+				containerGrid.add(carInfoGrid, 1, 1);
+				containerGrid.setMargin(customerInformationGrid, new Insets(0, 40, 20, 0));
+				
+				
 				//create loanInfoGRid
 				GridPane loanInfoGrid=new GridPane();
+				loanInfoGrid.setPadding(new Insets(20, 0, 0, 0));
 				containerBox.getChildren().add(loanInfoGrid);
 				
 				Label loanInformationHeader=new Label("Låneinformation :");
@@ -176,28 +189,38 @@ private ShowLoanAggrementController theController;
 				loanInfoGrid.add(loanPeriodLabel, 2, 2);
 				loanInfoGrid.add(loanStartDateHeader, 3, 1);
 				loanInfoGrid.add(loanStartDateLabel, 3, 2);
-				loanInfoGrid.add(loanExpirationDateHeader, 4, 1);
-				loanInfoGrid.add(loanExpirationDateLabel, 4, 2);
-				loanInfoGrid.add(interestRateHeader, 5, 1);
-				loanInfoGrid.add(interestRateLabel, 5, 2);
-				loanInfoGrid.add(yearlyPaymentPercentageHeader, 6, 1);
-				loanInfoGrid.add(yearlyPaymentPercentageLabel, 6, 2);
-				loanInfoGrid.add(montlyPaymentHeader, 7, 1);
-				loanInfoGrid.add(montlyPaymentLabel, 7, 2);
+				loanInfoGrid.add(loanExpirationDateHeader, 0, 3);
+				loanInfoGrid.add(loanExpirationDateLabel, 0, 4);
+				loanInfoGrid.add(interestRateHeader, 1, 3);
+				loanInfoGrid.add(interestRateLabel, 1, 4);
+				loanInfoGrid.add(yearlyPaymentPercentageHeader, 2, 3);
+				loanInfoGrid.add(yearlyPaymentPercentageLabel, 2, 4);
+				loanInfoGrid.add(montlyPaymentHeader, 3, 3);
+				loanInfoGrid.add(montlyPaymentLabel, 3, 4);
+				
+				loanInfoGrid.setMargin(askingPriceHeader, new Insets(0, 12, 0, 0));
+				loanInfoGrid.setMargin(downpaymentHeader, new Insets(0, 12, 0, 0));
+				loanInfoGrid.setMargin(loanPeriodHeader, new Insets(0, 12, 0, 0));
+				loanInfoGrid.setMargin(loanStartDateHeader, new Insets(0, 12, 0, 0));
 				
 				//create buttons
 				HBox buttonBox=new HBox();
+				buttonBox.setPadding(new Insets(20));
 				containerBox.getChildren().add(buttonBox);
 				
 				Button saveButton = new Button("Gem & Luk");
+				saveButton.setId("view_button");
 				
 				Button exportButton = new Button("Eksporter");
+				exportButton.setId("view_button");
 				
 				Button cancelButton = new Button("Tilbage");
+				cancelButton.setId("view_button");
 				
 				buttonBox.getChildren().add(saveButton);
 				buttonBox.getChildren().add(exportButton);
 				buttonBox.getChildren().add(cancelButton);
+				buttonBox.setMargin(exportButton, new Insets(0, 12, 0, 12));
 		
 		return root;
 	}

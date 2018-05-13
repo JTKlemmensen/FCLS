@@ -15,7 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-public class ShowLoanAggrementView 
+public class ShowLoanAggrementView implements View
 {
 private ShowLoanAggrementController theController;
 	
@@ -248,5 +248,12 @@ private ShowLoanAggrementController theController;
 				buttonBox.setMargin(exportButton, new Insets(0, 12, 0, 12));
 		
 		return root;
+	}
+
+	@Override
+	public boolean onClose()
+	{
+		// TODO Auto-generated method stub
+		return true;
 	}
 }

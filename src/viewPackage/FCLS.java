@@ -11,15 +11,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-public class MainScreenView 
+public class FCLS 
 {
-	private MainScreenController theController;
+	private FCLSController theController;
 	private BorderPane root;
 	
-	public MainScreenView(MainScreenController controller)
+	public FCLS(FCLSController controller)
 	{
 		theController=controller;
 	}
@@ -80,7 +81,7 @@ public class MainScreenView
 		return scene;
 	}
 	
-	public void setScene(StackPane newPane)
+	public void setView(Pane newPane)
 	{
 		root.setCenter(newPane);
 	}

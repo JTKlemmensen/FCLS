@@ -27,7 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.converter.NumberStringConverter;
 import jdk.nashorn.internal.runtime.regexp.joni.Warnings;
 
-public class CreateLoanAggrementView
+public class CreateLoanAggrementView implements View
 {
 	private CreateLoanAggrementController theController;
 	private VBox warningContainer;
@@ -283,9 +283,9 @@ public class CreateLoanAggrementView
 				ProgressIndicator progress=new ProgressIndicator();
 				buttonContainer.getChildren().add(progress);
 				
-				theController.getHandler().canReturnLoanAgreementProperty().addListener(new ChangeListener() {
-			        @Override public void changed(ObservableValue o,Object oldVal, 
-			                 Object newVal)
+				theController.getHandler().canReturnLoanAgreementProperty().addListener(new ChangeListener<Boolean>() {
+			        @Override public void changed(ObservableValue<? extends Boolean> o,Boolean oldVal, 
+			        		Boolean newVal)
 			        {
 			             if((Boolean)newVal==true)
 			             {
@@ -310,6 +310,13 @@ public class CreateLoanAggrementView
 	{
 		Label warningLabel=new Label(warning);
 		warningContainer.getChildren().add(warningLabel);
+	}
+
+	@Override
+	public boolean onClose()
+	{
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 }

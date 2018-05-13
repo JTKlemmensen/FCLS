@@ -15,6 +15,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+//
+//TODO Remove this. Replace this with Alert.
+//
+
 public class BadCreditScreenView 
 {
 	private BadCreditScreenController theController;

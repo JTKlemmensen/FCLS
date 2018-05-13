@@ -3,6 +3,9 @@ package viewPackage;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+//
+// TODO Remove this. Replace this with Alert.
+//
 public class BadCreditScreenController 
 {
 	private Stage dialogScreenStage;
@@ -25,6 +28,6 @@ public class BadCreditScreenController
 	public void warningAccepted()
 	{
 		dialogScreenStage.close();
-		MainScreenController.INSTANCE.changeScene(null);
+		FCLSController.INSTANCE.changeView(null);
 	}
 }

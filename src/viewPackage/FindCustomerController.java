@@ -17,7 +17,7 @@ public class FindCustomerController
 		//create loanaggrementview 
 		CreateLoanAggrementController controller = new CreateLoanAggrementController(loanHandler, customer);
 		
-		MainScreenController.INSTANCE.changeScene(controller.getView().getSceneGUI());
+		FCLSController.INSTANCE.changeView(controller.getView());
 		
 	}
 }

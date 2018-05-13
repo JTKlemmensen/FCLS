@@ -75,14 +75,14 @@ public class CreateLoanAggrementController
 		LoanAgreementDataModel loanAggrement=itsHandler.requestLoanAgreement(carPrice.get(), downPayment.get(), getStartDate(), loanDuration.get(), new CarDataModel(getCarID(),new BigDecimal("20000")));
 		
 		ShowLoanAggrementController showLoan=new ShowLoanAggrementController(loanAggrement, itsHandler);
-		MainScreenController.INSTANCE.changeScene(showLoan.getView().getSceneGUI());
+		FCLSController.INSTANCE.changeView(showLoan.getView());
 	}
 	
 	public void cancelLoanAgreement()
 	{
 		//TODO 
 		//Thread still running, bad?
-		MainScreenController.INSTANCE.changeScene(null);
+		FCLSController.INSTANCE.changeView(null);
 	}
 	
 	public CustomerDataModel getCustomer()

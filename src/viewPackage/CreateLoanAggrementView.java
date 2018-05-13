@@ -17,6 +17,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -211,8 +212,16 @@ public class CreateLoanAggrementView
 		Label carInformationHeader= new Label("Bil ID");
 		carInformationHeader.setId("header_label");
 		
-		TextField carIDNumberField= new TextField("1292");
-		carIDNumberField.textProperty().bindBidirectional(theController.carIDProperty());
+		TextField carIDNumberField= new TextField();
+		carIDNumberField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,8}")) {
+                	carIDNumberField.setText(oldValue);
+                }
+                theController.setCarID(carIDNumberField.getText());
+            }
+        });
 		
 		Button findCarButton=new Button("Find Bil");
 		findCarButton.setId("view_button");
@@ -265,9 +274,14 @@ public class CreateLoanAggrementView
 		buttonHolder.setMargin(calculateAggrementButton, new Insets(6));
 		buttonHolder.setMargin(cancelButton, new Insets(6));
 		
+		warningContainer = new VBox();
+		buttonContainer.getChildren().add(warningContainer);
 		//setup listener
 				Label waitingLabel= new Label("Indhenter kundens kreditvurdering og daglig rente...");
 				buttonContainer.getChildren().add(waitingLabel);
+				
+				ProgressIndicator progress=new ProgressIndicator();
+				buttonContainer.getChildren().add(progress);
 				
 				theController.getHandler().canReturnLoanAgreementProperty().addListener(new ChangeListener() {
 			        @Override public void changed(ObservableValue o,Object oldVal, 
@@ -277,17 +291,18 @@ public class CreateLoanAggrementView
 			             {
 			            	 waitingLabel.setText("");
 			            	 calculateAggrementButton.setDisable(false);
+			            	 progress.setVisible(false);
 			             }
 			             else
 			             {
 			            	 waitingLabel.setText("Indhenter kundens kreditvurdering og daglig rente...");
 			            	 calculateAggrementButton.setDisable(true);
+			            	 progress.setVisible(true);
 			             }
 			        }
 			      });
 		
-		warningContainer = new VBox();
-		buttonContainer.getChildren().add(warningContainer);
+		
 		return buttonContainer;
 	}
 	

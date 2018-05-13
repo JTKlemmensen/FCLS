@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -13,7 +15,6 @@ public class LoanAgreementDataModel
 	private sellerDataModel seller;
 	private CarDataModel car;
 	
-	private LocalDate startDate;
 	private boolean approved;
 	
 	public CustomerDataModel getCustomer() {
@@ -38,14 +39,6 @@ public class LoanAgreementDataModel
 
 	public void setCar(CarDataModel car) {
 		this.car = car;
-	}
-	
-	public LocalDate getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
 	}
 	
 	public boolean isApproved() {
@@ -78,7 +71,10 @@ public class LoanAgreementDataModel
 	public final void setInterestRate(String value){interestRate.set(value);}
 	public StringProperty interestRateProperty(){return interestRate;}
 	
-	
+	private ObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>();
+	public final LocalDate getStartDate() {return startDate.get();}
+	public final void setStartDate(LocalDate value) {startDate.set(value);}
+	public ObjectProperty<LocalDate> startDateProperty() {return startDate;}
 	
 	
 	public LoanAgreementDataModel(CustomerDataModel customer) {

@@ -28,6 +28,7 @@ public class FindCustomerView
 		root.getChildren().add(containerBox);
 		
 		Button calculateAggrementButton = new Button("Beregn låneaftale");
+		calculateAggrementButton.setId("view_button");
 		calculateAggrementButton.setOnAction(new EventHandler<ActionEvent>() 
 		{
 		    @Override

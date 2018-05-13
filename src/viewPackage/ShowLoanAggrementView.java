@@ -157,7 +157,8 @@ private ShowLoanAggrementController theController;
 				Label loanStartDateHeader=new Label("Lånets startdato");
 				loanStartDateHeader.setId("header_label");
 				
-				Label loanStartDateLabel=new Label("2/2/2");
+				Label loanStartDateLabel=new Label();
+				loanStartDateLabel.textProperty().bind(theController.getLoanAgreement().startDateProperty().asString());
 				
 				Label loanExpirationDateHeader=new Label("Lånets slutdato");
 				loanExpirationDateHeader.setId("header_label");
@@ -210,12 +211,36 @@ private ShowLoanAggrementController theController;
 				
 				Button saveButton = new Button("Gem & Luk");
 				saveButton.setId("view_button");
+				saveButton.setOnAction(new EventHandler<ActionEvent>() 
+				{
+				    @Override
+				    public void handle(ActionEvent e) 
+				    {
+				    	theController.closeAndSaveAgreement();
+				    }
+				});
 				
 				Button exportButton = new Button("Eksporter");
 				exportButton.setId("view_button");
+				exportButton.setOnAction(new EventHandler<ActionEvent>() 
+				{
+				    @Override
+				    public void handle(ActionEvent e) 
+				    {
+				    	theController.exportAgreementToCSVFile();
+				    }
+				});
 				
 				Button cancelButton = new Button("Tilbage");
 				cancelButton.setId("view_button");
+				cancelButton.setOnAction(new EventHandler<ActionEvent>() 
+				{
+				    @Override
+				    public void handle(ActionEvent e) 
+				    {
+				    	theController.returnToCreateAgreementScene();
+				    }
+				});
 				
 				buttonBox.getChildren().add(saveButton);
 				buttonBox.getChildren().add(exportButton);

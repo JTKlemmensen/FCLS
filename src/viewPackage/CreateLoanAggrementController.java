@@ -66,34 +66,16 @@ public class CreateLoanAggrementController
 	{
 		//TODO
 		//check if data is enough for loanhandler
-		boolean dataIsViable=true;
-		if(getCarPrice()==null||getCarPrice()=="")
-		{
-			dataIsViable=false;
-			itsView.addWarning("Indtast købspris");
-		}
-		if(getDownPayment()==null||getDownPayment()=="")
-		{
-			dataIsViable=false;
-			itsView.addWarning("Indtast udbetaling");
-		}
-		if(!dataIsViable)
+		if(checkInputViability()==false)
 		{
 			return;
 		}
 		//TODO
 		//perhaps loanagreement is retrieved when creating createloanscreen
-		LoanAgreementDataModel loanAggrement=itsHandler.requestLoanAgreement(carPrice.get(), downPayment.get(), getStartDate(), loanDuration.get(), new CarDataModel("2323",new BigDecimal("20000")));
+		LoanAgreementDataModel loanAggrement=itsHandler.requestLoanAgreement(carPrice.get(), downPayment.get(), getStartDate(), loanDuration.get(), new CarDataModel(getCarID(),new BigDecimal("20000")));
 		
-		if(loanAggrement==null)
-		{
-			System.out.println("fark");
-		}
-		else
-		{
-			ShowLoanAggrementController showLoan=new ShowLoanAggrementController(loanAggrement);
-			MainScreenController.INSTANCE.changeScene(showLoan.getView().getSceneGUI());
-		}
+		ShowLoanAggrementController showLoan=new ShowLoanAggrementController(loanAggrement, itsHandler);
+		MainScreenController.INSTANCE.changeScene(showLoan.getView().getSceneGUI());
 	}
 	
 	public void cancelLoanAgreement()
@@ -111,5 +93,31 @@ public class CreateLoanAggrementController
 	public LoanHandler getHandler()
 	{
 		return itsHandler;
+	}
+	
+	private boolean checkInputViability()
+	{
+		boolean dataIsViable=true;
+		if(getCarPrice()==null||getCarPrice().equals(""))
+		{
+			dataIsViable=false;
+			itsView.addWarning("Indtast købspris");
+		}
+		if(getDownPayment()==null||getDownPayment().equals(""))
+		{
+			dataIsViable=false;
+			itsView.addWarning("Indtast udbetaling");
+		}
+		if(getStartDate()==null)
+		{
+			dataIsViable=false;
+			itsView.addWarning("Vælg startdato");
+		}
+		if(getCarID()==null||getCarID()=="")
+		{
+			dataIsViable=false;
+			itsView.addWarning("Vælg bil");
+		}
+		return dataIsViable;
 	}
 }

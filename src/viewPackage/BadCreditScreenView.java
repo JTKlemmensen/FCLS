@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class BadCreditScreenView 
@@ -21,16 +22,21 @@ public class BadCreditScreenView
 	public Scene createLoginScene(BadCreditScreenController controller)
 	{
 		theController=controller;
-		VBox root = new VBox();
-		root.setAlignment(Pos.CENTER);
-		root.setPadding(new Insets(25, 25, 25, 25));
+		StackPane root = new StackPane();
+		root.setId("view_screen");
+		
+		VBox container=new VBox();
+		root.getChildren().add(container);
+		container.setAlignment(Pos.CENTER);
+		container.setPadding(new Insets(25, 25, 25, 25));
 	
 		
 		//add username and textfield
 		Label warningLabel = new Label("Kunde er registreret som dårlig betaler, lånetilbud er afvist");
-		root.getChildren().add(warningLabel);
+		container.getChildren().add(warningLabel);
 
 		Button acceptButton = new Button("Acceptér");
+		acceptButton.setId("view_button");
 		acceptButton.setOnAction(new EventHandler<ActionEvent>() {
 			 
 		    @Override
@@ -41,10 +47,13 @@ public class BadCreditScreenView
 		});
 		
 		
-		root.getChildren().add(acceptButton);
+		container.getChildren().add(acceptButton);
+		container.setMargin(acceptButton, new Insets(12, 0, 0, 0));
 		
 		//add cancel button
 		Scene scene= new Scene(root, 400, 200);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		
 		
 		return scene;
 	}

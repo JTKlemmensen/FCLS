@@ -28,7 +28,7 @@ public class ShowLoanAggrementController
 	
 	public void closeAndSaveAgreement()
 	{
-		MainScreenController.INSTANCE.changeScene(null);
+		FCLSController.INSTANCE.changeView(null);
 	}
 	
 	public void exportAgreementToCSVFile()
@@ -39,6 +39,6 @@ public class ShowLoanAggrementController
 	public void returnToCreateAgreementScene()
 	{
 		CreateLoanAggrementController controller = new CreateLoanAggrementController(itsHandler, itsLoanAgreement.getCustomer());
-		MainScreenController.INSTANCE.changeScene(controller.getView().getSceneGUI());
+		FCLSController.INSTANCE.changeView(controller.getView());
 	}
 }

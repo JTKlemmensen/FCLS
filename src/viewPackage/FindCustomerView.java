@@ -14,7 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-public class FindCustomerView 
+public class FindCustomerView implements View
 {
 	private FindCustomerController theController;
 	public StackPane getSceneGUI()
@@ -41,5 +41,11 @@ public class FindCustomerView
 		containerBox.getChildren().add(calculateAggrementButton);
 		
 		return root;
+	}
+	@Override
+	public boolean onClose()
+	{
+		// TODO Auto-generated method stub
+		return true;
 	}
 }

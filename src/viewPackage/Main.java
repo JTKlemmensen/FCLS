@@ -11,7 +11,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			primaryStage.setScene(MainScreenController.INSTANCE.getView().createMainScreenScene());
+			primaryStage.setScene(FCLSController.INSTANCE.getView().createMainScreenScene());
 			setupStage(primaryStage);
 			primaryStage.show();
 			

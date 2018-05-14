@@ -27,7 +27,9 @@ public class FCLSController
 	
 	public void changeView(View view)
 	{	
-		if(view.onClose())
+		if(view==null)
+			theView.setView(null);
+		else if(view.onClose())
 			theView.setView(view.getSceneGUI());
 	}
 }

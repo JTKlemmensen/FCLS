@@ -22,23 +22,24 @@ public class CustomerHandler {
 		
 		for(CustomerDataModel cdm : this.customers)
 		{
-			if(firstName!=null && firstName.length()>0)
-				if(!cdm.getCustomerFirstName().contains(firstName) )
-					continue;
-			
-			if(lastName!=null && lastName.length()>0)
-				if(!cdm.getCustomerLastName().contains(lastName) )
-					continue;
-			
-			if(phoneNumber!=null && phoneNumber.length()>0)
-				if(!cdm.getCustomerPhone().contains(phoneNumber) )
-					continue;
+			if( !checkCustomerProperty(cdm.getCustomerFirstName(),firstName) ||
+				!checkCustomerProperty(cdm.getCustomerLastName(),lastName) ||
+				!checkCustomerProperty(cdm.getCustomerPhone(),phoneNumber) )
+				continue;
 			
 			customers.add(cdm);
 		}
 		
 		
 		return customers;
+	}
+	
+	private boolean checkCustomerProperty(String customerProperty, String otherProperty)
+	{
+		if(otherProperty!=null && otherProperty.length()>0)
+			if(customerProperty!= null && !customerProperty.contains(otherProperty) )
+				return false;
+		return true;
 	}
 
 }

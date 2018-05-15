@@ -44,7 +44,7 @@ private ShowLoanAggrementController theController;
 		customerNameHeader.setId("header_label");
 		
 		Label customerNameLabel=new Label();
-		customerNameLabel.textProperty().bind(theController.getLoanAgreement().getCustomer().customerNameProperty());
+		customerNameLabel.textProperty().bind(theController.getLoanAgreement().getCustomer().customerFirstNameProperty());
 		
 		Label customerAdressHeader=new Label("Addresse");
 		customerAdressHeader.setId("header_label");

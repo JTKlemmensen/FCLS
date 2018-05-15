@@ -9,7 +9,7 @@ public class FindCustomerController
 	{
 		//TODO
 		//simulate customer for now
-		CustomerDataModel customer=new CustomerDataModel("Jens Lyn", "langeløgallé 53", "Lem", "4343", "45232343", "Sutmin@hotmail.com", "0102033434");
+		CustomerDataModel customer=new CustomerDataModel("Jens", "Lyn", "langeløgallé 53", "Lem", "4343", "45232343", "Sutmin@hotmail.com", "0102033434");
 		
 		//setup loanaggrementcalled
 		LoanHandler loanHandler=new LoanHandler();
@@ -22,7 +22,7 @@ public class FindCustomerController
 	}
 	
 	public void createCustomerPressed() {
-		CustomerDataModel customer=new CustomerDataModel("", "", "", "", "", "", "");
+		CustomerDataModel customer=new CustomerDataModel("", "", "", "", "", "", "", "");
 		
 		CustomerHandler customerHandler=new CustomerHandler();
 		

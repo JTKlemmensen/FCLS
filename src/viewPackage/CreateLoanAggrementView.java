@@ -64,8 +64,8 @@ public class CreateLoanAggrementView implements View
 		Label customerNameHeader=new Label("Navn");
 		customerNameHeader.setId("header_label");
 		
-		Label customerNameLabel=new Label();
-		customerNameLabel.textProperty().bind(theController.getCustomer().customerNameProperty());
+		Label customerFirstNameLabel=new Label();
+		customerFirstNameLabel.textProperty().bind(theController.getCustomer().customerFirstNameProperty());
 		
 		Label customerAdressHeader=new Label("Addresse");
 		customerAdressHeader.setId("header_label");
@@ -87,7 +87,7 @@ public class CreateLoanAggrementView implements View
 		
 		customerInformationGrid.add(customerInformationHeader, 0, 0);
 		customerInformationGrid.add(customerNameHeader, 0, 1);
-		customerInformationGrid.add(customerNameLabel, 0, 2);
+		customerInformationGrid.add(customerFirstNameLabel, 0, 2);
 		customerInformationGrid.add(customerAdressHeader, 1, 1);
 		customerInformationGrid.add(customerAdressLabel, 1, 2);
 		customerInformationGrid.add(customerTlfHeader, 0, 3);

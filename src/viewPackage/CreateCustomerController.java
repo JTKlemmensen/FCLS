@@ -14,10 +14,16 @@ public class CreateCustomerController {
 	private CustomerHandler itsHandler;
 	private CustomerDataModel itsCustomer;
 	
-	private StringProperty customerName = new SimpleStringProperty();
-	public final String getCustomerName() {return customerName.get();}
-	public final void setCustomerName(String value){customerName.set(value);}
-	public StringProperty customerNameProperty(){return customerName;}
+	private StringProperty customerFirstName = new SimpleStringProperty();
+	public final String getCustomerFirstName() {return customerFirstName.get();}
+	public final void setCustomerFirstName(String value){customerFirstName.set(value);}
+	public StringProperty customerFirstNameProperty(){return customerFirstName;}
+	
+	private StringProperty customerLastName = new SimpleStringProperty();
+	public final String getCustomerLastName() {return customerLastName.get();}
+	public final void setCustomerLastName(String value){customerLastName.set(value);}
+	public StringProperty customerLastNameProperty(){return customerLastName;}
+	
 	
 	private StringProperty customerAddress = new SimpleStringProperty();
 	public final String getCustomerAddress() {return customerAddress.get();}
@@ -71,7 +77,7 @@ public class CreateCustomerController {
 		}
 		//TODO
 		//perhaps loanagreement is retrieved when creating createloanscreen
-		itsHandler.createCustomer(customerName.get(), customerAddress.get(), customerCity.get(), customerPhone.get(), customerCPR.get(), postalCode.get(), customerEmail.get());
+		itsHandler.createCustomer(customerFirstName.get(), customerLastName.get(), customerAddress.get(), customerCity.get(), customerPhone.get(), customerCPR.get(), postalCode.get(), customerEmail.get());
 	}
 	
 	public void cancelCreateCustomer()
@@ -93,7 +99,7 @@ public class CreateCustomerController {
 	private boolean checkInputViability()
 	{
 		boolean dataIsViable=true;
-		if(getCustomerName()==null||getCustomerName().equals(""))
+		if(getCustomerFirstName()==null||getCustomerFirstName().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast købspris");

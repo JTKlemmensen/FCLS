@@ -1,8 +1,5 @@
 package viewPackage;
 
-
-
-
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;

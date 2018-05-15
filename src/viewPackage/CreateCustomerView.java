@@ -44,17 +44,31 @@ public class CreateCustomerView implements View{
 		Label customerInformationHeader=new Label("Kundeinformation :");
 		customerInformationHeader.setId("part_header_label");
 		
-		Label customerNameHeader=new Label("Navn");
-		customerNameHeader.setId("header_label");
+		Label customerFirstNameHeader=new Label("Navn");
+		customerFirstNameHeader.setId("header_label");
 		
-		TextField customerNameTextField=new TextField();
-		customerNameTextField.textProperty().addListener(new ChangeListener<String>() {
+		TextField customerFirstNameTextField=new TextField();
+		customerFirstNameTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
-                	customerNameTextField.setText(oldValue);
+                	customerFirstNameTextField.setText(oldValue);
                 }
-                theController.setCustomerName(customerNameTextField.getText());
+                theController.setCustomerFirstName(customerFirstNameTextField.getText());
+            }
+        });
+		
+		Label customerLastNameHeader=new Label("Navn");
+		customerLastNameHeader.setId("header_label");
+		
+		TextField customerLastNameTextField=new TextField();
+		customerLastNameTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                	customerLastNameTextField.setText(oldValue);
+                }
+                theController.setCustomerLastName(customerLastNameTextField.getText());
             }
         });
 		
@@ -129,8 +143,8 @@ public class CreateCustomerView implements View{
         });
 		
 		customerInformationGrid.add(customerInformationHeader, 0, 0);
-		customerInformationGrid.add(customerNameHeader, 0, 1);
-		customerInformationGrid.add(customerNameTextField, 0, 2);
+		customerInformationGrid.add(customerFirstNameHeader, 0, 1);
+		customerInformationGrid.add(customerFirstNameTextField, 0, 2);
 		customerInformationGrid.add(customerAdressHeader, 1, 1);
 		customerInformationGrid.add(customerAdressTextField, 1, 2);
 		customerInformationGrid.add(customerTlfHeader, 0, 3);

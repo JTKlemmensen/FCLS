@@ -1,11 +1,19 @@
 package viewPackage;
 
+import javafx.scene.control.TableView;
 import logic.CustomerDataModel;
 import logic.CustomerHandler;
 import logic.LoanHandler;
 
 public class FindCustomerController 
 {
+	private CustomerHandler customerHandler;
+	
+	public FindCustomerController()
+	{
+		customerHandler=new CustomerHandler();
+	}
+	
 	public void createLoanAggrementPressed()
 	{
 		//TODO
@@ -31,5 +39,11 @@ public class FindCustomerController
 		
 		FCLSController.INSTANCE.changeView(controller.getView());
 		
+	}
+	
+	public void updateTableView(TableView<CustomerDataModel> table)
+	{
+		table.getItems().addAll(customerHandler.getCustomers("", "", ""));
+//		customerHandler.getCustomers(firstName, lastName, phoneNumber);
 	}
 }

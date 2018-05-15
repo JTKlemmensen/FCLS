@@ -33,7 +33,7 @@ public class LoanHandler extends Observable {
 		
 		//TODO
 		//get seller elsewhere
-		loanAgreement.setSeller(new sellerDataModel("Carsten Bjørn", "2000000"));
+		loanAgreement.setSeller(new sellerDataModel("Carsten Bjørn", "2000000", "CBJ"));
 		
 		double rate = calculateRate(new BigDecimal(loanAgreement.getAskingPrice()), new BigDecimal(loanAgreement.getDownPayment()), Integer.parseInt(loanAgreement.getDuration()));
 		

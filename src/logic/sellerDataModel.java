@@ -16,9 +16,14 @@ public class sellerDataModel
 	public final void setLoanLimit(String value){loanLimit.set(value);}
 	public StringProperty loanLimitProperty(){return loanLimit;}
 
+	private StringProperty salesPersonFullName = new SimpleStringProperty();
+	public final String getSalesPersonFullName() {return salesPersonFullName.get();}
+	public final void setSalesPersonFullName(String value){salesPersonFullName.set(value);}
+	public StringProperty salesPersonFullNameProperty(){return salesPersonFullName;}
 	
-	public sellerDataModel(String name, String limit) {
+	public sellerDataModel(String name, String limit, String fullName) {
 		salesPersonName.set(name);
 		loanLimit.set(limit);
+		setSalesPersonFullName(fullName);
 	}
 }

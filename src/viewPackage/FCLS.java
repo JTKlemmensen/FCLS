@@ -14,11 +14,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import logic.sellerDataModel;
 
 public class FCLS 
 {
 	private FCLSController theController;
 	private BorderPane root;
+	private Label currentUserLabel;
 	
 	public FCLS(FCLSController controller)
 	{
@@ -32,10 +34,21 @@ public class FCLS
 		//create top part
 		HBox topMenuContainer= new HBox();
 		topMenuContainer.setId("top_bar");
-		Label currentUserLabel=new Label("Current user : admin");
+		currentUserLabel=new Label("Sælger profil:");
 		currentUserLabel.setId("dark_label");
 		topMenuContainer.getChildren().add(currentUserLabel);
-		topMenuContainer.getChildren().add(new Hyperlink("Change User"));
+		
+		Hyperlink changeLoginLink=new Hyperlink("Skift sælger");
+		changeLoginLink.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override
+		    public void handle(ActionEvent e) 
+		    {
+		        //open login screen
+		    	theController.startLoginScreen();
+		    }
+		});
+		
+		topMenuContainer.getChildren().add(changeLoginLink);
 		topMenuContainer.setPrefHeight(26);
 		topMenuContainer.setAlignment(Pos.CENTER_RIGHT);
 		
@@ -84,5 +97,10 @@ public class FCLS
 	public void setView(Pane newPane)
 	{
 		root.setCenter(newPane);
+	}
+	
+	public void setCurrentUserField(sellerDataModel newSalesPerson)
+	{
+		currentUserLabel.setText("Sælger profil: "+newSalesPerson.getSalesPersonName());
 	}
 }

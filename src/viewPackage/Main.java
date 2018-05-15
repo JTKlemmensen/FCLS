@@ -1,6 +1,8 @@
 package viewPackage;
 	
+import database.*;
 import javafx.application.Application;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -10,10 +12,13 @@ import javafx.scene.layout.BorderPane;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
+		
 		try {
 			primaryStage.setScene(FCLSController.INSTANCE.getView().createMainScreenScene());
 			setupStage(primaryStage);
 			primaryStage.show();
+			
+			FCLSController.INSTANCE.startLoginScreen();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -30,4 +35,5 @@ public class Main extends Application {
 		Image image= new Image(getClass().getResourceAsStream("ferrariLogo.png"));
 		primaryStage.getIcons().add(image);
 	}
+	
 }

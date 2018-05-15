@@ -33,7 +33,6 @@ private ShowLoanAggrementController theController;
 		VBox containerBox=new VBox();
 		root.getChildren().add(containerBox);
 		
-		
 		//create customerinfoGrid
 		GridPane customerInformationGrid=new GridPane();
 		//containerBox.getChildren().add(customerInformationGrid);

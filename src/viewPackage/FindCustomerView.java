@@ -37,8 +37,20 @@ public class FindCustomerView implements View
 		    	theController.createLoanAggrementPressed();
 		    }
 		});
+		
+		Button createCustomer = new Button("Opret kunde");
+		createCustomer.setId("view_button");
+		createCustomer.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    @Override
+		    public void handle(ActionEvent e) 
+		    {
+		    	theController.createCustomerPressed();
+		    }
+		});
 	
 		containerBox.getChildren().add(calculateAggrementButton);
+		containerBox.getChildren().add(createCustomer);
 		
 		return root;
 	}

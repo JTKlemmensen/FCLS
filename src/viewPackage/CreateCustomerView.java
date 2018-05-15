@@ -1,0 +1,204 @@
+package viewPackage;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+
+
+public class CreateCustomerView implements View{
+	private CreateCustomerController theController;
+	private VBox warningContainer;
+	
+	public CreateCustomerView(CreateCustomerController controller)
+	{
+		theController=controller;
+	}
+	
+	public StackPane getSceneGUI()
+	{
+		StackPane root = new StackPane();
+		root.setId("view_screen");
+		root.setPadding(new Insets(14));
+		
+		VBox containerBox=new VBox();
+		root.getChildren().add(containerBox);
+		containerBox.getChildren().add(createCustomerInfoGrid());
+		containerBox.getChildren().add(createButtonContainer());
+		
+		return root;
+	}
+	
+	private GridPane createCustomerInfoGrid()
+	{
+		GridPane customerInformationGrid=new GridPane();
+		
+		Label customerInformationHeader=new Label("Kundeinformation :");
+		customerInformationHeader.setId("part_header_label");
+		
+		Label customerNameHeader=new Label("Navn");
+		customerNameHeader.setId("header_label");
+		
+		TextField customerNameTextField=new TextField();
+		customerNameTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                	customerNameTextField.setText(oldValue);
+                }
+                theController.setCustomerName(customerNameTextField.getText());
+            }
+        });
+		
+		Label customerAdressHeader=new Label("Addresse");
+		customerAdressHeader.setId("header_label");
+		
+		TextField customerAdressTextField=new TextField();
+		customerAdressTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                	customerAdressTextField.setText(oldValue);
+                }
+                theController.setCustomerAddress(customerAdressTextField.getText());
+            }
+        });
+		
+		Label customerTlfHeader=new Label("Tlf. nr");
+		customerTlfHeader.setId("header_label");
+		
+		TextField customerPhoneTextField=new TextField();
+		customerPhoneTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                	customerPhoneTextField.setText(oldValue);
+                }
+                theController.setCustomerPhone(customerPhoneTextField.getText());
+            }
+        });
+		
+		Label customerCPRHeader=new Label("CPR nr.");
+		customerCPRHeader.setId("header_label");
+		
+		TextField customerCPRTextField=new TextField();
+		customerCPRTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                	customerCPRTextField.setText(oldValue);
+                }
+                theController.setCustomerCPR(customerCPRTextField.getText());
+            }
+        });
+		
+		Label customerPostalCodeHeader=new Label("Post nr.");
+		customerPostalCodeHeader.setId("header_label");
+		
+		TextField customerPostalCodeTextField=new TextField();
+		customerPostalCodeTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                	customerPostalCodeTextField.setText(oldValue);
+                }
+                theController.setPostalCode(customerPostalCodeTextField.getText());
+            }
+        });
+		
+		Label customerEmailCodeHeader=new Label("Email");
+		customerEmailCodeHeader.setId("header_label");
+		
+		TextField customerEmailTextField=new TextField();
+		customerEmailTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                	customerEmailTextField.setText(oldValue);
+                }
+                theController.setCustomerEmail(customerEmailTextField.getText());
+            }
+        });
+		
+		customerInformationGrid.add(customerInformationHeader, 0, 0);
+		customerInformationGrid.add(customerNameHeader, 0, 1);
+		customerInformationGrid.add(customerNameTextField, 0, 2);
+		customerInformationGrid.add(customerAdressHeader, 1, 1);
+		customerInformationGrid.add(customerAdressTextField, 1, 2);
+		customerInformationGrid.add(customerTlfHeader, 0, 3);
+		customerInformationGrid.add(customerPhoneTextField, 0, 4);
+		customerInformationGrid.add(customerCPRHeader, 1, 3);
+		customerInformationGrid.add(customerCPRTextField, 1, 4);
+		customerInformationGrid.add(customerPostalCodeHeader, 0, 5);
+		customerInformationGrid.add(customerPostalCodeTextField, 0, 6);
+		customerInformationGrid.add(customerEmailCodeHeader, 1, 5);
+		customerInformationGrid.add(customerEmailTextField, 1, 6);
+		
+		return customerInformationGrid;
+	}
+	
+	private VBox createButtonContainer()
+	{
+		VBox buttonContainer= new VBox();
+		buttonContainer.setPadding(new Insets(14));
+		
+		HBox buttonHolder=new HBox();
+		buttonContainer.getChildren().add(buttonHolder);
+		
+		Button createCustomer = new Button("Opret Kunde");
+		createCustomer.setId("view_button");
+		createCustomer.setDisable(true);
+		
+		createCustomer.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    @Override
+		    public void handle(ActionEvent e) 
+		    {
+		    	warningContainer.getChildren().clear();
+		    	theController.createCustomer();
+		    }
+		});
+		
+		Button cancelButton = new Button("Annuller");
+		cancelButton.setId("view_button");
+		cancelButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    @Override
+		    public void handle(ActionEvent e) 
+		    {
+		    	theController.cancelCreateCustomer();
+		    }
+		});
+		
+		buttonHolder.getChildren().add(createCustomer);
+		buttonHolder.getChildren().add(cancelButton);
+		buttonHolder.setMargin(createCustomer, new Insets(6));
+		buttonHolder.setMargin(cancelButton, new Insets(6));
+		
+		warningContainer = new VBox();
+		buttonContainer.getChildren().add(warningContainer);
+
+		return buttonContainer;
+	}
+	
+	public void addWarning(String warning)
+	{
+		Label warningLabel=new Label(warning);
+		warningContainer.getChildren().add(warningLabel);
+	}
+
+	@Override
+	public boolean onClose()
+	{
+		// TODO Auto-generated method stub
+		return true;
+	}
+}

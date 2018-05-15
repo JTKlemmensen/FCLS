@@ -20,4 +20,15 @@ public class FindCustomerController
 		FCLSController.INSTANCE.changeView(controller.getView());
 		
 	}
+	
+	public void createCustomerPressed() {
+		CustomerDataModel customer=new CustomerDataModel("", "", "", "", "", "", "");
+		
+		CustomerHandler customerHandler=new CustomerHandler();
+		
+		CreateCustomerController controller = new CreateCustomerController(customerHandler, customer);
+		
+		FCLSController.INSTANCE.changeView(controller.getView());
+		
+	}
 }

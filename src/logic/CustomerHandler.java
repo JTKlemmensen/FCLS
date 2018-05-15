@@ -42,10 +42,8 @@ public class CustomerHandler {
 	
 	private boolean considerProperty(String customerProperty, String otherProperty)
 	{
-		customerProperty=customerProperty.toLowerCase();
-		otherProperty=otherProperty.toLowerCase();
 		if(otherProperty!=null && otherProperty.length()>0)
-			if(customerProperty!= null && !customerProperty.contains(otherProperty) )
+			if(customerProperty!= null && !customerProperty.toLowerCase().contains(otherProperty.toLowerCase()) )
 				return false;
 		return true;
 	}

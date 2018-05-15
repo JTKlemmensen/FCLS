@@ -22,9 +22,9 @@ public class CustomerHandler {
 		
 		for(CustomerDataModel cdm : this.customers)
 		{
-			if( !checkCustomerProperty(cdm.getCustomerFirstName(),firstName) ||
-				!checkCustomerProperty(cdm.getCustomerLastName(),lastName) ||
-				!checkCustomerProperty(cdm.getCustomerPhone(),phoneNumber) )
+			if( !considerProperty(cdm.getCustomerFirstName(),firstName) ||
+				!considerProperty(cdm.getCustomerLastName(),lastName) ||
+				!considerProperty(cdm.getCustomerPhone(),phoneNumber) )
 				continue;
 			
 			customers.add(cdm);
@@ -34,7 +34,7 @@ public class CustomerHandler {
 		return customers;
 	}
 	
-	private boolean checkCustomerProperty(String customerProperty, String otherProperty)
+	private boolean considerProperty(String customerProperty, String otherProperty)
 	{
 		if(otherProperty!=null && otherProperty.length()>0)
 			if(customerProperty!= null && !customerProperty.contains(otherProperty) )

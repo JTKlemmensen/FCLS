@@ -1,4 +1,4 @@
-package viewPackage;
+package logic;
 
 public class CustomerHandler {
 

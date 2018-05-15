@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import logic.CarDataModel;
 import logic.CustomerDataModel;
+import logic.CustomerHandler;
 import logic.LoanAgreementDataModel;
 import logic.LoanHandler;
 

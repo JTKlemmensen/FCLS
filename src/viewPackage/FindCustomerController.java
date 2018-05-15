@@ -1,6 +1,7 @@
 package viewPackage;
 
 import logic.CustomerDataModel;
+import logic.CustomerHandler;
 import logic.LoanHandler;
 
 public class FindCustomerController 

@@ -41,9 +41,10 @@ public class FindCustomerController
 		
 	}
 	
-	public void updateTableView(TableView<CustomerDataModel> table)
+	public void updateTableView(TableView<CustomerDataModel> table, String firstName, String lastName, String phoneNumber)
 	{
-		table.getItems().addAll(customerHandler.getCustomers("", "", ""));
+		table.getItems().clear();
+		table.getItems().addAll(customerHandler.getCustomers(firstName, lastName, phoneNumber));
 //		customerHandler.getCustomers(firstName, lastName, phoneNumber);
 	}
 }

@@ -90,7 +90,7 @@ public class CreateLoanAggrementView implements View
 		
 		customerInformationGrid.add(customerInformationHeader, 0, 0);
 		customerInformationGrid.add(customerNameHeader, 0, 1);
-		customerInformationGrid.add(customerFirstNameLabel, 0, 2);
+		customerInformationGrid.add(customerNameLabel, 0, 2);
 		customerInformationGrid.add(customerAdressHeader, 1, 1);
 		customerInformationGrid.add(customerAdressLabel, 1, 2);
 		customerInformationGrid.add(customerTlfHeader, 0, 3);

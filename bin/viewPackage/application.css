@@ -161,3 +161,16 @@
     -fx-font-weight : bold;
     -fx-font-size: 14px;
 }
+    
+#create_customer_label{   
+	-fx-font-size: 14px;
+   	-fx-font-family: "Helvetica";
+   	-fx-text-fill: #d1cbb8; 	
+	-fx-padding: 10 0 0 0;
+}
+
+#create_customer_info_grid{
+	-fx-hgap: 10;
+}
+
+

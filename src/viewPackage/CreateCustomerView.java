@@ -40,18 +40,19 @@ public class CreateCustomerView implements View{
 	private GridPane createCustomerInfoGrid()
 	{
 		GridPane customerInformationGrid=new GridPane();
+		customerInformationGrid.setId("create_customer_info_grid");
 		
 		Label customerInformationHeader=new Label("Kundeinformation :");
-		customerInformationHeader.setId("part_header_label");
+		customerInformationHeader.setId("part_create_customer_label");
 		
 		Label customerFirstNameHeader=new Label("Navn");
-		customerFirstNameHeader.setId("header_label");
+		customerFirstNameHeader.setId("create_customer_label");
 		
-		TextField customerFirstNameTextField=new TextField();
+		TextField customerFirstNameTextField=new TextField();		
 		customerFirstNameTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                if (!newValue.matches("\\w{0,10}")) {
                 	customerFirstNameTextField.setText(oldValue);
                 }
                 theController.setCustomerFirstName(customerFirstNameTextField.getText());
@@ -59,13 +60,14 @@ public class CreateCustomerView implements View{
         });
 		
 		Label customerLastNameHeader=new Label("Navn");
-		customerLastNameHeader.setId("header_label");
+		customerLastNameHeader.setId("create_customer_label");
+		//customerInformationHeader.setStyle(value);
 		
 		TextField customerLastNameTextField=new TextField();
 		customerLastNameTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                if (!newValue.matches("\\w{0,10}")) {
                 	customerLastNameTextField.setText(oldValue);
                 }
                 theController.setCustomerLastName(customerLastNameTextField.getText());
@@ -73,13 +75,13 @@ public class CreateCustomerView implements View{
         });
 		
 		Label customerAdressHeader=new Label("Addresse");
-		customerAdressHeader.setId("header_label");
+		customerAdressHeader.setId("create_customer_label");
 		
 		TextField customerAdressTextField=new TextField();
 		customerAdressTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                if (!newValue.matches("\\w{0,10}")) {
                 	customerAdressTextField.setText(oldValue);
                 }
                 theController.setCustomerAddress(customerAdressTextField.getText());
@@ -87,13 +89,13 @@ public class CreateCustomerView implements View{
         });
 		
 		Label customerTlfHeader=new Label("Tlf. nr");
-		customerTlfHeader.setId("header_label");
+		customerTlfHeader.setId("create_customer_label");
 		
 		TextField customerPhoneTextField=new TextField();
 		customerPhoneTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                if (!newValue.matches("\\d{0,13}")) {
                 	customerPhoneTextField.setText(oldValue);
                 }
                 theController.setCustomerPhone(customerPhoneTextField.getText());
@@ -101,13 +103,13 @@ public class CreateCustomerView implements View{
         });
 		
 		Label customerCPRHeader=new Label("CPR nr.");
-		customerCPRHeader.setId("header_label");
+		customerCPRHeader.setId("create_customer_label");
 		
 		TextField customerCPRTextField=new TextField();
 		customerCPRTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                if (!newValue.matches("\\d{0,10}")) {
                 	customerCPRTextField.setText(oldValue);
                 }
                 theController.setCustomerCPR(customerCPRTextField.getText());
@@ -115,13 +117,13 @@ public class CreateCustomerView implements View{
         });
 		
 		Label customerPostalCodeHeader=new Label("Post nr.");
-		customerPostalCodeHeader.setId("header_label");
+		customerPostalCodeHeader.setId("create_customer_label");
 		
 		TextField customerPostalCodeTextField=new TextField();
 		customerPostalCodeTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                if (!newValue.matches("\\d{0,13}")) {
                 	customerPostalCodeTextField.setText(oldValue);
                 }
                 theController.setPostalCode(customerPostalCodeTextField.getText());
@@ -129,13 +131,13 @@ public class CreateCustomerView implements View{
         });
 		
 		Label customerEmailCodeHeader=new Label("Email");
-		customerEmailCodeHeader.setId("header_label");
+		customerEmailCodeHeader.setId("create_customer_label");
 		
 		TextField customerEmailTextField=new TextField();
 		customerEmailTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                if (!newValue.matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$")) {
                 	customerEmailTextField.setText(oldValue);
                 }
                 theController.setCustomerEmail(customerEmailTextField.getText());
@@ -169,7 +171,6 @@ public class CreateCustomerView implements View{
 		
 		Button createCustomer = new Button("Opret Kunde");
 		createCustomer.setId("view_button");
-		createCustomer.setDisable(true);
 		
 		createCustomer.setOnAction(new EventHandler<ActionEvent>() 
 		{

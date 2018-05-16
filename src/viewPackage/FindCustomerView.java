@@ -97,21 +97,29 @@ public class FindCustomerView implements View
         
         HBox searchArea = new HBox();
         searchArea.getChildren().addAll(firstNameBox,lastNameBox,phoneBox);
-        
-        firstNameTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable,
-                    String oldValue, String newValue) {
 
-                theController.updateTableView(table,firstNameTextField.getText(), lastNameTextField.getText(), phoneTextField.getText());
-            }
-        });
+        ChangeListener<String> tableUpdate = getTableChangeListener(table, firstNameTextField, lastNameTextField, phoneTextField);
+        firstNameTextField.textProperty().addListener(tableUpdate);
+        lastNameTextField.textProperty().addListener(tableUpdate);
+        phoneTextField.textProperty().addListener(tableUpdate);
         
         theController.updateTableView(table,firstNameTextField.getText(), lastNameTextField.getText(), phoneTextField.getText());
         
         VBox p = new VBox();
 		p.getChildren().addAll(searchArea,table);
 		return p;
+	}
+	
+	public ChangeListener<String> getTableChangeListener(TableView<CustomerDataModel> table, TextField firstName, TextField lastName, TextField phone)
+	{
+	    return new ChangeListener<String>() {
+	            @Override
+	            public void changed(ObservableValue<? extends String> observable,
+	                    String oldValue, String newValue) 
+	            {
+	                theController.updateTableView(table,firstName.getText(), lastName.getText(), phone.getText());
+	            }
+	        };
 	}
 	
 	@Override

@@ -8,10 +8,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -34,8 +30,6 @@ public class BadCreditScreenView
 		container.setAlignment(Pos.CENTER);
 		container.setPadding(new Insets(25, 25, 25, 25));
 	
-		
-		//add username and textfield
 		Label warningLabel = new Label("Kunde er registreret som dårlig betaler, lånetilbud er afvist");
 		container.getChildren().add(warningLabel);
 
@@ -54,10 +48,8 @@ public class BadCreditScreenView
 		container.getChildren().add(acceptButton);
 		container.setMargin(acceptButton, new Insets(12, 0, 0, 0));
 		
-		//add cancel button
 		Scene scene= new Scene(root, 400, 200);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		
 		
 		return scene;
 	}

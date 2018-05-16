@@ -101,6 +101,6 @@ public class FCLS
 	
 	public void setCurrentUserField(sellerDataModel newSalesPerson)
 	{
-		currentUserLabel.setText("Sælger profil: "+newSalesPerson.getSalesPersonName());
+		currentUserLabel.setText("Sælger profil: "+newSalesPerson.getSalesPersonUsername());
 	}
 }

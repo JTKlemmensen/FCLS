@@ -1,5 +1,10 @@
 package viewPackage;
 
+<<<<<<< HEAD
+=======
+
+import javafx.application.Platform;
+>>>>>>> GUI-UC1
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -8,7 +13,7 @@ import logic.sellerDataModel;
 public class FCLSController 
 {
 	public final static FCLSController INSTANCE = new FCLSController();
-			
+	
 	private FCLS theView;
 	private sellerDataModel currentSalesPerson;
 	
@@ -38,8 +43,18 @@ public class FCLSController
 	
 	public void changeUser(sellerDataModel newSalesPerson)
 	{
-		currentSalesPerson=newSalesPerson;
-		theView.setCurrentUserField(currentSalesPerson);
+		if(newSalesPerson==null)
+		{
+			if(currentSalesPerson==null)
+			{
+				Platform.exit();
+			}
+		}
+		else
+		{
+			currentSalesPerson=newSalesPerson;
+			theView.setCurrentUserField(currentSalesPerson);
+		}
 	}
 	
 	public void startLoginScreen()
@@ -50,5 +65,10 @@ public class FCLSController
 		loginStage.initModality(Modality.APPLICATION_MODAL);
 		loginStage.setScene(theController.getView().getSceneGUI(theController));
 		loginStage.show();
+	}
+	
+	public sellerDataModel getCurrentUser()
+	{
+		return currentSalesPerson;
 	}
 }

@@ -31,7 +31,6 @@ public class LoginView
 		root.setVgap(10);
 		root.setPadding(new Insets(25, 25, 25, 25));
 	
-		
 		//add username and textfield
 		Label userNameLabel = new Label("User Name:");
 		root.add(userNameLabel, 0, 0);

@@ -23,56 +23,50 @@ public class LoanHandler extends Observable {
 	public final void setCanReturnLoanAgreement(Boolean value){canReturnLoanAgreement.set(value);}
 	public BooleanProperty canReturnLoanAgreementProperty(){return canReturnLoanAgreement;}
 
-	public LoanAgreementDataModel requestLoanAgreement(String carPrice, String downPayment, LocalDate startDate,
-			String duration, CarDataModel car) {
-		loanAgreement.setAskingPrice(carPrice);
-		loanAgreement.setDownPayment(downPayment);
-		loanAgreement.setStartDate(startDate);
-		loanAgreement.setDuration(duration);
-		loanAgreement.setCar(car);
-		
-		//TODO
-		//get seller elsewhere
-		loanAgreement.setSeller(new sellerDataModel("Carsten Bjørn", "2000000", "CBJ"));
+	public void requestLoanAgreement(sellerDataModel salesPerson) 
+	{	
+		loanAgreement.setSeller(salesPerson);
 		
 		double rate = calculateRate(new BigDecimal(loanAgreement.getAskingPrice()), new BigDecimal(loanAgreement.getDownPayment()), Integer.parseInt(loanAgreement.getDuration()));
 		
 		loanAgreement.setInterestRate(Double.toString(rate));
-		
-		return loanAgreement;
 	}
 
-	public void setupLoanAgreement(CustomerDataModel customer) {
+	public void setupLoanAgreement(CustomerDataModel customer) 
+	{
+		//TODO
+		//keep or change to notifyobserver instead?
 		setCanReturnLoanAgreement(false);
 		loanAgreement = new LoanAgreementDataModel(customer);
+		loanAgreement.setCar(new CarDataModel("", null, ""));
 		RKIandBank rkiandBank = new RKIandBank(loanAgreement.getCustomer().getCustomerCPR(), this);
-		Thread t = new Thread(rkiandBank);
-		t.start();
+		rkiandBank.start();
 	}
 
-	private double calculateRate(BigDecimal carPrice, BigDecimal downPayment,
-			int duration) {
+	private double calculateRate(BigDecimal carPrice, BigDecimal downPayment, int duration) 
+	{
+		double resultingRate=dailyRate;
 		switch (rating) {
 		case A:
-			dailyRate += 1;
+			resultingRate += 1;
 			break;
 		case B:
-			dailyRate += 2;
+			resultingRate += 2;
 			break;
 		default:
-			dailyRate += 3;
+			resultingRate += 3;
 			break;
 		}
 		//dividing with precision of 15 decimals
 		BigDecimal percentageOfCarPaid = downPayment.divide(carPrice, new MathContext(15));
 
 		if (percentageOfCarPaid.compareTo(new BigDecimal(0.5)) < 0)
-			dailyRate += 1;
+			resultingRate += 1;
 
 		if (duration > 3)
-			dailyRate += 1;
+			resultingRate += 1;
 
-		return dailyRate;
+		return resultingRate;
 	}
 
 	public void setRating(Rating rating) {
@@ -86,5 +80,10 @@ public class LoanHandler extends Observable {
 
 	public void setRate(double dailyRate) {
 		this.dailyRate = dailyRate;
+	}
+	
+	public LoanAgreementDataModel getLoanAgreementDataModel()
+	{
+		return loanAgreement;
 	}
 }

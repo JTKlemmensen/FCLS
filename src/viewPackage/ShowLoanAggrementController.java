@@ -6,14 +6,12 @@ import logic.LoanHandler;
 public class ShowLoanAggrementController 
 {
 	private ShowLoanAggrementView itsView;
-	private LoanAgreementDataModel itsLoanAgreement;
-	private LoanHandler itsHandler;
+	private LoanHandler itsLoanHandler;
 	
-	public ShowLoanAggrementController(LoanAgreementDataModel loanAgreement, LoanHandler handler)
+	public ShowLoanAggrementController(LoanHandler handler)
 	{
 		itsView=new ShowLoanAggrementView(this);
-		itsLoanAgreement=loanAgreement;
-		itsHandler=handler;
+		itsLoanHandler=handler;
 	}
 	
 	public ShowLoanAggrementView getView()
@@ -23,7 +21,7 @@ public class ShowLoanAggrementController
 	
 	public LoanAgreementDataModel getLoanAgreement()
 	{
-		return itsLoanAgreement;
+		return itsLoanHandler.getLoanAgreementDataModel();
 	}
 	
 	public void closeAndSaveAgreement()
@@ -38,7 +36,7 @@ public class ShowLoanAggrementController
 	
 	public void returnToCreateAgreementScene()
 	{
-		CreateLoanAggrementController controller = new CreateLoanAggrementController(itsHandler, itsLoanAgreement.getCustomer());
+		CreateLoanAggrementController controller = new CreateLoanAggrementController(itsLoanHandler);
 		FCLSController.INSTANCE.changeView(controller.getView());
 	}
 }

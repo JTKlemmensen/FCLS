@@ -78,9 +78,10 @@ public class TestLoanHandler {
 	}
 	
 	// Rating A					+1
-	// DownPaymen NOT under 50% +0	<--
+	// DownPaymen NOT under 50%	+0	<--
 	// Duration over 3 years	+1
-	// Rate from bank is 8		+8	@Test
+	// Rate from bank is 8		+8	
+	@Test
 	public void testRequestLoanAgreement4()
 	{
 		LoanHandler loanHandler = new LoanHandler();

@@ -14,47 +14,6 @@ public class CreateCustomerController {
 	private CustomerHandler itsHandler;
 	private CustomerDataModel itsCustomer;
 	
-	private StringProperty customerFirstName = new SimpleStringProperty();
-	public final String getCustomerFirstName() {return customerFirstName.get();}
-	public final void setCustomerFirstName(String value){customerFirstName.set(value);}
-	public StringProperty customerFirstNameProperty(){return customerFirstName;}
-	
-	private StringProperty customerLastName = new SimpleStringProperty();
-	public final String getCustomerLastName() {return customerLastName.get();}
-	public final void setCustomerLastName(String value){customerLastName.set(value);}
-	public StringProperty customerLastNameProperty(){return customerLastName;}
-	
-	
-	private StringProperty customerAddress = new SimpleStringProperty();
-	public final String getCustomerAddress() {return customerAddress.get();}
-	public final void setCustomerAddress(String value){customerAddress.set(value);}
-	public StringProperty customerAddressProperty(){return customerAddress;}
-	
-	private StringProperty customerCity = new SimpleStringProperty();
-	public final String getCustomerCity() {return customerCity.get();}
-	public final void setCustomerCity(String value){customerCity.set(value);}
-	public StringProperty customerCityProperty(){return customerCity;}
-	
-	private StringProperty customerPhone = new SimpleStringProperty();
-	public final String getCustomerPhone() {return customerPhone.get();}
-	public final void setCustomerPhone(String value){customerPhone.set(value);}
-	public StringProperty customerPhoneProperty(){return customerPhone;}
-	
-	private StringProperty customerCPR = new SimpleStringProperty();
-	public final String getCustomerCPR() {return customerCPR.get();}
-	public final void setCustomerCPR(String value){customerCPR.set(value);}
-	public StringProperty customerCPRProperty(){return customerCPR;}
-	
-	private StringProperty postalCode = new SimpleStringProperty();
-	public final String getPostalCode() {return postalCode.get();}
-	public final void setPostalCode(String value){postalCode.set(value);}
-	public StringProperty postalCodeProperty(){return postalCode;}
-
-	private StringProperty customerEmail = new SimpleStringProperty();
-	public final String getCustomerEmail() {return customerEmail.get();}
-	public final void setCustomerEmail(String value){customerEmail.set(value);}
-	public StringProperty customerEmailProperty(){return customerEmail;}
-	
 	public CreateCustomerController(CustomerHandler handler, CustomerDataModel customer)
 	{
 		itsHandler=handler;
@@ -77,7 +36,7 @@ public class CreateCustomerController {
 		}
 		//TODO
 		//perhaps loanagreement is retrieved when creating createloanscreen
-		itsHandler.createCustomer(customerFirstName.get(), customerLastName.get(), customerAddress.get(), customerCity.get(), customerPhone.get(), customerCPR.get(), postalCode.get(), customerEmail.get());
+		boolean isInsertSucessful = itsHandler.insertToDB(itsCustomer);
 	}
 	
 	public void cancelCreateCustomer()
@@ -99,37 +58,42 @@ public class CreateCustomerController {
 	private boolean checkInputViability()
 	{
 		boolean dataIsViable=true;
-		if(getCustomerFirstName()==null||getCustomerFirstName().equals(""))
+		if(itsCustomer.getCustomerFirstName()==null||itsCustomer.getCustomerFirstName().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast købspris");
 		}
-		if(getCustomerAddress()==null||getCustomerAddress().equals(""))
+		if(itsCustomer.getCustomerLastName()==null||itsCustomer.getCustomerLastName().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast udbetaling");
 		}
-		if(getCustomerCity()==null||getCustomerCity().equals(""))
+		if(itsCustomer.getCustomerAddress()==null||itsCustomer.getCustomerAddress().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Vælg startdato");
 		}
-		if(getCustomerPhone()==null||getCustomerPhone()=="")
+		if(itsCustomer.getCustomerCity()==null||itsCustomer.getCustomerCity()=="")
 		{
 			dataIsViable=false;
 			itsView.addWarning("Vælg bil");
 		}
-		if(getCustomerCPR()==null||getCustomerCPR().equals(""))
+		if(itsCustomer.getCustomerPhone()==null||itsCustomer.getCustomerPhone().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast købspris");
 		}
-		if(getPostalCode()==null||getPostalCode().equals(""))
+		if(itsCustomer.getCustomerCPR()==null||itsCustomer.getCustomerCPR().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast udbetaling");
 		}
-		if(getCustomerEmail()==null||getCustomerEmail().equals(""))
+		if(itsCustomer.getPostalCode()==null||itsCustomer.getPostalCode().equals(""))
+		{
+			dataIsViable=false;
+			itsView.addWarning("Vælg startdato");
+		}
+		if(itsCustomer.getCustomerEmail()==null||itsCustomer.getCustomerEmail().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Vælg startdato");

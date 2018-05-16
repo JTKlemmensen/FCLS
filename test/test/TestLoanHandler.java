@@ -14,7 +14,7 @@ import logic.LoanAgreementDataModel;
 import logic.LoanHandler;
 import logic.sellerDataModel;
 
-public class testLoanHandler {
+public class TestLoanHandler {
 
 	@Test
 	public void testRequestLoanAgreement()

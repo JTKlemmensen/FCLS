@@ -16,9 +16,11 @@ public class DbConnector
 		openConnection();
 	}
 	
+	//TODO
+	//Close connection to preserve lars's sanity
 	private void openConnection()
 	{
-         String conUrl = "jdbc:sqlserver://188.181.204.238:1433; instance=SQLEXPRESS; databaseName=FCLS; user=hkkrestless; password=Bamsefar123;";
+       String conUrl = "jdbc:sqlserver://188.181.204.238:1433; instance=SQLEXPRESS; databaseName=FCLS; user=hkkrestless; password=Bamsefar123;";
 
 	   try 
 	   {

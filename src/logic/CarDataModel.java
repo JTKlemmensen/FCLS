@@ -12,13 +12,20 @@ public class CarDataModel
 	public final String getVIN() {return VIN.get();}
 	public final void setVIN(String value){VIN.set(value);}
 	public StringProperty VINProperty(){return VIN;}
+	
+	private StringProperty carDescription = new SimpleStringProperty();
+	public final String getCarDescription() {return carDescription.get();}
+	public final void setCarDescription(String value){carDescription.set(value);}
+	public StringProperty carDescriptionProperty(){return carDescription;}
     
     private BigDecimal startPrice;
+   
     
-    public CarDataModel(String stelNumber, BigDecimal startPrice)
+    public CarDataModel(String stelNumber, BigDecimal startPrice, String description)
     {
 	setVIN(stelNumber);
 	this.startPrice = startPrice;
+	setCarDescription(description);
     }
     
     public BigDecimal getStartPrice()

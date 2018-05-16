@@ -1,5 +1,6 @@
 package database;
 
-public class CarDAO {
+public class CarDAO 
+{
 
 }

@@ -45,8 +45,9 @@ public class CustomerDataModel
 		public final String getCustomerEmail() {return customerEmail.get();}
 		public final void setCustomerEmail(String value){customerEmail.set(value);}
 		public StringProperty customerEmailProperty(){return customerEmail;}
-	
-	public CustomerDataModel(String firstName, String lastName, String address, String city, String zipCode, String phoneNumber, String email, String cPR) 
+		
+	public CustomerDataModel(String firstName, String lastName, String address, String city, String zipCode, String phoneNumber, String email, String CPR) 
+
 	{
 		setCustomerFirstName(firstName);
 		setCustomerLastName(lastName);
@@ -55,6 +56,6 @@ public class CustomerDataModel
 		setPostalCode(zipCode);
 		setCustomerPhone(phoneNumber);
 		setCustomerEmail(email);
-		setCustomerCPR(cPR);
+		setCustomerCPR(CPR);
 	}
 }

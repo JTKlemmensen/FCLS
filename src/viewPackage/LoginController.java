@@ -4,9 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import database.DbConnector;
+import database.SellerDAO;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import logic.sellerDataModel;
 
 
@@ -19,6 +21,9 @@ public class LoginController
 	{
 		itsView=new LoginView();
 		itsStage=stage;
+		stage.setOnCloseRequest((WindowEvent event) -> {
+	        FCLSController.INSTANCE.changeUser(null);
+	    });
 	}
 	
 	public LoginView getView()
@@ -28,37 +33,24 @@ public class LoginController
 	
 	public boolean login(String username, String password)
 	{
-		//get dbconnector and checkif username exists
-		String query="SELECT * FROM Salesman_table WHERE userName ='"+username+"'";
-		ResultSet dbResult = DbConnector.INSTANCE.executeQuery(query);
+		sellerDataModel user=SellerDAO.checkLogin(username, password);
 		
-		try
+		if(user!=null)
 		{
-			while (dbResult.next())
-			{
-				String uName= dbResult.getString("username");
-				String uPassword = dbResult.getString("password");
-				if(username.equals(uName)&&password.equals(uPassword))
-				{
-					String limit=dbResult.getString("loanLimit");
-					String fullName=dbResult.getString("fullName");
-					//run login on FCLS and close this stage
-					sellerDataModel salesPerson= new sellerDataModel(uName, limit, fullName);
-					FCLSController.INSTANCE.changeUser(salesPerson);
-					itsStage.close();
-					return true;
-				}
-			}
+			FCLSController.INSTANCE.changeUser(user);
+			itsStage.close();	
+			
+			return true;
 		}
-		catch (SQLException e)
+		else
 		{
-			e.printStackTrace();
+			return false;
 		}
-		return false;
 	}
 	
 	public void cancelLogin()
 	{
-		Platform.exit();
+		FCLSController.INSTANCE.changeUser(null);
+		itsStage.close();
 	}
 }

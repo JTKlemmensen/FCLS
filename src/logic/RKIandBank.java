@@ -8,7 +8,8 @@ import javafx.application.Platform;
 import viewPackage.BadCreditScreenController;
 
 
-public class RKIandBank extends Thread{
+public class RKIandBank extends Thread
+{
 	private String CPR;
 	private LoanHandler loanHandler;
 	
@@ -26,7 +27,10 @@ public class RKIandBank extends Thread{
 			this.loanHandler.setRate((InterestRate.i().todaysRate()));
 			
 			Platform.runLater(new Runnable() {
-				public void run() {
+				public void run() 
+				{
+				//TODO
+				//is this proper procedure?
 				loanHandler.setCanReturnLoanAgreement(true);
 			}
 			});
@@ -34,7 +38,10 @@ public class RKIandBank extends Thread{
 		else
 		{
 			Platform.runLater(new Runnable() {
-				public void run() {
+				public void run() 
+				{
+				//TODO 
+				//gui is a part of logic?! - also replace with javabuiltin warningscreens perhaps
 				BadCreditScreenController controller = new BadCreditScreenController();
 				controller.showBadCreditScreen();
 			}

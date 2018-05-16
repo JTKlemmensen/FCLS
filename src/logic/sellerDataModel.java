@@ -6,10 +6,10 @@ import javafx.beans.property.StringProperty;
 public class sellerDataModel 
 {
 	//properties
-	private StringProperty salesPersonName = new SimpleStringProperty();
-	public final String getSalesPersonName() {return salesPersonName.get();}
-	public final void setSalesPersonName(String value){salesPersonName.set(value);}
-	public StringProperty salesPersonNameProperty(){return salesPersonName;}
+	private StringProperty salesPersonUsername = new SimpleStringProperty();
+	public final String getSalesPersonUsername() {return salesPersonUsername.get();}
+	public final void setSalesPersonUsername(String value){salesPersonUsername.set(value);}
+	public StringProperty salesPersonUsernameProperty(){return salesPersonUsername;}
 	
 	private StringProperty loanLimit = new SimpleStringProperty();
 	public final String getLoanLimit() {return loanLimit.get();}
@@ -21,9 +21,10 @@ public class sellerDataModel
 	public final void setSalesPersonFullName(String value){salesPersonFullName.set(value);}
 	public StringProperty salesPersonFullNameProperty(){return salesPersonFullName;}
 	
-	public sellerDataModel(String name, String limit, String fullName) {
-		salesPersonName.set(name);
-		loanLimit.set(limit);
+	public sellerDataModel(String username, String limit, String fullName) 
+	{
+		setSalesPersonUsername(username);
+		setLoanLimit(limit);
 		setSalesPersonFullName(fullName);
 	}
 }

@@ -34,7 +34,7 @@ public class FindCustomerView implements View
 		    @Override
 		    public void handle(ActionEvent e) 
 		    {
-		    	theController.createLoanAggrementPressed();
+		    	theController.createLoanAgreementPressed();
 		    }
 		});
 	

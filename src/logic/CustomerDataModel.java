@@ -6,10 +6,15 @@ import javafx.beans.property.StringProperty;
 public class CustomerDataModel
 {
 	//properties
-		private StringProperty customerName = new SimpleStringProperty();
-		public final String getCustomerName() {return customerName.get();}
-		public final void setCustomerName(String value){customerName.set(value);}
-		public StringProperty customerNameProperty(){return customerName;}
+		private StringProperty customerFirstName = new SimpleStringProperty();
+		public final String getCustomerFirstName() {return customerFirstName.get();}
+		public final void setCustomerFirstName(String value){customerFirstName.set(value);}
+		public StringProperty customerFirstNameProperty(){return customerFirstName;}
+		
+		private StringProperty customerLastName = new SimpleStringProperty();
+		public final String getCustomerLastName() {return customerLastName.get();}
+		public final void setCustomerLastName(String value){customerLastName.set(value);}
+		public StringProperty customerLastNameProperty(){return customerLastName;}
 		
 		private StringProperty customerAddress = new SimpleStringProperty();
 		public final String getCustomerAddress() {return customerAddress.get();}
@@ -40,15 +45,16 @@ public class CustomerDataModel
 		public final String getCustomerEmail() {return customerEmail.get();}
 		public final void setCustomerEmail(String value){customerEmail.set(value);}
 		public StringProperty customerEmailProperty(){return customerEmail;}
-	
-	public CustomerDataModel(String name, String address, String city, String zipCode, String phoneNumber, String email, String cPR) 
+		
+	public CustomerDataModel(String firstName, String lastName, String address, String city, String zipCode, String phoneNumber, String email, String CPR) 
 	{
-		setCustomerName(name);
+		setCustomerFirstName(firstName);
+		setCustomerLastName(lastName);
 		setCustomerAddress(address);
 		setCustomerCity(city);
 		setPostalCode(zipCode);
 		setCustomerPhone(phoneNumber);
 		setCustomerEmail(email);
-		setCustomerCPR(cPR);
+		setCustomerCPR(CPR);
 	}
 }

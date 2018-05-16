@@ -51,7 +51,7 @@ public class LoanAgreementDataModel
 	
 	//properties
 	
-	private StringProperty duration = new SimpleStringProperty();
+	private StringProperty duration = new SimpleStringProperty("6");
 	public final String getDuration() {return duration.get();}
 	public final void setDuration(String value){duration.set(value);}
 	public StringProperty durationProperty(){return duration;}

@@ -203,6 +203,8 @@ public class CreateCustomerView implements View{
 		    {
 		    	warningContainer.getChildren().clear();
 		    	theController.createCustomer();
+		    	if(!theController.getInsertSuccessful()) {	    		
+		    	}
 		    }
 		});
 		

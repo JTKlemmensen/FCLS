@@ -13,6 +13,7 @@ public class CreateCustomerController {
 	private CreateCustomerView itsView;
 	private CustomerHandler itsHandler;
 	private CustomerDataModel itsCustomer;
+	private boolean isInsertSuccessful;
 	
 	public CreateCustomerController(CustomerHandler handler, CustomerDataModel customer)
 	{
@@ -28,15 +29,13 @@ public class CreateCustomerController {
 	
 	public void createCustomer()
 	{
-		//TODO
-		//check if data is enough for loanhandler
+
 		if(checkInputViability()==false)
 		{
 			return;
 		}
-		//TODO
-		//perhaps loanagreement is retrieved when creating createloanscreen
-		boolean isInsertSucessful = itsHandler.insertToDB(itsCustomer);
+
+		isInsertSuccessful = itsHandler.insertToDB(itsCustomer);
 	}
 	
 	public void cancelCreateCustomer()
@@ -55,49 +54,59 @@ public class CreateCustomerController {
 		return itsHandler;
 	}
 	
+	private void insertSuccessful() {
+		if(!isInsertSuccessful) {
+			itsView.addWarning("kunde ikke indsat i database");
+		}
+	}
+	
 	private boolean checkInputViability()
 	{
 		boolean dataIsViable=true;
 		if(itsCustomer.getCustomerFirstName()==null||itsCustomer.getCustomerFirstName().equals(""))
 		{
 			dataIsViable=false;
-			itsView.addWarning("Indtast købspris");
+			itsView.addWarning("Indtast fornavn");
 		}
 		if(itsCustomer.getCustomerLastName()==null||itsCustomer.getCustomerLastName().equals(""))
 		{
 			dataIsViable=false;
-			itsView.addWarning("Indtast udbetaling");
+			itsView.addWarning("Indtast efternavn");
 		}
 		if(itsCustomer.getCustomerAddress()==null||itsCustomer.getCustomerAddress().equals(""))
 		{
 			dataIsViable=false;
-			itsView.addWarning("Vælg startdato");
+			itsView.addWarning("Indtast adresse");
 		}
 		if(itsCustomer.getCustomerCity()==null||itsCustomer.getCustomerCity()=="")
 		{
 			dataIsViable=false;
-			itsView.addWarning("Vælg bil");
+			itsView.addWarning("Indtast by");
 		}
 		if(itsCustomer.getCustomerPhone()==null||itsCustomer.getCustomerPhone().equals(""))
 		{
 			dataIsViable=false;
-			itsView.addWarning("Indtast købspris");
+			itsView.addWarning("Indtast tlf nr.");
 		}
 		if(itsCustomer.getCustomerCPR()==null||itsCustomer.getCustomerCPR().equals(""))
 		{
 			dataIsViable=false;
-			itsView.addWarning("Indtast udbetaling");
+			itsView.addWarning("Indtast cpr");
 		}
 		if(itsCustomer.getPostalCode()==null||itsCustomer.getPostalCode().equals(""))
 		{
 			dataIsViable=false;
-			itsView.addWarning("Vælg startdato");
+			itsView.addWarning("Indtast postnummer");
 		}
 		if(itsCustomer.getCustomerEmail()==null||itsCustomer.getCustomerEmail().equals(""))
 		{
 			dataIsViable=false;
-			itsView.addWarning("Vælg startdato");
+			itsView.addWarning("Indtast Email");
 		}
 		return dataIsViable;
+	}
+
+	public boolean getInsertSuccessful() {
+		return isInsertSuccessful;	
 	}
 }

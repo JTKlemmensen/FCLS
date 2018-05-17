@@ -20,7 +20,7 @@ public class FCLSController
 		return theView;
 	}
 	
-	public FCLSController()
+	private FCLSController()
 	{
 		theView=new FCLS(this);
 	}

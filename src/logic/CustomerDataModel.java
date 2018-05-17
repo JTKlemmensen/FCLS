@@ -45,13 +45,8 @@ public class CustomerDataModel
 		public final String getCustomerEmail() {return customerEmail.get();}
 		public final void setCustomerEmail(String value){customerEmail.set(value);}
 		public StringProperty customerEmailProperty(){return customerEmail;}
-<<<<<<< HEAD
-	
-	public CustomerDataModel(String firstName, String lastName, String address, String city, String zipCode, String phoneNumber, String email, String cPR) 
-=======
 		
 	public CustomerDataModel(String firstName, String lastName, String address, String city, String zipCode, String phoneNumber, String email, String CPR) 
->>>>>>> GUI-UC1
 	{
 		setCustomerFirstName(firstName);
 		setCustomerLastName(lastName);

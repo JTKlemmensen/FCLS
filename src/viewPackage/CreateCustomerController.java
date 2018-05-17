@@ -55,12 +55,6 @@ public class CreateCustomerController {
 		return itsHandler;
 	}
 	
-	private void insertSuccessful() {
-		if(!isInsertSuccessful) {
-			itsView.addWarning("kunde ikke indsat i database");
-		}
-	}
-	
 	private boolean checkInputViability()
 	{
 		boolean dataIsViable=true;

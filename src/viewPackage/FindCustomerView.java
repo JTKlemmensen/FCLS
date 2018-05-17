@@ -6,6 +6,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -81,21 +83,25 @@ public class FindCustomerView implements View
 		        
 
         TextField firstNameTextField = new TextField();
-        Label firstNameLabel = new Label();
+        Label firstNameLabel = new Label("First Name:");
         VBox firstNameBox = new VBox();
         firstNameBox.getChildren().addAll(firstNameLabel,firstNameTextField);
         
         TextField lastNameTextField = new TextField();
-        Label lastNameLabel = new Label();
+        Label lastNameLabel = new Label("Last Name:");
         VBox lastNameBox = new VBox();
+        lastNameBox.setPadding(new Insets(0,0,0,20));
         lastNameBox.getChildren().addAll(lastNameLabel,lastNameTextField);
         
         TextField phoneTextField = new TextField();
-        Label fphoneLabel = new Label();
+        Label fphoneLabel = new Label("Phone Number:");
         VBox phoneBox = new VBox();
+        phoneBox.setPadding(new Insets(0,0,0,20));
         phoneBox.getChildren().addAll(fphoneLabel,phoneTextField);
         
         HBox searchArea = new HBox();
+        searchArea.setAlignment(Pos.CENTER);
+        searchArea.setPadding(new Insets(10,0,20,0));
         searchArea.getChildren().addAll(firstNameBox,lastNameBox,phoneBox);
 
         ChangeListener<String> tableUpdate = getTableChangeListener(table, firstNameTextField, lastNameTextField, phoneTextField);

@@ -142,9 +142,9 @@ public class CreateCustomerView implements View{
 		customerEmailTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\w{0,20}")) {
-                	customerEmailTextField.setText(oldValue);
-                }
+                //if (!newValue.matches("\\w{0,20}")) {
+                //	customerEmailTextField.setText(oldValue);
+                //}
                 customer.setCustomerEmail(customerEmailTextField.getText());
             }
         });
@@ -194,7 +194,6 @@ public class CreateCustomerView implements View{
 		
 		createCustomer = new Button("Opret Kunde");
 		createCustomer.setId("view_button");
-		createCustomer.setDisable(true);
 		
 		createCustomer.setOnAction(new EventHandler<ActionEvent>() 
 		{

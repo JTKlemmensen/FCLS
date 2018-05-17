@@ -92,18 +92,23 @@ public class CreateCustomerController {
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast cpr");
+		}else if(itsCustomer.getCustomerCPR().length() != 10)
+		{
+			dataIsViable=false;
+			itsView.addWarning("CPR er forkert længde");
 		}
 		if(itsCustomer.getPostalCode()==null||itsCustomer.getPostalCode().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast postnummer");
 		}
-		if(itsCustomer.getCustomerEmail()==null||itsCustomer.getCustomerEmail().equals(""))
+		if(!itsCustomer.getCustomerEmail().matches("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast Email");
 		}
 		return dataIsViable;
+
 	}
 
 	public boolean getInsertSuccessful() {

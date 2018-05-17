@@ -1,6 +1,10 @@
 package viewPackage;
 
+<<<<<<< HEAD
+=======
+
 import javafx.application.Platform;
+>>>>>>> GUI-UC1
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;

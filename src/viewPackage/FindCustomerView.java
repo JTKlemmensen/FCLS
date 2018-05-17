@@ -33,10 +33,12 @@ public class FindCustomerView implements View
 		VBox root = new VBox();
 		root.setId("view_screen");
 		
-		VBox containerBox=new VBox();
+		GridPane containerBox=new GridPane();
 		root.getChildren().add(findCustomerArea());
 		root.getChildren().addAll(containerBox);
-		
+		containerBox.setAlignment(Pos.CENTER);
+		containerBox.setPadding(new Insets(10,0,10,0));
+		containerBox.setHgap(30);
 		Button calculateAggrementButton = new Button("Beregn låneaftale");
 		calculateAggrementButton.setId("view_button");
 		calculateAggrementButton.setOnAction(new EventHandler<ActionEvent>() 
@@ -59,14 +61,14 @@ public class FindCustomerView implements View
 		    }
 		});
 	
-		containerBox.getChildren().add(calculateAggrementButton);
-		containerBox.getChildren().add(createCustomer);
+		containerBox.add(calculateAggrementButton, 0, 0);
+		containerBox.add(createCustomer,1,0);
 		
 		return root;
 	}
 	
 	private VBox findCustomerArea()
-	{		
+	{			
 		TableView<CustomerDataModel> table = new TableView<CustomerDataModel>();
 		
         TableColumn<CustomerDataModel, String> firstNameCol = new TableColumn<CustomerDataModel, String>("First Name");

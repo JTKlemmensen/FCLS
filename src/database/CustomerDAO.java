@@ -1,5 +1,6 @@
 package database;
 
+import logic.CustomerDataModel;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;

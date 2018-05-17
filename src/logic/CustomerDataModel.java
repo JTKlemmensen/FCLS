@@ -47,7 +47,6 @@ public class CustomerDataModel
 		public StringProperty customerEmailProperty(){return customerEmail;}
 		
 	public CustomerDataModel(String firstName, String lastName, String address, String city, String zipCode, String phoneNumber, String email, String CPR) 
-
 	{
 		setCustomerFirstName(firstName);
 		setCustomerLastName(lastName);

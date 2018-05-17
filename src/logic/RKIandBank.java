@@ -25,7 +25,7 @@ public class RKIandBank extends Thread
 		if(Rating.D != rating)
 		{
 			this.loanHandler.setRate((InterestRate.i().todaysRate()));
-			
+
 			Platform.runLater(new Runnable() {
 				public void run() 
 				{

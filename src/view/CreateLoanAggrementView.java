@@ -1,4 +1,4 @@
-package viewPackage;
+package view;
 
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjuster;

@@ -1,4 +1,4 @@
-package viewPackage;
+package view;
 
 import logic.LoanAgreementDataModel;
 import logic.LoanHandler;

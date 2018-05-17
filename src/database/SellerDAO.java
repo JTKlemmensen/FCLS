@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import logic.sellerDataModel;
-import viewPackage.FCLSController;
+import view.FCLSController;
 
 public class SellerDAO 
 {

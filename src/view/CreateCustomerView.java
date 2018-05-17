@@ -1,4 +1,4 @@
-package viewPackage;
+package view;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.value.ChangeListener;

@@ -1,4 +1,4 @@
-package viewPackage;
+package view;
 
 import javafx.scene.control.TableView;
 import logic.CustomerDataModel;

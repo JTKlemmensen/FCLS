@@ -1,4 +1,4 @@
-package viewPackage;
+package view;
 
 import javafx.application.Platform;
 import javafx.scene.layout.StackPane;

@@ -1,4 +1,4 @@
-package viewPackage;
+package view;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;

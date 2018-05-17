@@ -5,7 +5,7 @@ import com.ferrari.finances.dk.rki.CreditRator;
 import com.ferrari.finances.dk.rki.Rating;
 
 import javafx.application.Platform;
-import viewPackage.BadCreditScreenController;
+import view.BadCreditScreenController;
 
 
 public class RKIandBank extends Thread

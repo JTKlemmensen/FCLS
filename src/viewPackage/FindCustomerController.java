@@ -7,7 +7,7 @@ import logic.LoanHandler;
 
 public class FindCustomerController 
 {
-<<<<<<< HEAD
+
 	private CustomerHandler customerHandler;
 	
 	public FindCustomerController()
@@ -15,18 +15,12 @@ public class FindCustomerController
 		customerHandler=new CustomerHandler();
 	}
 	
-	public void createLoanAggrementPressed()
-	{
-		//TODO
-		//simulate customer for now
-		CustomerDataModel customer=new CustomerDataModel("Jens", "Lyn", "langeløgallé 53", "Lem", "4343", "45232343", "Sutmin@hotmail.com", "0102033434");
-=======
 	public void createLoanAgreementPressed()
 	{
 		//TODO
 		//simulate customer for now
-		CustomerDataModel customer=new CustomerDataModel("Jens", "lyn", "langeløgallé 53", "Lem", "4343", "45232343", "Sutmin@hotmail.com", "0102033434");
->>>>>>> GUI-UC1
+		CustomerDataModel customer=new CustomerDataModel("Jens", "Lyn", "langeløgallé 53", "Lem", "4343", "45232343", "Sutmin@hotmail.com", "0102033434");
+
 		
 		//setup loanagreementcalled
 		LoanHandler loanHandler=new LoanHandler();

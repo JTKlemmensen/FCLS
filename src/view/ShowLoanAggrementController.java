@@ -1,5 +1,6 @@
 package view;
 
+import database.LoanDAO;
 import logic.LoanAgreementDataModel;
 import logic.LoanHandler;
 
@@ -26,7 +27,7 @@ public class ShowLoanAggrementController
 	
 	public void closeAndSaveAgreement()
 	{
-		//call DAO 
+		LoanDAO.insertLoanAgreementDB(itsLoanHandler.getLoanAgreementDataModel());
 		FCLSController.INSTANCE.changeView(null);
 	}
 	

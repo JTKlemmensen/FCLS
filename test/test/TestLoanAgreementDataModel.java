@@ -28,14 +28,14 @@ public class TestLoanAgreementDataModel {
 	@Test
 	public void testSeller() {
 		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
-		sellerDataModel seller = new sellerDataModel("heiter", "500000", "Jacob Ingilesen");
+		sellerDataModel seller = new sellerDataModel("heiter", "500000", "Jacob Ingilesen", false);
 		lGDM.setSeller(seller);
 		assertEquals(seller, lGDM.getSeller());
 	}
 	@Test
 	public void testSeller2() {
 		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
-		sellerDataModel seller = new sellerDataModel("Bennie", "600000", "Ben Nielsen");
+		sellerDataModel seller = new sellerDataModel("Bennie", "600000", "Ben Nielsen", false);
 		lGDM.setSeller(seller);
 		assertEquals(seller, lGDM.getSeller());
 	}

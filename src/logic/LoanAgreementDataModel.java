@@ -16,6 +16,7 @@ public class LoanAgreementDataModel
 	private CarDataModel car;
 	
 	private boolean approved;
+	private int loanIDNumber;
 	
 	public CustomerDataModel getCustomer() {
 		return customer;
@@ -49,6 +50,16 @@ public class LoanAgreementDataModel
 		this.approved = approved;
 	}
 	
+	public void setLoanIDNumber(int value)
+	{
+		loanIDNumber=value;
+	}
+	
+	public int getLoanIDNumber()
+	{
+		return loanIDNumber;
+	}
+	
 	//properties
 	
 	private StringProperty duration = new SimpleStringProperty("6");
@@ -77,7 +88,9 @@ public class LoanAgreementDataModel
 	public ObjectProperty<LocalDate> startDateProperty() {return startDate;}
 	
 	
-	public LoanAgreementDataModel(CustomerDataModel customer) {
+	public LoanAgreementDataModel(CustomerDataModel customer) 
+	{
 		this.customer = customer;
 	}
+	
 }

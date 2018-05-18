@@ -35,7 +35,8 @@ public class SellerDAO
 				{
 					String limit=dbResult.getString("loanLimit");
 					String fullName=dbResult.getString("fullName");
-					salesPerson= new sellerDataModel(uName, limit, fullName);
+					boolean administrator=dbResult.getBoolean("administrator");
+					salesPerson= new sellerDataModel(uName, limit, fullName, administrator);
 				}
 			}
 		}

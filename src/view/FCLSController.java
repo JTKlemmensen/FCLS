@@ -29,6 +29,14 @@ public class FCLSController
 		changeView(view);
 	}
 	
+	public void showApproveDeals()
+	{
+		ApproveLoanController controller = new ApproveLoanController();
+		changeView(controller.getView());
+		//update table, do this elsewhere later
+		controller.updateAgreementTable();
+	}
+	
 	public void changeView(View view)
 	{	
 		if(view==null)

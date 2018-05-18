@@ -21,6 +21,7 @@ public class FCLS
 	private FCLSController theController;
 	private BorderPane root;
 	private Label currentUserLabel;
+	private VBox administrativeButtonBox;
 	
 	public FCLS(FCLSController controller)
 	{
@@ -68,8 +69,7 @@ public class FCLS
 		Button searchCustomerButton= new Button("Find Kunde");
 		searchCustomerButton.setId("menu_button");
 		searchCustomerButton.setPadding(new Insets(4));
-		searchCustomerButton.setPrefSize(120, 30);
-		
+		searchCustomerButton.setPrefSize(140, 30);
 		searchCustomerButton.setOnAction(new EventHandler<ActionEvent>() 
 		{
 		    @Override
@@ -79,8 +79,15 @@ public class FCLS
 		    }
 		});
 		
+		//create administrative box
+		administrativeButtonBox = new VBox();
+		administrativeButtonBox.setAlignment(Pos.CENTER);
+		
+		
 		actionMenu.getChildren().add(searchCustomerButton);
+		actionMenu.getChildren().add(administrativeButtonBox);
 		actionMenu.setMargin(searchCustomerButton, new Insets(6, 0, 6, 0));
+		actionMenu.setMargin(administrativeButtonBox, new Insets(6, 0, 6, 0));
 		
 		//set borderParts
 		root.setTop(topMenuContainer);
@@ -102,5 +109,34 @@ public class FCLS
 	public void setCurrentUserField(sellerDataModel newSalesPerson)
 	{
 		currentUserLabel.setText("Sælger profil: "+newSalesPerson.getSalesPersonUsername());
+		showAdministrativeButtons(newSalesPerson.getIsAdministrator());	
+	}
+	
+	private void showAdministrativeButtons(boolean show)
+	{
+		//clear box
+		administrativeButtonBox.getChildren().clear();
+		
+		if(!show)
+		{
+			return;
+		}
+		
+		Button acceptLoanAgreementButton= new Button("Godkend låneaftaler");
+		acceptLoanAgreementButton.setId("menu_button");
+		acceptLoanAgreementButton.setStyle("-fx-font-size: 12px;");
+		acceptLoanAgreementButton.setPadding(new Insets(4));
+		acceptLoanAgreementButton.setPrefSize(140, 30);
+		
+		acceptLoanAgreementButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    @Override
+		    public void handle(ActionEvent e) 
+		    {
+		    	theController.showApproveDeals();
+		    }
+		});
+		
+		administrativeButtonBox.getChildren().add(acceptLoanAgreementButton);
 	}
 }

@@ -84,4 +84,23 @@ public class CreateLoanAggrementController
 		}
 		return dataIsViable;
 	}
+
+	public boolean canClose()
+	{
+		LoanAgreementDataModel loanAgreement=itsLoanHandler.getLoanAgreementDataModel();
+
+		if(loanAgreement.getAskingPrice()!=null && loanAgreement.getAskingPrice().length()>0)
+			return false;
+		
+		if(loanAgreement.getDownPayment()!=null && loanAgreement.getDownPayment().length()>0)
+			return false;
+		
+		if(loanAgreement.getStartDate()!=null)
+			return false;
+		
+		if(loanAgreement.getAskingPrice()!=null && loanAgreement.getAskingPrice().length()>0)
+			return false;
+		
+		return true;
+	}
 }

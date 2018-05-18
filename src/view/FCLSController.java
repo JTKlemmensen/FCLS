@@ -32,7 +32,7 @@ public class FCLSController
 	
 	public void changeView(View view)
 	{	
-		if(this.view == null ||this.view.onClose())
+		if(this.view == null || this.view.onClose())
 			if(view==null)
 			{
 				theView.setView(null);

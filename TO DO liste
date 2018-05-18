@@ -24,3 +24,4 @@ Hvis der er tid/lyst:
 - ShowLoanAgreement: Kundens navn og adressen ligner at de hænger sammen.
 - CreateCustomer: Tekstfelterne er placeret oppe i venstre hjørne hvilket betyder at der er en masse overskydende plads til højre og forneden. Evt. centrer dem i midten vertical/horizontal
 - CreateLoanAgreement: |--| samme som CreateCustomer -> alt indholdet er placeret i venstre hjørne hvilket betyder at der er en masse overskydende plads til højre og forneden. Evt. centrer dem i midten vertical/horizontal
+- Login samt "Advarsels popup" som for eksmepel RKI Afvisning bør have samme ikon som "Main" vinduet.

@@ -54,7 +54,7 @@ public class FindCustomerView implements View
 		    		theController.createLoanAgreementPressed(selectedCustomer);
 		    	else
 		    	{
-		    		Alert a = new Alert(AlertType.NONE,"Du skal først vælge en kunde før du kan udarbejde en låneaftale.",ButtonType.OK);
+		    		Alert a = new FCLSAlert(AlertType.NONE,"Du skal først vælge en kunde før du kan beregne en låneaftale.",ButtonType.OK);
 		    		a.setHeaderText("");
 		    		a.setTitle("Fejl");
 		    		a.showAndWait();

@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import view.BadCreditScreenController;
+import view.FCLSAlert;
 import view.FCLSController;
 
 
@@ -47,7 +48,7 @@ public class RKIandBank extends Thread
 			Platform.runLater(new Runnable() {
 				public void run() 
 				{
-				Alert alert = new Alert(AlertType.NONE,"Kunde er registreret som dårlig betaler, lånetilbud er afvist",new ButtonType("Accepter"));
+				Alert alert = new FCLSAlert(AlertType.NONE,"Kunde er registreret som dårlig betaler, lånetilbud er afvist",new ButtonType("Accepter"));
 				alert.setTitle("RKI Afvisning");
 				alert.showAndWait();
 				FCLSController.INSTANCE.changeView(null);

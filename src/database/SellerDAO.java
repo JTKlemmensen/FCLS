@@ -1,5 +1,7 @@
 package database;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -8,14 +10,23 @@ import view.FCLSController;
 
 public class SellerDAO 
 {
+	
 	public static sellerDataModel checkLogin(String username, String password)
 	{
-		//get dbconnector and check if username exists
-		String query="SELECT * FROM Salesman_table WHERE userName ='"+username+"'";
-		ResultSet dbResult = DbConnector.INSTANCE.executeQuery(query);
+		sellerDataModel salesPerson=null;
+		PreparedStatement statement=null;
+		Connection con=null;
+		ResultSet dbResult=null;
 		
 		try
 		{
+			//create prepared statement, find username and check password
+			con=DbConnector.getConnection();
+			statement =con.prepareStatement("SELECT * FROM Salesman_table WHERE userName =?");
+			statement.setString(1, username);
+			
+			dbResult = statement.executeQuery();
+			
 			while (dbResult.next())
 			{
 				String uName= dbResult.getString("username");
@@ -24,8 +35,7 @@ public class SellerDAO
 				{
 					String limit=dbResult.getString("loanLimit");
 					String fullName=dbResult.getString("fullName");
-					sellerDataModel salesPerson= new sellerDataModel(uName, limit, fullName);
-					return salesPerson;
+					salesPerson= new sellerDataModel(uName, limit, fullName);
 				}
 			}
 		}
@@ -33,6 +43,13 @@ public class SellerDAO
 		{
 			e.printStackTrace();
 		}
-		return null;
+		finally 
+		{
+			//make sure all connections are closed and resources released
+			 DbConnector.closeConnection(dbResult);
+			 DbConnector.closeConnection(statement);
+			 DbConnector.closeConnection(con);
+		}
+		return salesPerson;
 	}
 }

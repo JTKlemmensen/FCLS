@@ -26,6 +26,7 @@ public class ShowLoanAggrementController
 	
 	public void closeAndSaveAgreement()
 	{
+		//call DAO 
 		FCLSController.INSTANCE.changeView(null);
 	}
 	

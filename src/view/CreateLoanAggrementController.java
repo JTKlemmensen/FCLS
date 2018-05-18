@@ -2,6 +2,7 @@ package view;
 
 import java.math.BigDecimal;
 
+import database.CarDAO;
 import logic.CarDataModel;
 import logic.LoanAgreementDataModel;
 import logic.LoanHandler;
@@ -44,12 +45,11 @@ public class CreateLoanAggrementController
 	
 	public void findCar()
 	{
-		//TODO get car from db instead
-		String carVin="1124232";
-		String description="Model: Ferrari XT-fasterosa, Farve: Sort/Metal, Ekstra udstyr: Guldpakke";
+		//TODO simulated car
+		CarDataModel car=CarDAO.getRandomCarFromDb();
 		
-		itsLoanHandler.getLoanAgreementDataModel().getCar().setVIN(carVin);
-		itsLoanHandler.getLoanAgreementDataModel().getCar().setCarDescription(description);
+		itsLoanHandler.getLoanAgreementDataModel().getCar().setVIN(car.getVIN());
+		itsLoanHandler.getLoanAgreementDataModel().getCar().setCarDescription(car.getCarDescription());
 	}
 	
 	public LoanHandler getHandler()

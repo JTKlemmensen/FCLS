@@ -1,7 +1,12 @@
 package database;
 
 import logic.CustomerDataModel;
+import logic.sellerDataModel;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,31 +17,60 @@ public class CustomerDAO
 {
 	public Boolean createNewCustomer(CustomerDataModel newCustomer)
 	{
-		//TODO
-		//check if customer already exists (problematic due to time between check and insert, implement if there's time and a strong need for it)
-		
-		//insert customer
-		//Perhaps change this to prepared statements or something similar to clean up code, if time
-		String customerValues=" '"+newCustomer.getCustomerFirstName()+"', '"+newCustomer.getCustomerLastName()+"', '"+newCustomer.getCustomerAddress()+"', '"+newCustomer.getCustomerCity()+"', '"+newCustomer.getPostalCode()+"', '"+newCustomer.getCustomerPhone()+"', '"+newCustomer.getCustomerEmail()+"', '"+newCustomer.getCustomerCPR()+"'";
-		String query="INSERT INTO Customer_table ( firstName, lastName, address, city, postalCode, phoneNumber, email, cpr) VALUES ("+customerValues+" )";
+		PreparedStatement statement=null;
+		Connection con=null;
+		int result=0;
 		try
 		{
-			DbConnector.INSTANCE.executeUpdate(query);
-			return true;
+			//create prepared statement, find username and check password
+			con=DbConnector.getConnection();
+			statement =con.prepareStatement("INSERT INTO Customer_table ( firstName, lastName, address, city, postalCode, phoneNumber, email, cpr) VALUES(?,?,?,?,?,?,?,?)");
+			statement.setString(1, newCustomer.getCustomerFirstName());
+			statement.setString(2, newCustomer.getCustomerLastName());
+			statement.setString(3, newCustomer.getCustomerAddress());
+			statement.setString(4, newCustomer.getCustomerCity());
+			statement.setString(5, newCustomer.getPostalCode());
+			statement.setString(6, newCustomer.getCustomerCity());
+			statement.setString(7, newCustomer.getCustomerEmail());
+			statement.setString(8, newCustomer.getCustomerCPR());
+			
+			result = statement.executeUpdate();
 		}
-		catch (Exception e) {
+		catch (SQLException e)
+		{
 			e.printStackTrace();
+		}
+		finally 
+		{
+			//make sure all connections are closed and resources released
+			 DbConnector.closeConnection(statement);
+			 DbConnector.closeConnection(con);
+		}
+		
+		if(result==0)
+		{
 			return false;
 		}
+		else
+		{
+			return true;
+		}	
 	}
 	
 	public List<CustomerDataModel> getCustomerList()
 	{
 		List<CustomerDataModel> resultList=new ArrayList<CustomerDataModel>();
-		//get customer resultset from db
-		try{      
-	        String SQL = "SELECT * FROM Customer_table";            
-	        ResultSet rs = DbConnector.INSTANCE.executeQuery(SQL);
+		PreparedStatement statement=null;
+		Connection con=null;
+		ResultSet rs=null;
+		
+		try
+		{      
+			con=DbConnector.getConnection();
+			statement =con.prepareStatement("SELECT * FROM Customer_table");
+			
+			rs = statement.executeQuery();
+			
 	        while(rs.next())
 	        {
 	        	String firstName=rs.getString("firstName");
@@ -52,12 +86,19 @@ public class CustomerDAO
 	            
 	            resultList.add(cm);                  
 	        }
-	        return resultList;
 	    }
-	    catch(Exception e){
+	    catch(Exception e)
+		{
 	          e.printStackTrace();
-	          System.out.println("Error on Building Data");
-	          return null;
+	        
 	    }
+		finally 
+		{
+			//make sure all connections are closed and resources released
+			 DbConnector.closeConnection(rs);
+			 DbConnector.closeConnection(statement);
+			 DbConnector.closeConnection(con);
+		}
+		return resultList;
 	}
 }

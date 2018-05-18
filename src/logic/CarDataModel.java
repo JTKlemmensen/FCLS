@@ -18,18 +18,13 @@ public class CarDataModel
 	public final void setCarDescription(String value){carDescription.set(value);}
 	public StringProperty carDescriptionProperty(){return carDescription;}
     
-    private BigDecimal startPrice;
+  
    
     
-    public CarDataModel(String stelNumber, BigDecimal startPrice, String description)
+    public CarDataModel(String stelNumber, String description)
     {
 	setVIN(stelNumber);
-	this.startPrice = startPrice;
+	
 	setCarDescription(description);
-    }
-    
-    public BigDecimal getStartPrice()
-    {
-	return startPrice;
     }
 }

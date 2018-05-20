@@ -12,6 +12,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.Node;
 
 public class LoanHandler extends Observable {
 	private LoanAgreementDataModel loanAgreement;
@@ -85,5 +86,11 @@ public class LoanHandler extends Observable {
 	public LoanAgreementDataModel getLoanAgreementDataModel()
 	{
 		return loanAgreement;
+	}
+	
+	public Node getPaymentOverview() {
+		CreatePaymentOverview overview = new CreatePaymentOverview(loanAgreement);
+		
+		return overview.getPaymentOverview();
 	}
 }

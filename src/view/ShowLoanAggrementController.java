@@ -1,5 +1,6 @@
 package view;
 
+import javafx.scene.Node;
 import logic.LoanAgreementDataModel;
 import logic.LoanHandler;
 
@@ -38,5 +39,9 @@ public class ShowLoanAggrementController
 	{
 		CreateLoanAggrementController controller = new CreateLoanAggrementController(itsLoanHandler);
 		FCLSController.INSTANCE.changeView(controller.getView());
+	}
+	
+	public Node getPaymentOverview() {
+		return itsLoanHandler.getPaymentOverview();
 	}
 }

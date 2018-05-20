@@ -6,6 +6,7 @@ import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -50,6 +51,7 @@ private ShowLoanAggrementController theController;
 		containerGrid.setMargin(customerInformationGrid, new Insets(0, 40, 20, 0));
 		
 		containerBox.getChildren().add(createLoanInfoGrid());
+		containerBox.getChildren().add(createLoanPaymentOverview());
 		containerBox.getChildren().add(createButtons());
 				
 		return root;
@@ -278,6 +280,10 @@ private ShowLoanAggrementController theController;
 		buttonBox.setMargin(exportButton, new Insets(0, 12, 0, 12));
 		
 		return buttonBox;
+	}
+	
+	private Node createLoanPaymentOverview() {
+		return theController.getPaymentOverview();
 	}
 
 	@Override

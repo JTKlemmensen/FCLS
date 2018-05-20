@@ -30,6 +30,17 @@ public class LoanHandler extends Observable {
 		double rate = calculateRate(new BigDecimal(loanAgreement.getAskingPrice()), new BigDecimal(loanAgreement.getDownPayment()), Integer.parseInt(loanAgreement.getDuration()));
 		
 		loanAgreement.setInterestRate(Double.toString(rate));
+		
+		//set approval based on salesperson
+		double loanAmount=Double.parseDouble(loanAgreement.getAskingPrice())-Double.parseDouble(loanAgreement.getDownPayment());
+		if(loanAmount<=Double.parseDouble(salesPerson.getLoanLimit()))
+		{
+			loanAgreement.setApproved(true);
+		}
+		else
+		{
+			loanAgreement.setApproved(false);
+		}
 	}
 
 	public void setupLoanAgreement(CustomerDataModel customer) 

@@ -2,6 +2,7 @@ package view;
 
 import java.time.LocalDate;
 
+import javafx.beans.binding.Binding;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -52,6 +53,11 @@ private ShowLoanAggrementController theController;
 		containerBox.getChildren().add(createLoanInfoGrid());
 		containerBox.getChildren().add(createButtons());
 				
+		Label needingApprovalLabel=new Label("Lånets størrelse kræver godkendelse af salgschef");
+		needingApprovalLabel.setVisible(!theController.getLoanAgreement().isApproved());
+		
+		containerBox.getChildren().add(needingApprovalLabel);
+		
 		return root;
 	}
 	
@@ -67,7 +73,6 @@ private ShowLoanAggrementController theController;
 		customerNameHeader.setId("header_label");
 		
 		Label customerNameLabel=new Label();
-
 		customerNameLabel.textProperty().bind(Bindings.concat(customer.customerFirstNameProperty(), " ", customer.customerLastNameProperty()));
 		
 		Label customerAdressHeader=new Label("Addresse");
@@ -189,13 +194,16 @@ private ShowLoanAggrementController theController;
 		Label loanExpirationDateHeader=new Label("Lånets slutdato");
 		loanExpirationDateHeader.setId("header_label");
 		
+		//TODO make better, faster, stronger
 		Label loanExpirationDateLabel=new Label("2/2/3");
+		LocalDate endDate =loanAgreement.getStartDate().plusMonths(Integer.parseInt(loanAgreement.getDuration())*12);
+		loanExpirationDateLabel.setText(endDate.toString());
 		
 		Label interestRateHeader=new Label("Rentesats");
 		interestRateHeader.setId("header_label");
 		
 		Label interestRateLabel=new Label();
-		interestRateLabel.textProperty().bind(loanAgreement.interestRateProperty());
+		interestRateLabel.textProperty().bind(Bindings.format("%.4f", Double.parseDouble(loanAgreement.getInterestRate())));
 		
 		Label yearlyPaymentPercentageHeader=new Label("ÅOP");
 		yearlyPaymentPercentageHeader.setId("header_label");

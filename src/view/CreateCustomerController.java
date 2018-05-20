@@ -37,6 +37,11 @@ public class CreateCustomerController {
 		}
 
 		isInsertSuccessful = itsHandler.insertToDB(itsCustomer);
+		//TODO remove isinsertsuccesfull and just return boolean instead, and return to find customer if it was the last page
+		if(isInsertSuccessful)
+		{
+			FCLSController.INSTANCE.changeView(null);
+		}
 	}
 	
 	public void cancelCreateCustomer()

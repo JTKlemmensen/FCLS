@@ -1,5 +1,7 @@
 package logic;
 
+import java.awt.image.VolatileImage;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -45,6 +47,11 @@ public class CustomerDataModel
 		public final String getCustomerEmail() {return customerEmail.get();}
 		public final void setCustomerEmail(String value){customerEmail.set(value);}
 		public StringProperty customerEmailProperty(){return customerEmail;}
+		
+		private int customerID;
+		public int getCustomerID() {return customerID;};
+		public void setCustomerID(int value) {customerID=value;};
+		
 		
 	public CustomerDataModel(String firstName, String lastName, String address, String city, String zipCode, String phoneNumber, String email, String CPR) 
 	{

@@ -15,12 +15,8 @@ public class FindCustomerController
 		customerHandler=new CustomerHandler();
 	}
 	
-	public void createLoanAgreementPressed()
+	public void createLoanAgreementPressed(CustomerDataModel customer)
 	{
-		//TODO
-		//simulate customer for now
-		CustomerDataModel customer=new CustomerDataModel("Jens", "Lyn", "langeløgallé 53", "Lem", "4343", "45232343", "Sutmin@hotmail.com", "0102033434");
-		
 		//setup loanagreementcalled
 		LoanHandler loanHandler=new LoanHandler();
 		loanHandler.setupLoanAgreement(customer);
@@ -28,7 +24,6 @@ public class FindCustomerController
 		CreateLoanAggrementController controller = new CreateLoanAggrementController(loanHandler);
 		
 		FCLSController.INSTANCE.changeView(controller.getView());
-		
 	}
 	
 	public void createCustomerPressed() {

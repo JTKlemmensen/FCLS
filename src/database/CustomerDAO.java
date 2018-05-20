@@ -30,7 +30,7 @@ public class CustomerDAO
 			statement.setString(3, newCustomer.getCustomerAddress());
 			statement.setString(4, newCustomer.getCustomerCity());
 			statement.setString(5, newCustomer.getPostalCode());
-			statement.setString(6, newCustomer.getCustomerCity());
+			statement.setString(6, newCustomer.getCustomerPhone());
 			statement.setString(7, newCustomer.getCustomerEmail());
 			statement.setString(8, newCustomer.getCustomerCPR());
 			
@@ -73,6 +73,7 @@ public class CustomerDAO
 			
 	        while(rs.next())
 	        {
+	        	int id=rs.getInt("customerID");
 	        	String firstName=rs.getString("firstName");
 	        	String lastName=rs.getString("lastName");
 	        	String address=rs.getString("address");
@@ -83,6 +84,7 @@ public class CustomerDAO
 	        	String cpr=rs.getString("cpr");
 	        	
 	        	CustomerDataModel cm = new CustomerDataModel(firstName, lastName, address, city, postalCode, phone, email, cpr);
+	        	cm.setCustomerID(id);
 	            
 	            resultList.add(cm);                  
 	        }

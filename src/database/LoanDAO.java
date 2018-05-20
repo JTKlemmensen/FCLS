@@ -27,7 +27,7 @@ public class LoanDAO
 			con=DbConnector.getConnection();
 			statement =con.prepareStatement("INSERT INTO LoanAgreement_table ( customer, salesPerson, car, loanStartDate, loanDuration, askingPrice, rate, approved, downPayment) VALUES(?,?,?,?,?,?,?,?,?)");
 			//TODO atm, fake customerID, later get real customerID, also conversions could be prettier
-			statement.setInt(1, 2);
+			statement.setInt(1, loanAgreement.getCustomer().getCustomerID());
 			statement.setString(2, loanAgreement.getSeller().getSalesPersonUsername());
 			statement.setString(3, loanAgreement.getCar().getVIN());
 			
@@ -79,6 +79,7 @@ public class LoanDAO
 	        while(rs.next())
 	        {
 	        	//assign customer
+	        	int id=rs.getInt("customerID");
 	        	String firstName=rs.getString("firstName");
 	        	String lastName=rs.getString("lastName");
 	        	String address=rs.getString("address");
@@ -89,6 +90,7 @@ public class LoanDAO
 	        	String cpr=rs.getString("cpr");
 	        	
 	        	CustomerDataModel customer=new CustomerDataModel(firstName, lastName, address, city, postalCode, phone, email, cpr);
+	        	customer.setCustomerID(id);
 	        	
 	        	//assign car
 	        	String carID=rs.getString("VIN");
@@ -154,8 +156,8 @@ public class LoanDAO
 			//create prepared statement, find username and check password
 			con=DbConnector.getConnection();
 			statement =con.prepareStatement("UPDATE LoanAgreement_table SET customer = ?, salesPerson = ?, car = ?, loanStartDate = ?, loanDuration = ?, askingPrice = ?, rate = ?, approved = ?, downPayment = ? WHERE loanID = ?");
-			//TODO atm, fake customerID, later get real customerID, also conversions could be prettier
-			statement.setInt(1, 2);
+			
+			statement.setInt(1, loanAgreement.getCustomer().getCustomerID());
 			statement.setString(2, loanAgreement.getSeller().getSalesPersonUsername());
 			statement.setString(3, loanAgreement.getCar().getVIN());
 			

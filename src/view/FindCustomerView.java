@@ -21,10 +21,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import logic.CustomerDataModel;
+import logic.LoanAgreementDataModel;
 
 public class FindCustomerView implements View
 {
 	private FindCustomerController theController;
+	private TableView<CustomerDataModel> table;
 	
 	public VBox getSceneGUI()
 	{
@@ -46,7 +48,11 @@ public class FindCustomerView implements View
 		    @Override
 		    public void handle(ActionEvent e) 
 		    {
-		    	theController.createLoanAgreementPressed();
+		    	CustomerDataModel customer=table.getSelectionModel().getSelectedItem();
+		    	if(customer!=null)
+		    	{
+		    		theController.createLoanAgreementPressed(customer);
+		    	}
 		    }
 		});
 		
@@ -69,7 +75,7 @@ public class FindCustomerView implements View
 	
 	private VBox findCustomerArea()
 	{			
-		TableView<CustomerDataModel> table = new TableView<CustomerDataModel>();
+		table = new TableView<CustomerDataModel>();
 		
         TableColumn<CustomerDataModel, String> firstNameCol = new TableColumn<CustomerDataModel, String>("First Name");
         TableColumn<CustomerDataModel, String> lastNameCol = new TableColumn<CustomerDataModel, String>("Last Name");

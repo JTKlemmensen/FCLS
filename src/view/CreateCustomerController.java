@@ -92,7 +92,7 @@ public class CreateCustomerController {
 			dataIsViable=false;
 			itsView.addWarning("CPR er forkert længde");
 		}
-		if(itsCustomer.getPostalCode()==null||itsCustomer.getPostalCode().equals(""))
+		if(itsCustomer.getCustomerPostalCode()==null||itsCustomer.getCustomerPostalCode().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast postnummer");

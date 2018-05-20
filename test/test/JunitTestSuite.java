@@ -8,7 +8,10 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @Suite.SuiteClasses({
    TestLoanAgreementDataModel.class,
-   TestLoanHandler.class
+   TestLoanHandler.class,
+   TestCarDataModel.class,
+   TestCustomerDataModel.class,
+   TestSellerDataModel.class
 })
 
 public class JunitTestSuite {   

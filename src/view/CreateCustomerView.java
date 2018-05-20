@@ -131,7 +131,7 @@ public class CreateCustomerView implements View{
                 if (!newValue.matches("\\d{0,10}")) {
                 	customerPostalCodeTextField.setText(oldValue);
                 }
-                customer.setPostalCode(customerPostalCodeTextField.getText());
+                customer.setCustomerPostalCode(customerPostalCodeTextField.getText());
             }
         });
 		

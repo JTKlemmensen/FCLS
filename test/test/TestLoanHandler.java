@@ -96,4 +96,52 @@ public class TestLoanHandler {
 
 		assertEquals("10.0",loanHandler.getLoanAgreementDataModel().getInterestRate());
 	}
+	
+	// Rating D					+3
+	// DownPaymen NOT under 50%	+0	<--
+	// Duration over 3 years	+1
+	// Rate from bank is 8		+8	
+	@Test
+	public void testRequestLoanAgreement5()
+	{
+		LoanHandler loanHandler = new LoanHandler();
+		loanHandler.setupLoanAgreement(new CustomerDataModel("", "", "", "", "", "", "", "1234567890"));
+		loanHandler.getLoanAgreementDataModel().setAskingPrice("10000000");
+		loanHandler.getLoanAgreementDataModel().setDownPayment( "6000000");
+		loanHandler.getLoanAgreementDataModel().setDuration("6");
+		loanHandler.setRating(Rating.C);
+		loanHandler.setRate(8);
+
+		loanHandler.requestLoanAgreement(new sellerDataModel("", "", ""));
+
+		assertEquals("12.0",loanHandler.getLoanAgreementDataModel().getInterestRate());
+	}
+	
+	@Test
+	public void testCanReturnLoanAgreement() {
+		LoanHandler loanHandler = new LoanHandler();
+		loanHandler.setCanReturnLoanAgreement(true);
+		assertEquals(true, loanHandler.getCanReturnLoanAgreement());
+		assertEquals(true, loanHandler.canReturnLoanAgreementProperty().getValue());
+	}
+	@Test
+	public void testCanReturnLoanAgreement2() {
+		LoanHandler loanHandler = new LoanHandler();
+		loanHandler.setCanReturnLoanAgreement(false);
+		assertEquals(false, loanHandler.getCanReturnLoanAgreement());
+		assertEquals(false, loanHandler.canReturnLoanAgreementProperty().getValue());
+	}
+	
+	@Test
+	public void testIsRatingApproved() {
+		LoanHandler loanHandler = new LoanHandler();
+		loanHandler.setRating(Rating.C);
+		assertEquals(true, loanHandler.isRatingApproved());
+	}	
+	@Test
+	public void testIsRatingApproved2() {
+		LoanHandler loanHandler = new LoanHandler();
+		loanHandler.setRating(Rating.D);
+		assertEquals(false, loanHandler.isRatingApproved());
+	}
 }

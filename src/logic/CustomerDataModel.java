@@ -36,10 +36,10 @@ public class CustomerDataModel
 		public final void setCustomerCPR(String value){customerCPR.set(value);}
 		public StringProperty customerCPRProperty(){return customerCPR;}
 		
-		private StringProperty postalCode = new SimpleStringProperty();
-		public final String getPostalCode() {return postalCode.get();}
-		public final void setPostalCode(String value){postalCode.set(value);}
-		public StringProperty postalCodeProperty(){return postalCode;}
+		private StringProperty customerPostalCode = new SimpleStringProperty();
+		public final String getCustomerPostalCode() {return customerPostalCode.get();}
+		public final void setCustomerPostalCode(String value){customerPostalCode.set(value);}
+		public StringProperty customerPostalCodeProperty(){return customerPostalCode;}
 	
 		private StringProperty customerEmail = new SimpleStringProperty();
 		public final String getCustomerEmail() {return customerEmail.get();}
@@ -52,7 +52,7 @@ public class CustomerDataModel
 		setCustomerLastName(lastName);
 		setCustomerAddress(address);
 		setCustomerCity(city);
-		setPostalCode(zipCode);
+		setCustomerPostalCode(zipCode);
 		setCustomerPhone(phoneNumber);
 		setCustomerEmail(email);
 		setCustomerCPR(CPR);

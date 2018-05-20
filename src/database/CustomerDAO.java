@@ -17,7 +17,7 @@ public class CustomerDAO
 		
 		//insert customer
 		//Perhaps change this to prepared statements or something similar to clean up code, if time
-		String customerValues=" '"+newCustomer.getCustomerFirstName()+"', '"+newCustomer.getCustomerLastName()+"', '"+newCustomer.getCustomerAddress()+"', '"+newCustomer.getCustomerCity()+"', '"+newCustomer.getPostalCode()+"', '"+newCustomer.getCustomerPhone()+"', '"+newCustomer.getCustomerEmail()+"', '"+newCustomer.getCustomerCPR()+"'";
+		String customerValues=" '"+newCustomer.getCustomerFirstName()+"', '"+newCustomer.getCustomerLastName()+"', '"+newCustomer.getCustomerAddress()+"', '"+newCustomer.getCustomerCity()+"', '"+newCustomer.getCustomerPostalCode()+"', '"+newCustomer.getCustomerPhone()+"', '"+newCustomer.getCustomerEmail()+"', '"+newCustomer.getCustomerCPR()+"'";
 		String query="INSERT INTO Customer_table ( firstName, lastName, address, city, postalCode, phoneNumber, email, cpr) VALUES ("+customerValues+" )";
 		try
 		{

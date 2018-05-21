@@ -7,21 +7,18 @@
 Vigtige:
 - LoginView: Hvis man indtaster login forkert flere gange vil "Warning" label blive indsat flere gange på samme position.
 - Login: Når man er på loginskærmen kan man se header "Sælger profil: Skift Sælger"
-- CreateCustomer: Tillad at adresse kan indeholde mellemrum f.eks. "villavej 12" istedet for "villavej12"
+- CreateCustomer: Tillad at Bynavn kan indeholde mellemrum f.eks. "villavej 12" istedet for "villavej12"
 - CreateCustomer: Når man har oprettet en kunde bør der komme en besked som fortæller det eller at man i det mindste bliver sendt videre til en anden skærm.
 - FindKunde: Overskrifterne i tableview er hvide hvilket de IKKE burde være.
 - FindKunde: Tilpas bredden på kolonnerne så de passer med bredden af tableview.
 - CreateLoanAgreement: Bil ID det bør være muligt at vælge bil fra databasen fremfor det altid er den samme bil.
-- CreateLoanAgreement: Når man vælger dato kan man ikke se måned imens man vælger dato.
-- ShowLoanAgreement: Knappen "Gem og luk" skal implementeres
+- CreateLoanAgreement: Når man vælger dato kan man ikke se måned og �r imens man vælger dato.
+- ShowLoanAgreement: Knappen "Udskriv til CSV" skal implementeres
 
 Hvis der er tid/lyst:
-- CreateCustomer: Rækkefølgen af warnings burde være ens med rækkefølgen af tekstfelterne
- altså fornavn, efternavn, adresse, cpr, post nr., email, by, tlf.nr
-- Selve FCLS-vinduet bør ikke kunne blive resized ELLER indholdet bør være dynamisk (ændre størrelse / position - afhængig af vinduets størrelse)
+- Selve FCLS-vinduet skal ikke kunne Resizes
 - FindKunde: Tilføj flere kolonner med undtagelse af CPR nummer.
 - CreateLoanAgreement: Hvis købspris er 0 vil der opstå en exception.
 - ShowLoanAgreement: Kundens navn og adressen ligner at de hænger sammen.
-- CreateCustomer: Tekstfelterne er placeret oppe i venstre hjørne hvilket betyder at der er en masse overskydende plads til højre og forneden. Evt. centrer dem i midten vertical/horizontal
 - CreateLoanAgreement: |--| samme som CreateCustomer -> alt indholdet er placeret i venstre hjørne hvilket betyder at der er en masse overskydende plads til højre og forneden. Evt. centrer dem i midten vertical/horizontal
-- Login samt "Advarsels popup" som for eksmepel RKI Afvisning bør have samme ikon som "Main" vinduet.
+- Login bør have samme ikon som "Main" vinduet.

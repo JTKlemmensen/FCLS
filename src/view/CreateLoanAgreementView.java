@@ -221,8 +221,7 @@ public class CreateLoanAgreementView implements View
 		Label carInformationHeader= new Label("Bil ID");
 		carInformationHeader.setId("header_label");
 		
-		//TODO
-		//Currently findcarbutton just returns premade car, perhaps a search in db will replace this, if time
+		//TODO Currently findcarbutton just returns premade car, perhaps a search in db will replace this, if time
 		TextField carIDNumberField= new TextField();
 		carIDNumberField.setEditable(false);
 		carIDNumberField.textProperty().bind(loanAgreement.getCar().VINProperty());

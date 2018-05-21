@@ -41,8 +41,7 @@ public class LoanHandler extends Observable {
 
 	public void setupLoanAgreement(CustomerDataModel customer) 
 	{
-		//TODO
-		//keep or change to notifyobserver instead?
+		//TODO keep or change to notifyobserver instead?
 		setCanReturnLoanAgreement(false);
 		loanAgreement = new LoanAgreementDataModel(customer);
 		loanAgreement.setCar(new CarDataModel("", ""));

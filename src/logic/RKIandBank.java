@@ -33,8 +33,7 @@ public class RKIandBank extends Thread
 			Platform.runLater(new Runnable() {
 				public void run() 
 				{
-				//TODO
-				//is this proper procedure?
+				//TODO is this proper procedure?
 				loanHandler.setCanReturnLoanAgreement(true);
 			}
 			});

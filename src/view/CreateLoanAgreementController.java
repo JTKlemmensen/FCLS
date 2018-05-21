@@ -38,8 +38,7 @@ public class CreateLoanAgreementController
 	
 	public void cancelLoanAgreement()
 	{
-		//TODO 
-		//Thread still running, bad?
+		//TODO Thread still running, bad?
 		FCLSController.INSTANCE.changeView(null);
 	}
 	

@@ -37,6 +37,7 @@ public class CreateCustomerController {
 		}
 
 		isInsertSuccessful = itsHandler.insertToDB(itsCustomer);
+		insertSuccessful();
 	}
 	
 	public void cancelCreateCustomer()
@@ -53,6 +54,15 @@ public class CreateCustomerController {
 	public CustomerHandler getHandler()
 	{
 		return itsHandler;
+	}
+	
+	private void insertSuccessful() {
+		if(!isInsertSuccessful) {
+			itsView.addWarning("kunde ikke indsat i database");
+		}else {
+			FindCustomerView view=new FindCustomerView();
+			FCLSController.INSTANCE.changeView(view);
+		}
 	}
 	
 	private boolean checkInputViability()
@@ -73,16 +83,6 @@ public class CreateCustomerController {
 			dataIsViable=false;
 			itsView.addWarning("Indtast adresse");
 		}
-		if(itsCustomer.getCustomerCity()==null||itsCustomer.getCustomerCity()=="")
-		{
-			dataIsViable=false;
-			itsView.addWarning("Indtast by");
-		}
-		if(itsCustomer.getCustomerPhone()==null||itsCustomer.getCustomerPhone().equals(""))
-		{
-			dataIsViable=false;
-			itsView.addWarning("Indtast tlf nr.");
-		}
 		if(itsCustomer.getCustomerCPR()==null||itsCustomer.getCustomerCPR().equals(""))
 		{
 			dataIsViable=false;
@@ -102,6 +102,17 @@ public class CreateCustomerController {
 			dataIsViable=false;
 			itsView.addWarning("Indtast Email");
 		}
+		if(itsCustomer.getCustomerCity()==null||itsCustomer.getCustomerCity()=="")
+		{
+			dataIsViable=false;
+			itsView.addWarning("Indtast by");
+		}
+		if(itsCustomer.getCustomerPhone()==null||itsCustomer.getCustomerPhone().equals(""))
+		{
+			dataIsViable=false;
+			itsView.addWarning("Indtast tlf nr.");
+		}
+
 		return dataIsViable;
 
 	}

@@ -24,11 +24,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import logic.CustomerDataModel;
+import logic.LoanAgreementDataModel;
 
 public class FindCustomerView implements View
 {
 	private FindCustomerController theController;
-	private CustomerDataModel selectedCustomer;
+	private TableView<CustomerDataModel> table;
 	
 	public VBox getSceneGUI()
 	{
@@ -50,8 +51,9 @@ public class FindCustomerView implements View
 		    @Override
 		    public void handle(ActionEvent e) 
 		    {
-		    	if(selectedCustomer!=null)
-		    		theController.createLoanAgreementPressed(selectedCustomer);
+		    	CustomerDataModel customer=table.getSelectionModel().getSelectedItem();
+		    	if(customer!=null)
+		    		theController.createLoanAgreementPressed(customer);
 		    	else
 		    	{
 		    		Alert a = new FCLSAlert(AlertType.NONE,"Du skal først vælge en kunde før du kan beregne en låneaftale.",ButtonType.OK);
@@ -80,19 +82,8 @@ public class FindCustomerView implements View
 	}
 	
 	private VBox findCustomerArea()
-	{			
-		TableView<CustomerDataModel> table = new TableView<CustomerDataModel>();
-		
-		table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<CustomerDataModel>() {
-
-			@Override
-			public void changed(ObservableValue<? extends CustomerDataModel> obs, CustomerDataModel oldCustomer,
-					CustomerDataModel newCustomer)
-			{
-				selectedCustomer = newCustomer;			
-			}
-			
-		});
+	{
+		table = new TableView<CustomerDataModel>();
 		
         TableColumn<CustomerDataModel, String> firstNameCol = new TableColumn<CustomerDataModel, String>("First Name");
         TableColumn<CustomerDataModel, String> lastNameCol = new TableColumn<CustomerDataModel, String>("Last Name");

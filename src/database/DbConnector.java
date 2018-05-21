@@ -2,58 +2,70 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class DbConnector
+public final class DbConnector
 {
-	public final static DbConnector INSTANCE = new DbConnector();
-	private Connection connection;
+	private static final String CONNECTIONURL = "jdbc:sqlserver://188.181.204.238:1433; instance=SQLEXPRESS; databaseName=FCLS; user=hkkrestless; password=Bamsefar123;";
+	
 	private DbConnector()
 	{
-		openConnection();
+		//-prevent instantiation 
 	}
 	
-	//TODO
-	//Close connection to preserve lars's sanity
-	private void openConnection()
+	public static Connection getConnection()
 	{
-       String conUrl = "jdbc:sqlserver://188.181.204.238:1433; instance=SQLEXPRESS; databaseName=FCLS; user=hkkrestless; password=Bamsefar123;";
+	   Connection con;
 
 	   try 
 	   {
-	   connection = DriverManager.getConnection(conUrl);
+	   con = DriverManager.getConnection(CONNECTIONURL);
+	   return con;
 	   } 
-	   catch (Exception e) { e.printStackTrace(); }
+	   catch (Exception e) 
+	   { 
+		   e.printStackTrace(); 
+		   return null;
+	   }
 	}
 	
-	public ResultSet executeQuery(String query)
+	public static void closeConnection(ResultSet rs)
 	{
-		ResultSet result=null;
-		try
-		{
-			Statement statement = connection.createStatement();
-			result= statement.executeQuery(query);
+		try 
+		{ 
+			rs.close(); 
+		} 
+		catch (Exception e) 
+		{ 
+			//silent
 		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		return result;
 	}
 	
-	public void executeUpdate(String query)
+	public static void closeConnection(PreparedStatement ps)
 	{
-		try
-		{
-			Statement statement = connection.createStatement();
-			statement.executeUpdate(query);
+		try 
+		{ 
+			ps.close(); 
+		} 
+		catch (Exception e) 
+		{ 
+			//silent
 		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
+	}
+	
+	public static void closeConnection(Connection con)
+	{
+		try 
+		{ 
+			con.close(); 
+		} 
+		catch (Exception e) 
+		{ 
+			//silent
 		}
 	}
 }

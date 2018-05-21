@@ -21,10 +21,17 @@ public class sellerDataModel
 	public final void setSalesPersonFullName(String value){salesPersonFullName.set(value);}
 	public StringProperty salesPersonFullNameProperty(){return salesPersonFullName;}
 	
-	public sellerDataModel(String username, String limit, String fullName) 
+	private boolean isAdministrator;
+	public boolean getIsAdministrator() 
+	{
+		return isAdministrator;
+	}
+	
+	public sellerDataModel(String username, String limit, String fullName, boolean administrator) 
 	{
 		setSalesPersonUsername(username);
 		setLoanLimit(limit);
 		setSalesPersonFullName(fullName);
+		isAdministrator=administrator;
 	}
 }

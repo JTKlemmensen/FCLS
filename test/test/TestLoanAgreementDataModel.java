@@ -28,28 +28,28 @@ public class TestLoanAgreementDataModel {
 	@Test
 	public void testSeller() {
 		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
-		sellerDataModel seller = new sellerDataModel("heiter", "500000", "Jacob Ingilesen");
+		sellerDataModel seller = new sellerDataModel("heiter", "500000", "Jacob Ingilesen", false);
 		lGDM.setSeller(seller);
 		assertEquals(seller, lGDM.getSeller());
 	}
 	@Test
 	public void testSeller2() {
 		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
-		sellerDataModel seller = new sellerDataModel("Bennie", "600000", "Ben Nielsen");
+		sellerDataModel seller = new sellerDataModel("Bennie", "600000", "Ben Nielsen", false);
 		lGDM.setSeller(seller);
 		assertEquals(seller, lGDM.getSeller());
 	}
 	@Test
 	public void testCar() {
 		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
-		CarDataModel car = new CarDataModel("fffffdsr", new BigDecimal(2000000), "4 døre");
+		CarDataModel car = new CarDataModel("fffffdsr", "4 døre");
 		lGDM.setCar(car);
 		assertEquals(car, lGDM.getCar());
 	}
 	@Test
 	public void testCar2() {
 		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
-		CarDataModel car = new CarDataModel("f14", new BigDecimal(3000000), "2 døre");
+		CarDataModel car = new CarDataModel("f14", "2 døre");
 		lGDM.setCar(car);
 		assertEquals(car, lGDM.getCar());
 	}

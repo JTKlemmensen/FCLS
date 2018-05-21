@@ -1,6 +1,7 @@
 package view;
 
 import javafx.scene.Node;
+import database.LoanDAO;
 import logic.LoanAgreementDataModel;
 import logic.LoanHandler;
 
@@ -27,6 +28,7 @@ public class ShowLoanAggrementController
 	
 	public void closeAndSaveAgreement()
 	{
+		LoanDAO.insertLoanAgreementDB(itsLoanHandler.getLoanAgreementDataModel());
 		FCLSController.INSTANCE.changeView(null);
 	}
 	

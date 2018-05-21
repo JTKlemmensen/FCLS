@@ -12,6 +12,7 @@ public class FCLSController
 	
 	private FCLS theView;
 	private sellerDataModel currentSalesPerson;
+	private View view;
 	
 	public FCLS getView()
 	{
@@ -31,10 +32,17 @@ public class FCLSController
 	
 	public void changeView(View view)
 	{	
-		if(view==null)
-			theView.setView(null);
-		else if(view.onClose())
-			theView.setView(view.getSceneGUI());
+		if(this.view == null || this.view.onClose())
+			if(view==null)
+			{
+				theView.setView(null);
+				this.view = null;
+			}
+			else
+			{
+				this.view = view;
+				theView.setView(view.getSceneGUI());
+			}
 	}
 	
 	public void changeUser(sellerDataModel newSalesPerson)

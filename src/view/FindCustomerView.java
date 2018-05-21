@@ -8,7 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -25,6 +28,7 @@ import logic.CustomerDataModel;
 public class FindCustomerView implements View
 {
 	private FindCustomerController theController;
+	private CustomerDataModel selectedCustomer;
 	
 	public VBox getSceneGUI()
 	{
@@ -46,7 +50,15 @@ public class FindCustomerView implements View
 		    @Override
 		    public void handle(ActionEvent e) 
 		    {
-		    	theController.createLoanAgreementPressed();
+		    	if(selectedCustomer!=null)
+		    		theController.createLoanAgreementPressed(selectedCustomer);
+		    	else
+		    	{
+		    		Alert a = new FCLSAlert(AlertType.NONE,"Du skal først vælge en kunde før du kan beregne en låneaftale.",ButtonType.OK);
+		    		a.setHeaderText("");
+		    		a.setTitle("Fejl");
+		    		a.showAndWait();
+		    	}
 		    }
 		});
 		
@@ -70,6 +82,17 @@ public class FindCustomerView implements View
 	private VBox findCustomerArea()
 	{			
 		TableView<CustomerDataModel> table = new TableView<CustomerDataModel>();
+		
+		table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<CustomerDataModel>() {
+
+			@Override
+			public void changed(ObservableValue<? extends CustomerDataModel> obs, CustomerDataModel oldCustomer,
+					CustomerDataModel newCustomer)
+			{
+				selectedCustomer = newCustomer;			
+			}
+			
+		});
 		
         TableColumn<CustomerDataModel, String> firstNameCol = new TableColumn<CustomerDataModel, String>("First Name");
         TableColumn<CustomerDataModel, String> lastNameCol = new TableColumn<CustomerDataModel, String>("Last Name");

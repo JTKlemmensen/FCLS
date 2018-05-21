@@ -14,7 +14,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
@@ -335,8 +339,13 @@ public class CreateLoanAggrementView implements View
 	@Override
 	public boolean onClose()
 	{
-		// TODO Auto-generated method stub
-		return true;
+		if(theController.canClose())
+			return true;
+		
+		Alert alert = new FCLSAlert(AlertType.NONE,"Vil du anullere oprettelsen af Låneaftalen?",ButtonType.OK,new ButtonType("Anuller",ButtonData.CANCEL_CLOSE));
+		alert.setTitle("Bekræft Afslutning");
+		alert.showAndWait();
+		return alert.getResult() == ButtonType.OK;
 	}
 	
 }

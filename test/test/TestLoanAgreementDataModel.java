@@ -10,7 +10,7 @@ import org.junit.Test;
 import logic.CarDataModel;
 import logic.CustomerDataModel;
 import logic.LoanAgreementDataModel;
-import logic.sellerDataModel;
+import logic.SellerDataModel;
 
 public class TestLoanAgreementDataModel {
 	CustomerDataModel customer = new CustomerDataModel("Jens", "lyn", "langeløgallé 53", "Lem", "4343", "45232343", "Submit@hotmail.com", "0102033434");
@@ -28,14 +28,14 @@ public class TestLoanAgreementDataModel {
 	@Test
 	public void testSeller() {
 		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
-		sellerDataModel seller = new sellerDataModel("heiter", "500000", "Jacob Ingilesen", false);
+		SellerDataModel seller = new SellerDataModel("heiter", "500000", "Jacob Ingilesen", false);
 		lGDM.setSeller(seller);
 		assertEquals(seller, lGDM.getSeller());
 	}
 	@Test
 	public void testSeller2() {
 		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
-		sellerDataModel seller = new sellerDataModel("Bennie", "600000", "Ben Nielsen", false);
+		SellerDataModel seller = new SellerDataModel("Bennie", "600000", "Ben Nielsen", false);
 		lGDM.setSeller(seller);
 		assertEquals(seller, lGDM.getSeller());
 	}

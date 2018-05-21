@@ -2,7 +2,6 @@ package view;
 
 import java.util.List;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -10,7 +9,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
@@ -18,7 +16,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
-import logic.CustomerDataModel;
 import logic.LoanAgreementDataModel;
 
 public class ApproveLoanView  implements View
@@ -32,7 +29,7 @@ public class ApproveLoanView  implements View
 	}
 	
 	@Override
-	public Pane getSceneGUI() {
+	public Pane getViewContent() {
 		StackPane root = new StackPane();
 		root.setId("view_screen");
 		root.setPadding(new Insets(14));
@@ -53,7 +50,7 @@ public class ApproveLoanView  implements View
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<LoanAgreementDataModel, String> p) 
             {
-                return p.getValue().getSeller().salesPersonUsernameProperty();
+                return p.getValue().getSeller().usernameProperty();
             }
         });
         
@@ -83,7 +80,7 @@ public class ApproveLoanView  implements View
         containerBox.getChildren().add(buttonBox);
         
         //create buttons
-        Button approveLoanButton=new Button("Godkend LÃ¥n");
+        Button approveLoanButton=new Button("Godkend Lån");
         approveLoanButton.setId("view_button");
         approveLoanButton.setOnAction(new EventHandler<ActionEvent>() 
 		{
@@ -105,7 +102,7 @@ public class ApproveLoanView  implements View
 		    @Override
 		    public void handle(ActionEvent e) 
 		    {
-		    		theController.close();
+		    	theController.close();
 		    }
 		});
         
@@ -125,5 +122,4 @@ public class ApproveLoanView  implements View
 	{
 		table.setItems(FXCollections.observableArrayList(loanList));
 	}
-	
 }

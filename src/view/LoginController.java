@@ -1,15 +1,10 @@
 package view;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import database.DbConnector;
 import database.SellerDAO;
-import javafx.application.Platform;
-import javafx.scene.control.Label;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import logic.sellerDataModel;
+import logic.SellerDataModel;
 
 
 public class LoginController 
@@ -21,9 +16,13 @@ public class LoginController
 	{
 		itsView=new LoginView();
 		itsStage=stage;
-		stage.setOnCloseRequest((WindowEvent event) -> {
-	        FCLSController.INSTANCE.changeUser(null);
-	    });
+		itsStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				FCLSController.INSTANCE.changeUser(null);
+			}
+		});
 	}
 	
 	public LoginView getView()
@@ -33,7 +32,7 @@ public class LoginController
 	
 	public boolean login(String username, String password)
 	{
-		sellerDataModel user=SellerDAO.checkLogin(username, password);
+		SellerDataModel user=SellerDAO.checkLogin(username, password);
 		
 		if(user!=null)
 		{

@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Random;
 
 import logic.CarDataModel;
-import logic.CustomerDataModel;
 
 public class CarDAO 
 {
@@ -38,7 +37,6 @@ public class CarDAO
 	    catch(Exception e)
 		{
 	          e.printStackTrace();
-	        
 	    }
 		finally 
 		{

@@ -1,10 +1,10 @@
 package logic;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -12,7 +12,7 @@ import javafx.beans.property.StringProperty;
 public class LoanAgreementDataModel
 {
 	private CustomerDataModel customer;
-	private sellerDataModel seller;
+	private SellerDataModel seller;
 	private CarDataModel car;
 	
 	private boolean approved;
@@ -26,11 +26,11 @@ public class LoanAgreementDataModel
 		this.customer = customer;
 	}
 
-	public sellerDataModel getSeller() {
+	public SellerDataModel getSeller() {
 		return seller;
 	}
 
-	public void setSeller(sellerDataModel seller) {
+	public void setSeller(SellerDataModel seller) {
 		this.seller = seller;
 	}
 
@@ -62,10 +62,10 @@ public class LoanAgreementDataModel
 	
 	//properties
 	
-	private StringProperty duration = new SimpleStringProperty("6");
-	public final String getDuration() {return duration.get();}
-	public final void setDuration(String value){duration.set(value);}
-	public StringProperty durationProperty(){return duration;}
+	private IntegerProperty duration = new SimpleIntegerProperty(6);
+	public final int getDuration() {return duration.get();}
+	public final void setDuration(int value){duration.set(value);}
+	public IntegerProperty durationProperty(){return duration;}
 	
 	private StringProperty askingPrice = new SimpleStringProperty();
 	public final String getAskingPrice() {return askingPrice.get();}

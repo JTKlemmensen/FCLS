@@ -4,6 +4,6 @@ import javafx.scene.layout.Pane;
 
 public interface View
 {
-	public Pane getSceneGUI();
+	public Pane getViewContent();
 	public boolean onClose();
 }

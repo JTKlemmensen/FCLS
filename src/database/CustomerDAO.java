@@ -1,7 +1,6 @@
 package database;
 
 import logic.CustomerDataModel;
-import logic.sellerDataModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,12 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import logic.CustomerDataModel;
-
 public class CustomerDAO 
 {
-	public Boolean createNewCustomer(CustomerDataModel newCustomer)
+	public boolean createNewCustomer(CustomerDataModel newCustomer)
 	{
 		PreparedStatement statement=null;
 		Connection con=null;
@@ -25,7 +21,7 @@ public class CustomerDAO
 			//create prepared statement, find username and check password
 			con=DbConnector.getConnection();
 			statement =con.prepareStatement("INSERT INTO Customer_table ( firstName, lastName, address, city, postalCode, phoneNumber, email, cpr) VALUES(?,?,?,?,?,?,?,?)");
-			statement.setString(1, newCustomer.getCustomerFirstName());
+			statement.setString(1, newCustomer.getFirstName());
 			statement.setString(2, newCustomer.getCustomerLastName());
 			statement.setString(3, newCustomer.getCustomerAddress());
 			statement.setString(4, newCustomer.getCustomerCity());
@@ -46,15 +42,7 @@ public class CustomerDAO
 			 DbConnector.closeConnection(statement);
 			 DbConnector.closeConnection(con);
 		}
-		
-		if(result==0)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}	
+		return result!=0;
 	}
 	
 	public List<CustomerDataModel> getCustomerList()
@@ -88,11 +76,13 @@ public class CustomerDAO
 	            
 	            resultList.add(cm);                  
 	        }
+	        return resultList;
 	    }
 	    catch(Exception e)
 		{
 	          e.printStackTrace();
-	        
+	          
+	          return null;
 	    }
 		finally 
 		{
@@ -101,6 +91,6 @@ public class CustomerDAO
 			 DbConnector.closeConnection(statement);
 			 DbConnector.closeConnection(con);
 		}
-		return resultList;
+		
 	}
 }

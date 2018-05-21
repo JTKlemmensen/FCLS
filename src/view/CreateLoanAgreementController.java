@@ -1,29 +1,28 @@
 package view;
 
-import java.math.BigDecimal;
-
 import database.CarDAO;
 import logic.CarDataModel;
 import logic.LoanAgreementDataModel;
 import logic.LoanHandler;
 
-public class CreateLoanAggrementController 
+public class CreateLoanAgreementController 
 {
-	private CreateLoanAggrementView itsView;
+	private CreateLoanAgreementView itsView;
 	private LoanHandler itsLoanHandler;
+	private boolean isCloseable;
 	
-	public CreateLoanAggrementController(LoanHandler handler)
+	public CreateLoanAgreementController(LoanHandler handler)
 	{
 		itsLoanHandler=handler;
-		itsView=new CreateLoanAggrementView(this);
+		itsView=new CreateLoanAgreementView(this);
 	}
 	
-	public CreateLoanAggrementView getView()
+	public CreateLoanAgreementView getView()
 	{
 		return itsView;
 	}
 	
-	public void createLoanAggrement()
+	public void createLoanAgreement()
 	{
 		//check if data is enough for loanhandler
 		if(checkInputViability()==false)
@@ -31,8 +30,9 @@ public class CreateLoanAggrementController
 			return;
 		}
 		
+		isCloseable = true;
 		itsLoanHandler.requestLoanAgreement(FCLSController.INSTANCE.getCurrentUser());
-		ShowLoanAggrementController showLoan=new ShowLoanAggrementController(itsLoanHandler);
+		ShowLoanAgreementController showLoan=new ShowLoanAgreementController(itsLoanHandler);
 		FCLSController.INSTANCE.changeView(showLoan.getView());
 	}
 	
@@ -45,7 +45,6 @@ public class CreateLoanAggrementController
 	
 	public void findCar()
 	{
-		//TODO simulated car
 		CarDataModel car=CarDAO.getRandomCarFromDb();
 		
 		itsLoanHandler.getLoanAgreementDataModel().getCar().setVIN(car.getVIN());
@@ -65,7 +64,7 @@ public class CreateLoanAggrementController
 		if(loanAgreement.getAskingPrice()==null||loanAgreement.getAskingPrice().equals(""))
 		{
 			dataIsViable=false;
-			itsView.addWarning("Indtast kÃ¸bspris");
+			itsView.addWarning("Indtast købspris");
 		}
 		if(loanAgreement.getDownPayment()==null||loanAgreement.getDownPayment().equals(""))
 		{
@@ -75,18 +74,21 @@ public class CreateLoanAggrementController
 		if(loanAgreement.getStartDate()==null)
 		{
 			dataIsViable=false;
-			itsView.addWarning("VÃ¦lg startdato");
+			itsView.addWarning("Vælg startdato");
 		}
 		if(loanAgreement.getCar().getVIN()==null||loanAgreement.getCar().getVIN().equals(""))
 		{
 			dataIsViable=false;
-			itsView.addWarning("VÃ¦lg bil");
+			itsView.addWarning("Vælg bil");
 		}
 		return dataIsViable;
 	}
 
 	public boolean canClose()
 	{
+		if (isCloseable) 
+			return true;
+		
 		LoanAgreementDataModel loanAgreement=itsLoanHandler.getLoanAgreementDataModel();
 
 		if(loanAgreement.getAskingPrice()!=null && loanAgreement.getAskingPrice().length()>0)

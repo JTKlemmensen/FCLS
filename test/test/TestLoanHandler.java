@@ -12,7 +12,7 @@ import logic.CarDataModel;
 import logic.CustomerDataModel;
 import logic.LoanAgreementDataModel;
 import logic.LoanHandler;
-import logic.sellerDataModel;
+import logic.SellerDataModel;
 
 public class TestLoanHandler {
 
@@ -31,7 +31,7 @@ public class TestLoanHandler {
 		loanHandler.setRating(Rating.A);
 		loanHandler.setRate(8);
 
-		loanHandler.requestLoanAgreement(new sellerDataModel("", "", "", false));
+		loanHandler.requestLoanAgreement(new SellerDataModel("", "", "", false));
 
 		assertEquals("11.0",loanHandler.getLoanAgreementDataModel().getInterestRate());
 	}
@@ -52,7 +52,7 @@ public class TestLoanHandler {
 		loanHandler.setRating(Rating.A);
 		loanHandler.setRate(8);
 
-		loanHandler.requestLoanAgreement(new sellerDataModel("", "", "", false));
+		loanHandler.requestLoanAgreement(new SellerDataModel("", "", "", false));
 
 		assertEquals("10.0",loanHandler.getLoanAgreementDataModel().getInterestRate());
 	}
@@ -72,7 +72,7 @@ public class TestLoanHandler {
 		loanHandler.setRating(Rating.B);
 		loanHandler.setRate(8);
 
-		loanHandler.requestLoanAgreement(new sellerDataModel("", "", "", false));
+		loanHandler.requestLoanAgreement(new SellerDataModel("", "", "", false));
 
 		assertEquals("12.0",loanHandler.getLoanAgreementDataModel().getInterestRate());
 	}
@@ -92,7 +92,7 @@ public class TestLoanHandler {
 		loanHandler.setRating(Rating.A);
 		loanHandler.setRate(8);
 
-		loanHandler.requestLoanAgreement(new sellerDataModel("", "", "", false));
+		loanHandler.requestLoanAgreement(new SellerDataModel("", "", "", false));
 
 		assertEquals("10.0",loanHandler.getLoanAgreementDataModel().getInterestRate());
 	}

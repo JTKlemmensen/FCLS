@@ -1,27 +1,26 @@
 package view;
 
 import javafx.application.Platform;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import logic.sellerDataModel;
+import logic.SellerDataModel;
 
 public class FCLSController 
 {
 	public final static FCLSController INSTANCE = new FCLSController();
 	
-	private FCLS theView;
-	private sellerDataModel currentSalesPerson;
+	private FCLS fuckthis;
+	private SellerDataModel currentSalesPerson;
 	private View view;
 	
 	public FCLS getView()
 	{
-		return theView;
+		return fuckthis;
 	}
 	
 	private FCLSController()
 	{
-		theView=new FCLS(this);
+		fuckthis=new FCLS(this);
 	}
 	
 	public void openSearchCustomer()
@@ -39,21 +38,22 @@ public class FCLSController
 	}
 	
 	public void changeView(View view)
-	{	
+	{
+		//TODO change variable names
 		if(this.view == null || this.view.onClose())
 			if(view==null)
 			{
-				theView.setView(null);
+				fuckthis.setView(null);
 				this.view = null;
 			}
 			else
 			{
 				this.view = view;
-				theView.setView(view.getSceneGUI());
+				fuckthis.setView(view.getViewContent());
 			}
 	}
 	
-	public void changeUser(sellerDataModel newSalesPerson)
+	public void changeUser(SellerDataModel newSalesPerson)
 	{
 		if(newSalesPerson==null)
 		{
@@ -65,7 +65,7 @@ public class FCLSController
 		else
 		{
 			currentSalesPerson=newSalesPerson;
-			theView.setCurrentUserField(currentSalesPerson);
+			fuckthis.setCurrentUserField(currentSalesPerson);
 		}
 	}
 	
@@ -79,7 +79,7 @@ public class FCLSController
 		loginStage.show();
 	}
 	
-	public sellerDataModel getCurrentUser()
+	public SellerDataModel getCurrentUser()
 	{
 		return currentSalesPerson;
 	}

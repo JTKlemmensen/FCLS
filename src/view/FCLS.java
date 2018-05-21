@@ -8,13 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import logic.sellerDataModel;
+import logic.SellerDataModel;
 
 public class FCLS 
 {
@@ -35,11 +33,11 @@ public class FCLS
 		//create top part
 		HBox topMenuContainer= new HBox();
 		topMenuContainer.setId("top_bar");
-		currentUserLabel=new Label("SÃ¦lger profil:");
+		currentUserLabel=new Label("Sælger profil:");
 		currentUserLabel.setId("dark_label");
 		topMenuContainer.getChildren().add(currentUserLabel);
 		
-		Hyperlink changeLoginLink=new Hyperlink("Skift sÃ¦lger");
+		Hyperlink changeLoginLink=new Hyperlink("Skift sælger");
 		changeLoginLink.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent e) 
@@ -86,8 +84,8 @@ public class FCLS
 		
 		actionMenu.getChildren().add(searchCustomerButton);
 		actionMenu.getChildren().add(administrativeButtonBox);
-		actionMenu.setMargin(searchCustomerButton, new Insets(6, 0, 6, 0));
-		actionMenu.setMargin(administrativeButtonBox, new Insets(6, 0, 6, 0));
+		VBox.setMargin(searchCustomerButton, new Insets(6, 0, 6, 0));
+		VBox.setMargin(administrativeButtonBox, new Insets(6, 0, 6, 0));
 		
 		//set borderParts
 		root.setTop(topMenuContainer);
@@ -106,9 +104,9 @@ public class FCLS
 		root.setCenter(newPane);
 	}
 	
-	public void setCurrentUserField(sellerDataModel newSalesPerson)
+	public void setCurrentUserField(SellerDataModel newSalesPerson)
 	{
-		currentUserLabel.setText("SÃ¦lger profil: "+newSalesPerson.getSalesPersonUsername());
+		currentUserLabel.setText("Sælger profil: "+newSalesPerson.getUsername());
 		showAdministrativeButtons(newSalesPerson.getIsAdministrator());	
 	}
 	
@@ -122,7 +120,7 @@ public class FCLS
 			return;
 		}
 		
-		Button acceptLoanAgreementButton= new Button("Godkend lÃ¥neaftaler");
+		Button acceptLoanAgreementButton= new Button("Godkend låneaftaler");
 		acceptLoanAgreementButton.setId("menu_button");
 		acceptLoanAgreementButton.setStyle("-fx-font-size: 12px;");
 		acceptLoanAgreementButton.setPadding(new Insets(4));

@@ -15,7 +15,7 @@ public class CustomerHandler {
 		customerDAO = new CustomerDAO();
 	}
 	
-	public boolean insertToDB(CustomerDataModel customer) {
+	public boolean insertCustomer(CustomerDataModel customer) {
 		return customerDAO.createNewCustomer(customer);	
 	}
 	
@@ -28,7 +28,7 @@ public class CustomerHandler {
 		
 		for(CustomerDataModel cdm : this.customers)
 		{
-			if( !considerProperty(cdm.getCustomerFirstName(),firstName) ||
+			if( !considerProperty(cdm.getFirstName(),firstName) ||
 				!considerProperty(cdm.getCustomerLastName(),lastName) ||
 				!considerProperty(cdm.getCustomerPhone(),phoneNumber) )
 				continue;

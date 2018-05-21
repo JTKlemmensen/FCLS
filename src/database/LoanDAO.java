@@ -12,7 +12,7 @@ import java.util.List;
 import logic.CarDataModel;
 import logic.CustomerDataModel;
 import logic.LoanAgreementDataModel;
-import logic.sellerDataModel;
+import logic.SellerDataModel;
 
 public class LoanDAO 
 {
@@ -26,15 +26,14 @@ public class LoanDAO
 			//create prepared statement, find username and check password
 			con=DbConnector.getConnection();
 			statement =con.prepareStatement("INSERT INTO LoanAgreement_table ( customer, salesPerson, car, loanStartDate, loanDuration, askingPrice, rate, approved, downPayment) VALUES(?,?,?,?,?,?,?,?,?)");
-			//TODO atm, fake customerID, later get real customerID, also conversions could be prettier
 			statement.setInt(1, loanAgreement.getCustomer().getCustomerID());
-			statement.setString(2, loanAgreement.getSeller().getSalesPersonUsername());
+			statement.setString(2, loanAgreement.getSeller().getUsername());
 			statement.setString(3, loanAgreement.getCar().getVIN());
 			
 			Date date=Date.valueOf(loanAgreement.getStartDate());
 			statement.setDate(4, date);
 			
-			statement.setInt(5, Integer.parseInt(loanAgreement.getDuration()));
+			statement.setInt(5, loanAgreement.getDuration());
 			statement.setString(6, loanAgreement.getAskingPrice());
 			statement.setString(7, loanAgreement.getInterestRate());
 			statement.setBoolean(8, loanAgreement.isApproved());
@@ -53,17 +52,10 @@ public class LoanDAO
 			 DbConnector.closeConnection(con);
 		}
 		
-		if(result==0)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
+		return result!=0;
 	}
 	
-	public static List<LoanAgreementDataModel> getNonApprovedLoanList()
+	public static List<LoanAgreementDataModel> getNonapprovedLoanList()
 	{
 		List<LoanAgreementDataModel> resultList=new ArrayList<LoanAgreementDataModel>();
 		PreparedStatement statement=null;
@@ -100,17 +92,16 @@ public class LoanDAO
 	        	
 	        	//assign seller
 	        	String userName=rs.getString("userName");
-	        	String password=rs.getString("password");
 	        	String fullname=rs.getString("fullName");
 	        	String limit=rs.getString("loanLimit");
 	        	boolean administrator=rs.getBoolean("administrator");
 	        	
-	        	sellerDataModel salesPerson=new sellerDataModel(userName, limit, fullname, administrator);
+	        	SellerDataModel salesPerson=new SellerDataModel(userName, limit, fullname, administrator);
 	        	
 	        	//assign loanInfo
 	        	int loanID=rs.getInt("loanID");
 	        	LocalDate date=rs.getDate("loanStartDate").toLocalDate();
-	        	String duration=""+rs.getInt("loanDuration");
+	        	int duration=rs.getInt("loanDuration");
 	        	String price=rs.getString("askingPrice");
 	        	String rate=rs.getString("rate");
 	        	boolean approved=rs.getBoolean("approved");
@@ -134,7 +125,6 @@ public class LoanDAO
 	    catch(Exception e)
 		{
 	          e.printStackTrace();
-	        
 	    }
 		finally 
 		{
@@ -158,13 +148,13 @@ public class LoanDAO
 			statement =con.prepareStatement("UPDATE LoanAgreement_table SET customer = ?, salesPerson = ?, car = ?, loanStartDate = ?, loanDuration = ?, askingPrice = ?, rate = ?, approved = ?, downPayment = ? WHERE loanID = ?");
 			
 			statement.setInt(1, loanAgreement.getCustomer().getCustomerID());
-			statement.setString(2, loanAgreement.getSeller().getSalesPersonUsername());
+			statement.setString(2, loanAgreement.getSeller().getUsername());
 			statement.setString(3, loanAgreement.getCar().getVIN());
 			
 			Date date=Date.valueOf(loanAgreement.getStartDate());
 			statement.setDate(4, date);
 			
-			statement.setInt(5, Integer.parseInt(loanAgreement.getDuration()));
+			statement.setInt(5, loanAgreement.getDuration());
 			statement.setString(6, loanAgreement.getAskingPrice());
 			statement.setString(7, loanAgreement.getInterestRate());
 			statement.setBoolean(8, loanAgreement.isApproved());
@@ -184,13 +174,6 @@ public class LoanDAO
 			 DbConnector.closeConnection(con);
 		}
 		
-		if(result==0)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
+		return result!=0;
 	}
 }

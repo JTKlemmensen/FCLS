@@ -7,15 +7,11 @@ import com.ferrari.finances.dk.rki.Rating;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.image.Image;
 import javafx.scene.control.ButtonType;
-import javafx.stage.Stage;
-import view.BadCreditScreenController;
 import view.FCLSAlert;
 import view.FCLSController;
 
-
+//TODO remove loanhandler and move to view
 public class RKIandBank extends Thread
 {
 	private String CPR;
@@ -29,7 +25,7 @@ public class RKIandBank extends Thread
 	public void run(){	
 		Rating rating = CreditRator.i().rate(this.CPR);
 		this.loanHandler.setRating(rating);
-
+		
 		if(Rating.D != rating)
 		{
 			this.loanHandler.setRate((InterestRate.i().todaysRate()));
@@ -48,7 +44,7 @@ public class RKIandBank extends Thread
 			Platform.runLater(new Runnable() {
 				public void run() 
 				{
-				Alert alert = new FCLSAlert(AlertType.NONE,"Kunde er registreret som dårlig betaler, lånetilbud er afvist",new ButtonType("Accepter"));
+				Alert alert = new FCLSAlert(AlertType.NONE,"Kunden er registreret hos RKI. Lånetilbud er afvist",new ButtonType("Accepter"));
 				alert.setTitle("RKI Afvisning");
 				alert.showAndWait();
 				FCLSController.INSTANCE.changeView(null);

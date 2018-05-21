@@ -1,7 +1,5 @@
 package view;
 
-import java.util.List;
-
 import database.LoanDAO;
 import logic.LoanAgreementDataModel;
 
@@ -21,7 +19,7 @@ public class ApproveLoanController
 	
 	public void updateAgreementTable()
 	{
-		itsView.updateTable(LoanDAO.getNonApprovedLoanList());
+		itsView.updateTable(LoanDAO.getNonapprovedLoanList());
 	}
 	
 	public void approveLoan(LoanAgreementDataModel loanAgreement)

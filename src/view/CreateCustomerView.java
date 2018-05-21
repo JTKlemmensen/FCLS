@@ -1,8 +1,5 @@
 package view;
 
-import javax.swing.GroupLayout.Alignment;
-
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -14,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import logic.CustomerDataModel;
 
@@ -29,7 +25,7 @@ public class CreateCustomerView implements View{
 		theController=controller;
 	}
 	
-	public HBox getSceneGUI()
+	public HBox getViewContent()
 	{
 		HBox root = new HBox();
 		VBox root2 = new VBox();
@@ -225,8 +221,8 @@ public class CreateCustomerView implements View{
 		
 		buttonHolder.getChildren().add(createCustomer);
 		buttonHolder.getChildren().add(cancelButton);
-		buttonHolder.setMargin(createCustomer, new Insets(6, 6, 6, 0));
-		buttonHolder.setMargin(cancelButton, new Insets(6));
+		HBox.setMargin(createCustomer, new Insets(6, 6, 6, 0));
+		HBox.setMargin(cancelButton, new Insets(6));
 		
 		warningContainer = new VBox();
 		buttonContainer.getChildren().add(warningContainer);

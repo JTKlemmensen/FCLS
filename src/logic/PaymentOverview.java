@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class CreatePaymentOverview {
+public class PaymentOverview {
 	private LocalDate startDate;
 	private BigDecimal rateYear;
 	private BigDecimal rateMonth;
@@ -20,14 +20,16 @@ public class CreatePaymentOverview {
 	private BigDecimal principal;
 	private MathContext mc = new MathContext(15, RoundingMode.HALF_UP);
 
-	public CreatePaymentOverview(LoanAgreementDataModel LADM) {
+	public PaymentOverview(LoanAgreementDataModel LADM) {
 		rateYear = (new BigDecimal(LADM.getInterestRate(), mc)).divide(new BigDecimal("100", mc));
 		rateMonth = getMonthlyRate();
-		noOfInstalments = Integer.parseInt(LADM.getDuration()) * 12;
+		noOfInstalments = LADM.getDuration() * 12;
 		principal = (new BigDecimal(LADM.getAskingPrice(), mc)).subtract(new BigDecimal(LADM.getDownPayment()), mc);
 		startDate = LADM.getStartDate();
 	}
-
+	
+	//TODO convert to List and separate logic and View
+	
 	private ObservableList<Payment> getPaymentList() {
 		ObservableList<Payment> payments = FXCollections.observableArrayList();
 		BigDecimal payment = getPayment();
@@ -49,6 +51,8 @@ public class CreatePaymentOverview {
 			
 			payments.add(pay);
 		}
+		
+		//TODO Sort list before return
 		
 		return payments;
 	}
@@ -97,6 +101,9 @@ public class CreatePaymentOverview {
 	}
 	
 	private BigDecimal getMonthlyRate() {
+		
+		//TODO convert to BigDecimalMath
+		
 		double dd = 1+rateYear.doubleValue();
 		double one = 1;
 		double twelve = 12;

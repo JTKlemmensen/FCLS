@@ -1,26 +1,18 @@
 package view;
 
-import java.math.BigDecimal;
-
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import logic.CarDataModel;
 import logic.CustomerDataModel;
 import logic.CustomerHandler;
-import logic.LoanAgreementDataModel;
-import logic.LoanHandler;
 
 public class CreateCustomerController {
 	private CreateCustomerView itsView;
 	private CustomerHandler itsHandler;
 	private CustomerDataModel itsCustomer;
-	private boolean isInsertSuccessful;
 	
-	public CreateCustomerController(CustomerHandler handler, CustomerDataModel customer)
+	public CreateCustomerController(CustomerHandler handler)
 	{
-		itsHandler=handler;
-		itsView=new CreateCustomerView(this);
-		itsCustomer=customer;
+		itsHandler = handler;
+		itsView = new CreateCustomerView(this);
+		itsCustomer = new CustomerDataModel("", "", "", "", "", "", "", "");
 	}
 	
 	public CreateCustomerView getView()
@@ -30,19 +22,25 @@ public class CreateCustomerController {
 	
 	public void createCustomer()
 	{
-
 		if(checkInputViability()==false)
 		{
 			return;
 		}
 
-		isInsertSuccessful = itsHandler.insertToDB(itsCustomer);
-		insertSuccessful();
+		boolean isInsertSuccessful = itsHandler.insertCustomer(itsCustomer);
+		
+		if(!isInsertSuccessful) 
+		{
+			//TODO change to Alert
+			itsView.addWarning("Kunde ikke gemt");
+		} else {
+			FindCustomerView view=new FindCustomerView();
+			FCLSController.INSTANCE.changeView(view);
+		}
 	}
 	
 	public void cancelCreateCustomer()
 	{
-
 		FCLSController.INSTANCE.changeView(null);
 	}
 	
@@ -56,19 +54,10 @@ public class CreateCustomerController {
 		return itsHandler;
 	}
 	
-	private void insertSuccessful() {
-		if(!isInsertSuccessful) {
-			itsView.addWarning("kunde ikke indsat i database");
-		}else {
-			FindCustomerView view=new FindCustomerView();
-			FCLSController.INSTANCE.changeView(view);
-		}
-	}
-	
 	private boolean checkInputViability()
 	{
 		boolean dataIsViable=true;
-		if(itsCustomer.getCustomerFirstName()==null||itsCustomer.getCustomerFirstName().equals(""))
+		if(itsCustomer.getFirstName()==null||itsCustomer.getFirstName().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast fornavn");
@@ -87,16 +76,17 @@ public class CreateCustomerController {
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast cpr");
-		}else if(itsCustomer.getCustomerCPR().length() != 10)
+		} else if(itsCustomer.getCustomerCPR().length() != 10)
 		{
 			dataIsViable=false;
-			itsView.addWarning("CPR er forkert lÃ¦ngde");
+			itsView.addWarning("CPR er forkert længde");
 		}
 		if(itsCustomer.getPostalCode()==null||itsCustomer.getPostalCode().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast postnummer");
 		}
+		//TODO remove check
 		if(!itsCustomer.getCustomerEmail().matches("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"))
 		{
 			dataIsViable=false;
@@ -114,10 +104,5 @@ public class CreateCustomerController {
 		}
 
 		return dataIsViable;
-
-	}
-
-	public boolean getInsertSuccessful() {
-		return isInsertSuccessful;	
 	}
 }

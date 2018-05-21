@@ -1,17 +1,16 @@
 package logic;
 
-import java.awt.image.VolatileImage;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+ //TODO remove customer from methods and variables
 
 public class CustomerDataModel
 {
 	//properties
-		private StringProperty customerFirstName = new SimpleStringProperty();
-		public final String getCustomerFirstName() {return customerFirstName.get();}
-		public final void setCustomerFirstName(String value){customerFirstName.set(value);}
-		public StringProperty customerFirstNameProperty(){return customerFirstName;}
+		private StringProperty firstName = new SimpleStringProperty();
+		public final String getFirstName() {return firstName.get();}
+		public final void setCustomerFirstName(String value){firstName.set(value);}
+		public StringProperty customerFirstNameProperty(){return firstName;}
 		
 		private StringProperty customerLastName = new SimpleStringProperty();
 		public final String getCustomerLastName() {return customerLastName.get();}
@@ -48,6 +47,7 @@ public class CustomerDataModel
 		public final void setCustomerEmail(String value){customerEmail.set(value);}
 		public StringProperty customerEmailProperty(){return customerEmail;}
 		
+		//TODO CustomerID as search parameter
 		private int customerID;
 		public int getCustomerID() {return customerID;};
 		public void setCustomerID(int value) {customerID=value;};

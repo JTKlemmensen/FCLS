@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 
 public final class DbConnector
@@ -23,8 +21,8 @@ public final class DbConnector
 
 	   try 
 	   {
-	   con = DriverManager.getConnection(CONNECTIONURL);
-	   return con;
+		   con = DriverManager.getConnection(CONNECTIONURL);
+		   return con;
 	   } 
 	   catch (Exception e) 
 	   { 

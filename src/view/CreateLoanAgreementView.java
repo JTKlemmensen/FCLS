@@ -1,19 +1,14 @@
 package view;
 
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -28,22 +23,20 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.util.converter.NumberStringConverter;
-import jdk.nashorn.internal.runtime.regexp.joni.Warnings;
 import logic.CustomerDataModel;
 import logic.LoanAgreementDataModel;
 
-public class CreateLoanAggrementView implements View
+public class CreateLoanAgreementView implements View
 {
-	private CreateLoanAggrementController theController;
+	private CreateLoanAgreementController theController;
 	private VBox warningContainer;
 	
-	public CreateLoanAggrementView(CreateLoanAggrementController controller)
+	public CreateLoanAgreementView(CreateLoanAgreementController controller)
 	{
 		theController=controller;
 	}
 	
-	public StackPane getSceneGUI()
+	public StackPane getViewContent()
 	{
 		StackPane root = new StackPane();
 		root.setId("view_screen");
@@ -112,10 +105,10 @@ public class CreateLoanAggrementView implements View
 		GridPane loanInformationGrid=new GridPane();
 		loanInformationGrid.setPadding(new Insets(8, 0, 0, 0));
 		
-		Label loanInfoLabel=new Label("LÃ¥neinfo :");
+		Label loanInfoLabel=new Label("Låneinfo :");
 		loanInfoLabel.setId("part_header_label");
 		
-		Label carPriceHeader = new Label("KÃ¸bspris");
+		Label carPriceHeader = new Label("Købspris");
 		carPriceHeader.setId("header_label");
 		
 		TextField carPriceField = new TextField(loanAgreement.getAskingPrice());
@@ -153,7 +146,7 @@ public class CreateLoanAggrementView implements View
 		loanInformationGrid.add(downPaymentHeader, 1, 1);
 		loanInformationGrid.add(downPaymentField, 1, 2);
 		
-		loanInformationGrid.setMargin(carPriceField, new Insets(0, 16, 0, 0));
+		GridPane.setMargin(carPriceField, new Insets(0, 16, 0, 0));
 		
 		return loanInformationGrid;
 	}
@@ -171,24 +164,28 @@ public class CreateLoanAggrementView implements View
 		
 		DatePicker datePicker=new DatePicker(loanAgreement.getStartDate());
 		
-		datePicker.setOnAction(event -> {
-			//lock date to the first of the month
-		    LocalDate date = datePicker.getValue().with(TemporalAdjusters.firstDayOfMonth());
-		    //if date is earlier than current day, set to next month
-		    LocalDate currentDate=LocalDate.now();
-		    if(date.isBefore(currentDate))
-		    {
-		    	if(currentDate.getDayOfMonth()==1)
-		    	{
-		    		date=currentDate;
-		    	}
-		    	else
-		    	{
-		    		date=currentDate.with(TemporalAdjusters.firstDayOfNextMonth());
-		    	}
-		    }
-		    datePicker.setValue(date);
-		    loanAgreement.setStartDate(date);
+		datePicker.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				//lock date to the first of the month
+			    LocalDate date = datePicker.getValue().with(TemporalAdjusters.firstDayOfMonth());
+			    //if date is earlier than current day, set to next month
+			    LocalDate currentDate=LocalDate.now();
+			    if(date.isBefore(currentDate))
+			    {
+			    	if(currentDate.getDayOfMonth()==1)
+			    	{
+			    		date=currentDate;
+			    	}
+			    	else
+			    	{
+			    		date=currentDate.with(TemporalAdjusters.firstDayOfNextMonth());
+			    	}
+			    }
+			    datePicker.setValue(date);
+			    loanAgreement.setStartDate(date);
+			}
 		});
 		
 		dateContainer.getChildren().add(startDateHeader);
@@ -196,17 +193,17 @@ public class CreateLoanAggrementView implements View
 		
 		VBox periodContainer=new VBox();
 		
-		Label loanPeriodHeader=new Label("LÃ¥nets lÃ¸betid");
+		Label loanPeriodHeader=new Label("Lånets løbetid");
 		loanPeriodHeader.setId("header_label");
 		
-		Slider periodSlider=new Slider(2, 10, Integer.parseInt(loanAgreement.getDuration()));
-		periodSlider.setMajorTickUnit(2);
+		Slider periodSlider=new Slider(2, 10, loanAgreement.getDuration());
+		periodSlider.setMajorTickUnit(1);
 		periodSlider.setMinorTickCount(0);
 		periodSlider.setBlockIncrement(1);
 		periodSlider.setShowTickLabels(true);
 		periodSlider.setSnapToTicks(true);
 		periodSlider.setShowTickMarks(true);
-		Bindings.bindBidirectional(loanAgreement.durationProperty(), periodSlider.valueProperty(), new NumberStringConverter());
+		Bindings.bindBidirectional(loanAgreement.durationProperty(), periodSlider.valueProperty());
 		
 		periodContainer.getChildren().add(loanPeriodHeader);
 		periodContainer.getChildren().add(periodSlider);
@@ -260,17 +257,17 @@ public class CreateLoanAggrementView implements View
 		HBox buttonHolder=new HBox();
 		buttonContainer.getChildren().add(buttonHolder);
 		
-		Button calculateAggrementButton = new Button("Beregn lÃ¥neaftale");
-		calculateAggrementButton.setId("view_button");
-		calculateAggrementButton.setDisable(true);
+		Button calculateAgreementButton = new Button("Beregn låneaftale");
+		calculateAgreementButton.setId("view_button");
+		calculateAgreementButton.setDisable(true);
 		
-		calculateAggrementButton.setOnAction(new EventHandler<ActionEvent>() 
+		calculateAgreementButton.setOnAction(new EventHandler<ActionEvent>() 
 		{
 		    @Override
 		    public void handle(ActionEvent e) 
 		    {
 		    	warningContainer.getChildren().clear();
-		    	theController.createLoanAggrement();
+		    	theController.createLoanAgreement();
 		    }
 		});
 		
@@ -285,10 +282,10 @@ public class CreateLoanAggrementView implements View
 		    }
 		});
 		
-		buttonHolder.getChildren().add(calculateAggrementButton);
+		buttonHolder.getChildren().add(calculateAgreementButton);
 		buttonHolder.getChildren().add(cancelButton);
-		buttonHolder.setMargin(calculateAggrementButton, new Insets(6));
-		buttonHolder.setMargin(cancelButton, new Insets(6));
+		HBox.setMargin(calculateAgreementButton, new Insets(6));
+		HBox.setMargin(cancelButton, new Insets(6));
 		
 		//TODO clean up code
 		warningContainer = new VBox();
@@ -303,7 +300,7 @@ public class CreateLoanAggrementView implements View
 				if(theController.getHandler().canReturnLoanAgreementProperty().get())
 				{
 					waitingLabel.setText("");
-	            	 calculateAggrementButton.setDisable(false);
+	            	 calculateAgreementButton.setDisable(false);
 	            	 progress.setVisible(false);
 				}
 				
@@ -314,13 +311,13 @@ public class CreateLoanAggrementView implements View
 			             if((Boolean)newVal==true)
 			             {
 			            	 waitingLabel.setText("");
-			            	 calculateAggrementButton.setDisable(false);
+			            	 calculateAgreementButton.setDisable(false);
 			            	 progress.setVisible(false);
 			             }
 			             else
 			             {
 			            	 waitingLabel.setText("Indhenter kundens kreditvurdering og daglig rente...");
-			            	 calculateAggrementButton.setDisable(true);
+			            	 calculateAgreementButton.setDisable(true);
 			            	 progress.setVisible(true);
 			             }
 			        }

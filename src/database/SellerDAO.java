@@ -5,15 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import logic.sellerDataModel;
-import view.FCLSController;
+import logic.SellerDataModel;
 
 public class SellerDAO 
 {
 	
-	public static sellerDataModel checkLogin(String username, String password)
+	public static SellerDataModel checkLogin(String username, String password)
 	{
-		sellerDataModel salesPerson=null;
+		SellerDataModel salesPerson=null;
 		PreparedStatement statement=null;
 		Connection con=null;
 		ResultSet dbResult=null;
@@ -36,7 +35,7 @@ public class SellerDAO
 					String limit=dbResult.getString("loanLimit");
 					String fullName=dbResult.getString("fullName");
 					boolean administrator=dbResult.getBoolean("administrator");
-					salesPerson= new sellerDataModel(uName, limit, fullName, administrator);
+					salesPerson= new SellerDataModel(uName, limit, fullName, administrator);
 				}
 			}
 		}

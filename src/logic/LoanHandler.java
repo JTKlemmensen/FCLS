@@ -2,16 +2,11 @@ package logic;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.Observable;
 import com.ferrari.finances.dk.rki.Rating;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
 
 public class LoanHandler extends Observable {
@@ -24,11 +19,11 @@ public class LoanHandler extends Observable {
 	public final void setCanReturnLoanAgreement(Boolean value){canReturnLoanAgreement.set(value);}
 	public BooleanProperty canReturnLoanAgreementProperty(){return canReturnLoanAgreement;}
 
-	public void requestLoanAgreement(sellerDataModel salesPerson) 
+	public void requestLoanAgreement(SellerDataModel salesPerson) 
 	{	
 		loanAgreement.setSeller(salesPerson);
 		
-		double rate = calculateRate(new BigDecimal(loanAgreement.getAskingPrice()), new BigDecimal(loanAgreement.getDownPayment()), Integer.parseInt(loanAgreement.getDuration()));
+		double rate = calculateRate(new BigDecimal(loanAgreement.getAskingPrice()), new BigDecimal(loanAgreement.getDownPayment()), loanAgreement.getDuration());
 		
 		loanAgreement.setInterestRate(Double.toString(rate));
 		
@@ -100,7 +95,7 @@ public class LoanHandler extends Observable {
 	}
 	
 	public Node getPaymentOverview() {
-		CreatePaymentOverview overview = new CreatePaymentOverview(loanAgreement);
+		PaymentOverview overview = new PaymentOverview(loanAgreement);
 		
 		return overview.getPaymentOverview();
 	}

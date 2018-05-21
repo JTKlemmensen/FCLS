@@ -1,11 +1,14 @@
 package view;
 
+import javax.swing.GroupLayout.Alignment;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -26,14 +29,18 @@ public class CreateCustomerView implements View{
 		theController=controller;
 	}
 	
-	public StackPane getSceneGUI()
+	public HBox getSceneGUI()
 	{
-		StackPane root = new StackPane();
+		HBox root = new HBox();
+		VBox root2 = new VBox();
 		root.setId("view_screen");
 		root.setPadding(new Insets(14));
 		
 		VBox containerBox=new VBox();
-		root.getChildren().add(containerBox);
+		root.getChildren().add(root2);
+		root2.getChildren().add(containerBox);
+		root.setAlignment(Pos.CENTER);
+		root2.setAlignment(Pos.CENTER);
 		containerBox.getChildren().add(createCustomerInfoGrid());
 		containerBox.getChildren().add(createButtonContainer());
 		
@@ -86,7 +93,7 @@ public class CreateCustomerView implements View{
 		customerAdressTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\w{0,32}")) {
+                if (!newValue.matches("[\\w\\s]{0,32}")) {
                 	customerAdressTextField.setText(oldValue);
                 }
                 customer.setCustomerAddress(customerAdressTextField.getText());
@@ -187,7 +194,7 @@ public class CreateCustomerView implements View{
 	private VBox createButtonContainer()
 	{
 		VBox buttonContainer= new VBox();
-		buttonContainer.setPadding(new Insets(14));
+		//buttonContainer.setPadding(new Insets(14));
 		
 		HBox buttonHolder=new HBox();
 		buttonContainer.getChildren().add(buttonHolder);
@@ -202,8 +209,6 @@ public class CreateCustomerView implements View{
 		    {
 		    	warningContainer.getChildren().clear();
 		    	theController.createCustomer();
-		    	if(!theController.getInsertSuccessful()) {	    		
-		    	}
 		    }
 		});
 		
@@ -220,7 +225,7 @@ public class CreateCustomerView implements View{
 		
 		buttonHolder.getChildren().add(createCustomer);
 		buttonHolder.getChildren().add(cancelButton);
-		buttonHolder.setMargin(createCustomer, new Insets(6));
+		buttonHolder.setMargin(createCustomer, new Insets(6, 6, 6, 0));
 		buttonHolder.setMargin(cancelButton, new Insets(6));
 		
 		warningContainer = new VBox();

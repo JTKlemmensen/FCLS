@@ -9,7 +9,11 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,7 +28,9 @@ import logic.Payment;
 
 public class ShowLoanAgreementView implements View
 {
-private ShowLoanAgreementController theController;
+	private ShowLoanAgreementController theController;
+	private boolean hasSaved = false;
+	private boolean hasExported = false;
 	
 	public ShowLoanAgreementView(ShowLoanAgreementController controller)
 	{
@@ -255,6 +261,7 @@ private ShowLoanAgreementController theController;
 		    @Override
 		    public void handle(ActionEvent e) 
 		    {
+		    	hasSaved=true;
 		    	theController.closeAndSaveAgreement();
 		    }
 		});
@@ -266,6 +273,7 @@ private ShowLoanAgreementController theController;
 		    @Override
 		    public void handle(ActionEvent e) 
 		    {
+		    	hasExported=true;
 		    	theController.exportAgreementToCSVFile();
 		    }
 		});
@@ -326,7 +334,17 @@ private ShowLoanAgreementController theController;
 	@Override
 	public boolean onClose()
 	{
-		// TODO Warning about Dataloss
-		return true;
+		if(hasSaved)
+			return true;
+		
+		String question = "Vil du afslutte uden at have gemt";
+		if(!hasExported)
+				question+= " og exporteret til csv";
+		question+="?";
+		
+		Alert alert = new FCLSAlert(AlertType.NONE, question , ButtonType.OK, new ButtonType("Annuller", ButtonData.CANCEL_CLOSE));
+		alert.showAndWait();
+		
+		return alert.getResult() == ButtonType.OK;
 	}
 }

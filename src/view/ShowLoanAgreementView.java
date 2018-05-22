@@ -1,6 +1,7 @@
 ﻿package view;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
@@ -196,8 +197,10 @@ public class ShowLoanAgreementView implements View
 		Label loanStartDateHeader=new Label("Lånets startdato");
 		loanStartDateHeader.setId("header_label");
 		
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu");
+		
 		Label loanStartDateLabel=new Label();
-		loanStartDateLabel.textProperty().bind(loanAgreement.startDateProperty().asString());
+		loanStartDateLabel.setText(loanAgreement.getStartDate().format(dateFormatter));
 		
 		Label loanExpirationDateHeader=new Label("Lånets slutdato");
 		loanExpirationDateHeader.setId("header_label");
@@ -205,7 +208,7 @@ public class ShowLoanAgreementView implements View
 		//TODO make better, faster, stronger
 		Label loanExpirationDateLabel=new Label("2/2/3");
 		LocalDate endDate =loanAgreement.getStartDate().plusMonths(loanAgreement.getDuration()*12-1);
-		loanExpirationDateLabel.setText(endDate.toString());
+		loanExpirationDateLabel.setText(endDate.format(dateFormatter));
 		
 		Label interestRateHeader=new Label("Rentesats");
 		interestRateHeader.setId("header_label");

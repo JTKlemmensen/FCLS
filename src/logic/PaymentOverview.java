@@ -105,7 +105,7 @@ public class PaymentOverview {
 	private BigDecimal getMonthlyRate() {
 		
 		BigDecimal one = rateYear.add(new BigDecimal("1"));
-		BigDecimal two = (new BigDecimal("1")).add(new BigDecimal("12"), mc);
+		BigDecimal two = (new BigDecimal("1")).divide(new BigDecimal("12"), mc);
 		one = BigDecimalMath.pow(one, two);
 		one = one.subtract(new BigDecimal("1"));
 		

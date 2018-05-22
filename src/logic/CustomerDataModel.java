@@ -9,43 +9,43 @@ public class CustomerDataModel
 	//properties
 		private StringProperty firstName = new SimpleStringProperty();
 		public final String getFirstName() {return firstName.get();}
-		public final void setCustomerFirstName(String value){firstName.set(value);}
-		public StringProperty customerFirstNameProperty(){return firstName;}
+		public final void setFirstName(String value){firstName.set(value);}
+		public StringProperty firstNameProperty(){return firstName;}
 		
-		private StringProperty customerLastName = new SimpleStringProperty();
-		public final String getCustomerLastName() {return customerLastName.get();}
-		public final void setCustomerLastName(String value){customerLastName.set(value);}
-		public StringProperty customerLastNameProperty(){return customerLastName;}
+		private StringProperty lastName = new SimpleStringProperty();
+		public final String getLastName() {return lastName.get();}
+		public final void setLastName(String value){lastName.set(value);}
+		public StringProperty lastNameProperty(){return lastName;}
 		
-		private StringProperty customerAddress = new SimpleStringProperty();
-		public final String getCustomerAddress() {return customerAddress.get();}
-		public final void setCustomerAddress(String value){customerAddress.set(value);}
-		public StringProperty customerAddressProperty(){return customerAddress;}
+		private StringProperty Address = new SimpleStringProperty();
+		public final String getAddress() {return Address.get();}
+		public final void setAddress(String value){Address.set(value);}
+		public StringProperty addressProperty(){return Address;}
 		
-		private StringProperty customerCity = new SimpleStringProperty();
-		public final String getCustomerCity() {return customerCity.get();}
-		public final void setCustomerCity(String value){customerCity.set(value);}
-		public StringProperty customerCityProperty(){return customerCity;}
+		private StringProperty city = new SimpleStringProperty();
+		public final String getCity() {return city.get();}
+		public final void setCity(String value){city.set(value);}
+		public StringProperty cityProperty(){return city;}
 		
-		private StringProperty customerPhone = new SimpleStringProperty();
-		public final String getCustomerPhone() {return customerPhone.get();}
-		public final void setCustomerPhone(String value){customerPhone.set(value);}
-		public StringProperty customerPhoneProperty(){return customerPhone;}
+		private StringProperty phone = new SimpleStringProperty();
+		public final String getPhone() {return phone.get();}
+		public final void setPhone(String value){phone.set(value);}
+		public StringProperty phoneProperty(){return phone;}
 		
-		private StringProperty customerCPR = new SimpleStringProperty();
-		public final String getCustomerCPR() {return customerCPR.get();}
-		public final void setCustomerCPR(String value){customerCPR.set(value);}
-		public StringProperty customerCPRProperty(){return customerCPR;}
+		private StringProperty CPR = new SimpleStringProperty();
+		public final String getCPR() {return CPR.get();}
+		public final void setCPR(String value){CPR.set(value);}
+		public StringProperty CPRProperty(){return CPR;}
 		
 		private StringProperty postalCode = new SimpleStringProperty();
 		public final String getPostalCode() {return postalCode.get();}
 		public final void setPostalCode(String value){postalCode.set(value);}
 		public StringProperty postalCodeProperty(){return postalCode;}
 	
-		private StringProperty customerEmail = new SimpleStringProperty();
-		public final String getCustomerEmail() {return customerEmail.get();}
-		public final void setCustomerEmail(String value){customerEmail.set(value);}
-		public StringProperty customerEmailProperty(){return customerEmail;}
+		private StringProperty email = new SimpleStringProperty();
+		public final String getEmail() {return email.get();}
+		public final void setEmail(String value){email.set(value);}
+		public StringProperty emailProperty(){return email;}
 		
 		//TODO CustomerID as search parameter
 		private int customerID;
@@ -55,13 +55,13 @@ public class CustomerDataModel
 		
 	public CustomerDataModel(String firstName, String lastName, String address, String city, String zipCode, String phoneNumber, String email, String CPR) 
 	{
-		setCustomerFirstName(firstName);
-		setCustomerLastName(lastName);
-		setCustomerAddress(address);
-		setCustomerCity(city);
+		setFirstName(firstName);
+		setLastName(lastName);
+		setAddress(address);
+		setCity(city);
 		setPostalCode(zipCode);
-		setCustomerPhone(phoneNumber);
-		setCustomerEmail(email);
-		setCustomerCPR(CPR);
+		setPhone(phoneNumber);
+		setEmail(email);
+		setCPR(CPR);
 	}
 }

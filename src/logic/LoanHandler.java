@@ -45,7 +45,7 @@ public class LoanHandler extends Observable {
 		setCanReturnLoanAgreement(false);
 		loanAgreement = new LoanAgreementDataModel(customer);
 		loanAgreement.setCar(new CarDataModel("", ""));
-		RKIandBank rkiandBank = new RKIandBank(loanAgreement.getCustomer().getCustomerCPR(), this);
+		RKIandBank rkiandBank = new RKIandBank(loanAgreement.getCustomer().getCPR(), this);
 		rkiandBank.start();
 	}
 

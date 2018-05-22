@@ -63,7 +63,7 @@ public class CreateCustomerView implements View{
                 if (!newValue.matches("\\w{0,32}")) {
                 	customerFirstNameTextField.setText(oldValue);
                 }
-                customer.setCustomerFirstName(customerFirstNameTextField.getText());
+                customer.setFirstName(customerFirstNameTextField.getText());
             }
         });
 		
@@ -78,7 +78,7 @@ public class CreateCustomerView implements View{
                 if (!newValue.matches("\\w{0,32}")) {
                 	customerLastNameTextField.setText(oldValue);
                 }
-                customer.setCustomerLastName(customerLastNameTextField.getText());
+                customer.setLastName(customerLastNameTextField.getText());
             }
         });
 		
@@ -92,7 +92,7 @@ public class CreateCustomerView implements View{
                 if (!newValue.matches("[\\w\\s]{0,32}")) {
                 	customerAdressTextField.setText(oldValue);
                 }
-                customer.setCustomerAddress(customerAdressTextField.getText());
+                customer.setAddress(customerAdressTextField.getText());
             }
         });
 		
@@ -106,7 +106,7 @@ public class CreateCustomerView implements View{
                 if (!newValue.matches("\\d{0,20}")) {
                 	customerPhoneTextField.setText(oldValue);
                 }
-                customer.setCustomerPhone(customerPhoneTextField.getText());
+                customer.setPhone(customerPhoneTextField.getText());
             }
         });
 		
@@ -120,7 +120,7 @@ public class CreateCustomerView implements View{
                 if (!newValue.matches("\\d{0,10}")) {
                 	customerCPRTextField.setText(oldValue);
                 }
-                customer.setCustomerCPR(customerCPRTextField.getText());
+                customer.setCPR(customerCPRTextField.getText());
             }
         });
 		
@@ -148,7 +148,7 @@ public class CreateCustomerView implements View{
                 //if (!newValue.matches("\\w{0,20}")) {
                 //	customerEmailTextField.setText(oldValue);
                 //}
-                customer.setCustomerEmail(customerEmailTextField.getText());
+                customer.setEmail(customerEmailTextField.getText());
             }
         });
 		
@@ -162,7 +162,7 @@ public class CreateCustomerView implements View{
                 if (!newValue.matches("[\\w\\s]{0,32}{0,32}")) {
                 	customerCityTextField.setText(oldValue);
                 }
-                customer.setCustomerCity(customerCityTextField.getText());
+                customer.setCity(customerCityTextField.getText());
             }
         });
 		

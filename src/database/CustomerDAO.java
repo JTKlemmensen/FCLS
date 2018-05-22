@@ -22,13 +22,13 @@ public class CustomerDAO
 			con=DbConnector.getConnection();
 			statement =con.prepareStatement("INSERT INTO Customer_table ( firstName, lastName, address, city, postalCode, phoneNumber, email, cpr) VALUES(?,?,?,?,?,?,?,?)");
 			statement.setString(1, newCustomer.getFirstName());
-			statement.setString(2, newCustomer.getCustomerLastName());
-			statement.setString(3, newCustomer.getCustomerAddress());
-			statement.setString(4, newCustomer.getCustomerCity());
+			statement.setString(2, newCustomer.getLastName());
+			statement.setString(3, newCustomer.getAddress());
+			statement.setString(4, newCustomer.getCity());
 			statement.setString(5, newCustomer.getPostalCode());
-			statement.setString(6, newCustomer.getCustomerPhone());
-			statement.setString(7, newCustomer.getCustomerEmail());
-			statement.setString(8, newCustomer.getCustomerCPR());
+			statement.setString(6, newCustomer.getPhone());
+			statement.setString(7, newCustomer.getEmail());
+			statement.setString(8, newCustomer.getCPR());
 			
 			result = statement.executeUpdate();
 		}

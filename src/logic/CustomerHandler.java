@@ -29,8 +29,8 @@ public class CustomerHandler {
 		for(CustomerDataModel cdm : this.customers)
 		{
 			if( !considerProperty(cdm.getFirstName(),firstName) ||
-				!considerProperty(cdm.getCustomerLastName(),lastName) ||
-				!considerProperty(cdm.getCustomerPhone(),phoneNumber) )
+				!considerProperty(cdm.getLastName(),lastName) ||
+				!considerProperty(cdm.getPhone(),phoneNumber) )
 				continue;
 			
 			customers.add(cdm);

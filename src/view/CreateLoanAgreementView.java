@@ -65,25 +65,25 @@ public class CreateLoanAgreementView implements View
 		customerNameHeader.setId("header_label");
 		
 		Label customerNameLabel=new Label();
-		customerNameLabel.textProperty().bind(Bindings.concat(customer.customerFirstNameProperty(), " ", customer.customerLastNameProperty()));
+		customerNameLabel.textProperty().bind(Bindings.concat(customer.firstNameProperty(), " ", customer.lastNameProperty()));
 		
 		Label customerAdressHeader=new Label("Addresse");
 		customerAdressHeader.setId("header_label");
 		
 		Label customerAdressLabel=new Label();
-		customerAdressLabel.textProperty().bind(customer.customerAddressProperty());
+		customerAdressLabel.textProperty().bind(customer.addressProperty());
 		
 		Label customerTlfHeader=new Label("Tlf. nr");
 		customerTlfHeader.setId("header_label");
 		
 		Label customerTlfLabel=new Label();
-		customerTlfLabel.textProperty().bind(customer.customerPhoneProperty());
+		customerTlfLabel.textProperty().bind(customer.phoneProperty());
 		
 		Label customerCPRHeader=new Label("CPR nr.");
 		customerCPRHeader.setId("header_label");
 		
 		Label customerCPRLabel=new Label();
-		customerCPRLabel.textProperty().bind(customer.customerCPRProperty());
+		customerCPRLabel.textProperty().bind(customer.CPRProperty());
 		
 		customerInformationGrid.add(customerInformationHeader, 0, 0);
 		customerInformationGrid.add(customerNameHeader, 0, 1);

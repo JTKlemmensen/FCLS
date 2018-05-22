@@ -67,21 +67,21 @@ public class CreateCustomerController {
 			dataIsViable=false;
 			itsView.addWarning("Indtast fornavn");
 		}
-		if(itsCustomer.getCustomerLastName()==null||itsCustomer.getCustomerLastName().equals(""))
+		if(itsCustomer.getLastName()==null||itsCustomer.getLastName().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast efternavn");
 		}
-		if(itsCustomer.getCustomerAddress()==null||itsCustomer.getCustomerAddress().equals(""))
+		if(itsCustomer.getAddress()==null||itsCustomer.getAddress().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast adresse");
 		}
-		if(itsCustomer.getCustomerCPR()==null||itsCustomer.getCustomerCPR().equals(""))
+		if(itsCustomer.getCPR()==null||itsCustomer.getCPR().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast cpr");
-		} else if(itsCustomer.getCustomerCPR().length() != 10)
+		} else if(itsCustomer.getCPR().length() != 10)
 		{
 			dataIsViable=false;
 			itsView.addWarning("CPR er forkert længde");
@@ -91,17 +91,17 @@ public class CreateCustomerController {
 			dataIsViable=false;
 			itsView.addWarning("Indtast postnummer");
 		}
-		if(itsCustomer.getCustomerEmail() == null || itsCustomer.getCustomerEmail().equals(""))
+		if(itsCustomer.getEmail() == null || itsCustomer.getEmail().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast Email");
 		}
-		if(itsCustomer.getCustomerCity()==null||itsCustomer.getCustomerCity()=="")
+		if(itsCustomer.getCity()==null||itsCustomer.getCity()=="")
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast by");
 		}
-		if(itsCustomer.getCustomerPhone()==null||itsCustomer.getCustomerPhone().equals(""))
+		if(itsCustomer.getPhone()==null||itsCustomer.getPhone().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast tlf nr.");

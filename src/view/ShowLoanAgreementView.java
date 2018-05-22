@@ -67,19 +67,19 @@ private ShowLoanAgreementController theController;
 		customerNameHeader.setId("header_label");
 		
 		Label customerNameLabel=new Label();
-		customerNameLabel.textProperty().bind(Bindings.concat(customer.customerFirstNameProperty(), " ", customer.customerLastNameProperty()));
+		customerNameLabel.textProperty().bind(Bindings.concat(customer.firstNameProperty(), " ", customer.lastNameProperty()));
 		
 		Label customerAdressHeader=new Label("Addresse");
 		customerAdressHeader.setId("header_label");
 		
 		Label customerAdressLabel=new Label();
-		customerAdressLabel.textProperty().bind(customer.customerAddressProperty());
+		customerAdressLabel.textProperty().bind(customer.addressProperty());
 		
 		Label customerTlfHeader=new Label("Tlf. nr.");
 		customerTlfHeader.setId("header_label");
 		
 		Label customerTlfLabel=new Label();
-		customerTlfLabel.textProperty().bind(customer.customerPhoneProperty());
+		customerTlfLabel.textProperty().bind(customer.phoneProperty());
 		
 		customerInformationGrid.add(customerInformationHeader, 0, 0, 2,1);
 		customerInformationGrid.add(customerNameHeader, 0, 1);

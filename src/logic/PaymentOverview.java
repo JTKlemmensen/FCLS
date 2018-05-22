@@ -17,7 +17,8 @@ public class PaymentOverview {
 	private BigDecimal rateMonth;
 	private int noOfInstalments;
 	private BigDecimal principal;
-	private MathContext mc = new MathContext(15, RoundingMode.HALF_UP);
+	private MathContext mc = new MathContext(20, RoundingMode.HALF_UP);
+	private BigDecimal monthlyPayment;
 
 	public PaymentOverview(LoanAgreementDataModel LADM) {
 		rateYear = (new BigDecimal(LADM.getInterestRate(), mc)).divide(new BigDecimal("100", mc));
@@ -25,24 +26,24 @@ public class PaymentOverview {
 		noOfInstalments = LADM.getDuration() * 12;
 		principal = (new BigDecimal(LADM.getAskingPrice(), mc)).subtract(new BigDecimal(LADM.getDownPayment()), mc);
 		startDate = LADM.getStartDate();
+		monthlyPayment = getMonthlyPayment();
 	}
 	
 	//TODO convert to List and separate logic and View
 	
-	public List<Payment> getPaymentList() {
+	public List<Payment> getPayments() {
 		List<Payment> payments = FXCollections.observableArrayList();
-		BigDecimal payment = getPayment();
 		BigDecimal newPrincipal = principal;
 		for (int x = 0; x < noOfInstalments; x++) {
 			Payment pay = new Payment();
 			pay.setPaymentNo(x + 1);
-			pay.setPayment(payment.toString());
+			pay.setPayment(monthlyPayment.toString());
 			pay.setDate(startDate.plusMonths(x));
 			
 			BigDecimal rateAmount = (newPrincipal.multiply(rateMonth, mc)).setScale(2, RoundingMode.HALF_UP);
 			pay.setInterest(rateAmount.toString());
 			
-			BigDecimal instalment = (payment.subtract(rateAmount, mc)).setScale(2, RoundingMode.HALF_UP);
+			BigDecimal instalment = (monthlyPayment.subtract(rateAmount, mc)).setScale(2, RoundingMode.HALF_UP);
 			pay.setInstalment(instalment.toString());
 			
 			newPrincipal = (newPrincipal.subtract(instalment, mc)).setScale(2, RoundingMode.HALF_UP);
@@ -56,7 +57,14 @@ public class PaymentOverview {
 		return payments;
 	}
 
-	private BigDecimal getPayment() {
+	public BigDecimal getMonthlyPayment() {
+		if (monthlyPayment==null) {
+			monthlyPayment = calculateMonthlyPayment();
+		}
+		return monthlyPayment;
+	}
+	
+	private BigDecimal calculateMonthlyPayment() {
 		BigDecimal first = new BigDecimal("1", mc);
 		BigDecimal second = (first.add(rateMonth)).pow(noOfInstalments * -1, mc);
 		first = first.subtract(second, mc);
@@ -75,5 +83,4 @@ public class PaymentOverview {
 		
 		return one;
 	}
-
 }

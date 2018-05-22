@@ -2,6 +2,7 @@ package logic;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Observable;
 
@@ -14,12 +15,13 @@ public class LoanHandler extends Observable {
 	private LoanAgreementDataModel loanAgreement;
 	private double dailyRate;
 	private Rating rating;
+	private PaymentOverview overview;
 	
 	private BooleanProperty canReturnLoanAgreement = new SimpleBooleanProperty();
 	public final Boolean getCanReturnLoanAgreement() {return canReturnLoanAgreement.get();}
 	public final void setCanReturnLoanAgreement(Boolean value){canReturnLoanAgreement.set(value);}
 	public BooleanProperty canReturnLoanAgreementProperty(){return canReturnLoanAgreement;}
-
+	
 	public void requestLoanAgreement(SellerDataModel salesPerson) 
 	{	
 		loanAgreement.setSeller(salesPerson);
@@ -94,9 +96,29 @@ public class LoanHandler extends Observable {
 		return loanAgreement;
 	}
 	
-	public List<Payment> getPaymentList() {
-		PaymentOverview overview = new PaymentOverview(loanAgreement);
-		
-		return overview.getPaymentList();
+	private PaymentOverview getPaymentList() {
+		if (overview == null)
+			overview = new PaymentOverview(loanAgreement);
+		return overview;
+	}
+	
+	public List<Payment> getPayments() {
+		return getPaymentList().getPayments();
+	}
+	
+	public String getAPR() {
+		MathContext mc = new MathContext(20, RoundingMode.HALF_UP);
+		BigDecimal one = (new BigDecimal(loanAgreement.getInterestRate(), mc)).divide(new BigDecimal("100", mc));
+		one = one.divide(new BigDecimal("12"), mc);
+		one = new BigDecimal("1").add(one);
+		one = one.pow(12, mc);
+		one = one.subtract(new BigDecimal("1"));
+		one = one.multiply(new BigDecimal("100"));
+        
+		return (one.setScale(4, RoundingMode.HALF_UP)).toString();
+	}
+	
+	public String getMonthlyPayment() {
+		return getPaymentList().getMonthlyPayment().toString();
 	}
 }

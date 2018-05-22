@@ -1,7 +1,5 @@
 package view;
 
-import javafx.scene.Node;
-
 import java.util.List;
 
 import database.LoanDAO;
@@ -47,7 +45,15 @@ public class ShowLoanAgreementController
 		FCLSController.INSTANCE.changeView(controller.getView());
 	}
 	
-	public List<Payment> getPaymentOverview() {
-		return itsLoanHandler.getPaymentList();
+	public List<Payment> getPayments() {
+		return itsLoanHandler.getPayments();
+	}
+
+	public String getAPR() {
+		return itsLoanHandler.getAPR();
+	}
+	
+	public String getMonthlyPayment() {
+		return itsLoanHandler.getMonthlyPayment();
 	}
 }

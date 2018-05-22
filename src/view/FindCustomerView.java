@@ -83,9 +83,9 @@ public class FindCustomerView implements View
         TableColumn<CustomerDataModel, String> lastNameCol = new TableColumn<CustomerDataModel, String>("Last Name");
         TableColumn<CustomerDataModel, String> phoneCol = new TableColumn<CustomerDataModel, String>("Phone number");
         
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDataModel, String>("customerFirstName"));
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDataModel, String>("customerLastName"));
-        phoneCol.setCellValueFactory(new PropertyValueFactory<CustomerDataModel, String>("customerPhone"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDataModel, String>("firstName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDataModel, String>("lastName"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<CustomerDataModel, String>("phone"));
         
         table.getColumns().add(firstNameCol);
         table.getColumns().add(lastNameCol);

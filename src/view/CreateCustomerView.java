@@ -29,7 +29,6 @@ public class CreateCustomerView implements View{
 	{
 		GridPane root = new GridPane();
 		root.setId("view_screen");
-		root.setPadding(new Insets(14));
 		root.setAlignment(Pos.CENTER);
 		
 		root.add(createCustomerInfoGrid(),0,0);

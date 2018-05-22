@@ -25,20 +25,15 @@ public class CreateCustomerView implements View{
 		theController=controller;
 	}
 	
-	public HBox getViewContent()
+	public GridPane getViewContent()
 	{
-		HBox root = new HBox();
-		VBox root2 = new VBox();
+		GridPane root = new GridPane();
 		root.setId("view_screen");
 		root.setPadding(new Insets(14));
-		
-		VBox containerBox=new VBox();
-		root.getChildren().add(root2);
-		root2.getChildren().add(containerBox);
 		root.setAlignment(Pos.CENTER);
-		root2.setAlignment(Pos.CENTER);
-		containerBox.getChildren().add(createCustomerInfoGrid());
-		containerBox.getChildren().add(createButtonContainer());
+		
+		root.add(createCustomerInfoGrid(),0,0);
+		root.add(createButtonContainer(),0,1);
 		
 		return root;
 	}

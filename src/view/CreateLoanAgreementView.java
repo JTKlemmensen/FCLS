@@ -9,6 +9,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -36,12 +37,13 @@ public class CreateLoanAgreementView implements View
 		theController=controller;
 	}
 	
-	public StackPane getViewContent()
+	public GridPane getViewContent()
 	{
-		StackPane root = new StackPane();
+		GridPane root = new GridPane();
 		root.setId("view_screen");
 		root.setPadding(new Insets(14));
-		
+		root.setAlignment(Pos.CENTER);
+
 		VBox containerBox=new VBox();
 		root.getChildren().add(containerBox);
 		containerBox.getChildren().add(createCustomerInfoGrid());

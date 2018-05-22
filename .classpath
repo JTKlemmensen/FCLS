@@ -8,7 +8,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/smeag/OneDrive/Java APIs/Microsoft SQL JDBC 6.4/enu/mssql-jdbc-6.4.0.jre8.jar"/>
-	<classpathentry kind="lib" path="C:/Users/smeag/OneDrive/eclipse-workspace/FCLS/BigDecimalMath.jar"/>
+	<classpathentry kind="lib" path="C:/Users/alexj/Downloads/Microsoft JDBC Driver 6.2 for SQL Server/sqljdbc_6.2/enu/mssql-jdbc-6.2.2.jre8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/alexj/Documents/GitHub/FCLS/BigDecimalMath.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

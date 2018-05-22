@@ -10,6 +10,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		
 		try {
+			primaryStage.setResizable(false);
 			primaryStage.setScene(FCLSController.INSTANCE.getView().createMainScreenScene());
 			setupStage(primaryStage);
 			primaryStage.show();

@@ -9,18 +9,18 @@ public class FCLSController
 {
 	public final static FCLSController INSTANCE = new FCLSController();
 	
-	private FCLS fuckthis;
+	private FCLS FCLSContent;
 	private SellerDataModel currentSalesPerson;
 	private View view;
 	
 	public FCLS getView()
 	{
-		return fuckthis;
+		return FCLSContent;
 	}
 	
 	private FCLSController()
 	{
-		fuckthis=new FCLS(this);
+		FCLSContent=new FCLS(this);
 	}
 	
 	public void openSearchCustomer()
@@ -43,13 +43,13 @@ public class FCLSController
 		if(this.view == null || this.view.onClose())
 			if(view==null)
 			{
-				fuckthis.setView(null);
+				FCLSContent.setView(null);
 				this.view = null;
 			}
 			else
 			{
 				this.view = view;
-				fuckthis.setView(view.getViewContent());
+				FCLSContent.setView(view.getViewContent());
 			}
 	}
 	
@@ -65,7 +65,7 @@ public class FCLSController
 		else
 		{
 			currentSalesPerson=newSalesPerson;
-			fuckthis.setCurrentUserField(currentSalesPerson);
+			FCLSContent.setCurrentUserField(currentSalesPerson);
 		}
 	}
 	

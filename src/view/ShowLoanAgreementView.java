@@ -1,6 +1,7 @@
 ﻿package view;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
@@ -9,7 +10,11 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,11 +27,15 @@ import logic.CustomerDataModel;
 import logic.LoanAgreementDataModel;
 import logic.Payment;
 
-public class ShowLoanAgreementView implements View {
+public class ShowLoanAgreementView implements View
+{
 	private ShowLoanAgreementController theController;
-
-	public ShowLoanAgreementView(ShowLoanAgreementController controller) {
-		theController = controller;
+	private boolean hasSaved = false;
+	private boolean hasExported = false;
+	
+	public ShowLoanAgreementView(ShowLoanAgreementController controller)
+	{
+		theController=controller;
 	}
 
 	public StackPane getViewContent() {
@@ -182,24 +191,25 @@ public class ShowLoanAgreementView implements View {
 
 		Label loanStartDateHeader = new Label("Lånets startdato");
 		loanStartDateHeader.setId("header_label");
-
-		Label loanStartDateLabel = new Label();
-		loanStartDateLabel.textProperty().bind(loanAgreement.startDateProperty().asString());
-
-		Label loanExpirationDateHeader = new Label("Lånets slutdato");
+		
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu");
+		
+		Label loanStartDateLabel=new Label();
+		loanStartDateLabel.setText(loanAgreement.getStartDate().format(dateFormatter));
+		
+		Label loanExpirationDateHeader=new Label("Lånets slutdato");
 		loanExpirationDateHeader.setId("header_label");
-
-		// TODO make better, faster, stronger
-		Label loanExpirationDateLabel = new Label("2/2/3");
-		LocalDate endDate = loanAgreement.getStartDate().plusMonths(loanAgreement.getDuration() * 12 - 1);
-		loanExpirationDateLabel.setText(endDate.toString());
-
-		Label interestRateHeader = new Label("Rentesats");
+		
+		//TODO make better, faster, stronger
+		Label loanExpirationDateLabel=new Label("2/2/3");
+		LocalDate endDate =loanAgreement.getStartDate().plusMonths(loanAgreement.getDuration()*12-1);
+		loanExpirationDateLabel.setText(endDate.format(dateFormatter));
+		
+		Label interestRateHeader=new Label("Rentesats");
 		interestRateHeader.setId("header_label");
 
 		Label interestRateLabel = new Label();
-		interestRateLabel.textProperty()
-				.bind(Bindings.format("%.4f", Double.parseDouble(loanAgreement.getInterestRate())));
+		interestRateLabel.textProperty().bind(Bindings.format("%.4f", Double.parseDouble(loanAgreement.getInterestRate())));
 
 		Label yearlyPaymentPercentageHeader = new Label("ÅOP");
 		yearlyPaymentPercentageHeader.setId("header_label");
@@ -243,20 +253,26 @@ public class ShowLoanAgreementView implements View {
 
 		Button saveButton = new Button("Gem & Luk");
 		saveButton.setId("view_button");
-		saveButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				theController.closeAndSaveAgreement();
-			}
+		saveButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    @Override
+		    public void handle(ActionEvent e) 
+		    {
+		    	hasSaved=true;
+		    	theController.closeAndSaveAgreement();
+		    }
 		});
 
 		Button exportButton = new Button("Eksporter");
 		exportButton.setId("view_button");
-		exportButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				theController.exportAgreementToCSVFile();
-			}
+		exportButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    @Override
+		    public void handle(ActionEvent e) 
+		    {
+		    	hasExported=true;
+		    	theController.exportAgreementToCSVFile();
+		    }
 		});
 
 		Button cancelButton = new Button("Tilbage");
@@ -311,8 +327,19 @@ public class ShowLoanAgreementView implements View {
 	}
 
 	@Override
-	public boolean onClose() {
-		// TODO Warning about Dataloss
-		return true;
+	public boolean onClose()
+	{
+		if(hasSaved)
+			return true;
+		
+		String question = "Vil du afslutte uden at have gemt";
+		if(!hasExported)
+				question+= " og exporteret til csv";
+		question+="?";
+		
+		Alert alert = new FCLSAlert(AlertType.NONE, question , ButtonType.OK, new ButtonType("Annuller", ButtonData.CANCEL_CLOSE));
+		alert.showAndWait();
+		
+		return alert.getResult() == ButtonType.OK;
 	}
 }

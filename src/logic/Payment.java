@@ -3,9 +3,9 @@ package logic;
 import java.time.LocalDate;
 
 public class Payment {
-	private String paymentNo;
-	public void setPaymentNo(String paymentNo) {this.paymentNo = paymentNo;}
-	public String getPaymentNo() {return paymentNo;}
+	private int paymentNo;
+	public void setPaymentNo(int paymentNo) {this.paymentNo = paymentNo;}
+	public int getPaymentNo() {return paymentNo;}
 	
 	private LocalDate date;
 	public void setDate(LocalDate date) {this.date = date;}

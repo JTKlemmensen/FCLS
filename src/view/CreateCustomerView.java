@@ -159,7 +159,7 @@ public class CreateCustomerView implements View{
 		customerCityTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\w{0,32}")) {
+                if (!newValue.matches("[\\w\\s]{0,32}{0,32}")) {
                 	customerCityTextField.setText(oldValue);
                 }
                 customer.setCustomerCity(customerCityTextField.getText());
@@ -239,7 +239,6 @@ public class CreateCustomerView implements View{
 	@Override
 	public boolean onClose()
 	{
-		// TODO Auto-generated method stub
 		return true;
 	}
 }

@@ -1,5 +1,9 @@
 package view;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import logic.CustomerDataModel;
 import logic.CustomerHandler;
 
@@ -31,8 +35,9 @@ public class CreateCustomerController {
 		
 		if(!isInsertSuccessful) 
 		{
-			//TODO change to Alert
-			itsView.addWarning("Kunde ikke gemt");
+			Alert alert = new FCLSAlert(AlertType.NONE,"Kunde blev ikke oprettet",ButtonType.OK);
+			alert.showAndWait();
+			alert.getResult();
 		} else {
 			FindCustomerView view=new FindCustomerView();
 			FCLSController.INSTANCE.changeView(view);
@@ -79,15 +84,14 @@ public class CreateCustomerController {
 		} else if(itsCustomer.getCustomerCPR().length() != 10)
 		{
 			dataIsViable=false;
-			itsView.addWarning("CPR er forkert længde");
+			itsView.addWarning("CPR er forkert lï¿½ngde");
 		}
 		if(itsCustomer.getPostalCode()==null||itsCustomer.getPostalCode().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast postnummer");
 		}
-		//TODO remove check
-		if(!itsCustomer.getCustomerEmail().matches("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"))
+		if(itsCustomer.getCustomerEmail() == null || itsCustomer.getCustomerEmail().equals(""))
 		{
 			dataIsViable=false;
 			itsView.addWarning("Indtast Email");

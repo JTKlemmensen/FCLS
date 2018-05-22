@@ -2,7 +2,6 @@ package logic;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.List;
 import java.util.Observable;
 import com.ferrari.finances.dk.rki.Rating;
 
@@ -94,9 +93,9 @@ public class LoanHandler extends Observable {
 		return loanAgreement;
 	}
 	
-	public List<Payment> getPaymentList() {
+	public Node getPaymentOverview() {
 		PaymentOverview overview = new PaymentOverview(loanAgreement);
 		
-		return overview.getPaymentList();
+		return overview.getPaymentOverview();
 	}
 }

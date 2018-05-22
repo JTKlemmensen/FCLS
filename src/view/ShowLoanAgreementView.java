@@ -3,68 +3,67 @@ package view;
 import java.time.LocalDate;
 
 import javafx.beans.binding.Bindings;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import logic.CustomerDataModel;
 import logic.LoanAgreementDataModel;
-import logic.Payment;
 
-public class ShowLoanAgreementView implements View {
-	private ShowLoanAgreementController theController;
-
-	public ShowLoanAgreementView(ShowLoanAgreementController controller) {
-		theController = controller;
+public class ShowLoanAgreementView implements View
+{
+private ShowLoanAgreementController theController;
+	
+	public ShowLoanAgreementView(ShowLoanAgreementController controller)
+	{
+		theController=controller;
 	}
-
-	public StackPane getViewContent() {
+	
+	public StackPane getViewContent()
+	{
 		StackPane root = new StackPane();
 		root.setId("view_screen");
 		root.setPadding(new Insets(14));
-
-		VBox containerBox = new VBox();
+		
+		VBox containerBox=new VBox();
 		root.getChildren().add(containerBox);
-
-		// create mainContainergrid
-		GridPane containerGrid = new GridPane();
+	
+		//create mainContainergrid
+		GridPane containerGrid=new GridPane();
 		containerBox.getChildren().add(containerGrid);
-
+		
 		containerGrid.add(createCustomerInfoGrid(), 0, 0);
 		containerGrid.add(createSellerInfoGrid(), 1, 0);
 		containerGrid.add(createBankInfoGrid(), 0, 1);
 		containerGrid.add(createCarInfoGrid(), 1, 1);
-
+		
 		containerBox.getChildren().add(createLoanInfoGrid());
 		containerBox.getChildren().add(createLoanPaymentOverview());
 		containerBox.getChildren().add(createButtons());
-
-		Label needingApprovalLabel = new Label("Lånets størrelse kræver godkendelse af salgschef");
+				
+		Label needingApprovalLabel=new Label("Lånets størrelse kræver godkendelse af salgschef");
 		needingApprovalLabel.setVisible(!theController.getLoanAgreement().isApproved());
-
+		
 		containerBox.getChildren().add(needingApprovalLabel);
-
+		
 		return root;
 	}
-
-	private GridPane createCustomerInfoGrid() {
-		CustomerDataModel customer = theController.getLoanAgreement().getCustomer();
-		GridPane customerInformationGrid = new GridPane();
-
-		Label customerInformationHeader = new Label("Kundeinformation :");
+	
+	private GridPane createCustomerInfoGrid()
+	{
+		CustomerDataModel customer=theController.getLoanAgreement().getCustomer();
+		GridPane customerInformationGrid=new GridPane();
+		
+		Label customerInformationHeader=new Label("Kundeinformation :");
 		customerInformationHeader.setId("part_header_label");
-
-		Label customerNameHeader = new Label("Navn");
+		
+		Label customerNameHeader=new Label("Navn");
 		customerNameHeader.setId("header_label");
 		
 		Label customerNameLabel=new Label();
@@ -89,126 +88,129 @@ public class ShowLoanAgreementView implements View {
 		customerInformationGrid.add(customerAdressLabel, 1, 2);
 		customerInformationGrid.add(customerTlfHeader, 0, 3);
 		customerInformationGrid.add(customerTlfLabel, 0, 4);
-
+		
 		GridPane.setMargin(customerInformationGrid, new Insets(0, 40, 20, 0));
-
+		
 		return customerInformationGrid;
 	}
-
-	private GridPane createSellerInfoGrid() {
-		GridPane sellerInfoGrid = new GridPane();
-
-		Label sellerInformationHeader = new Label("Sælgerinformation :");
+	
+	private GridPane createSellerInfoGrid()
+	{
+		GridPane sellerInfoGrid=new GridPane();
+		
+		Label sellerInformationHeader=new Label("Sælgerinformation :");
 		sellerInformationHeader.setId("part_header_label");
-
-		Label sellerNameHeader = new Label("Sælgers Navn");
+		
+		Label sellerNameHeader=new Label("Sælgers Navn");
 		sellerNameHeader.setId("header_label");
-
-		Label sellerNameLabel = new Label();
+		
+		Label sellerNameLabel=new Label();
 		sellerNameLabel.textProperty().bind(theController.getLoanAgreement().getSeller().fullNameProperty());
-
+		
 		sellerInfoGrid.add(sellerInformationHeader, 0, 0);
 		sellerInfoGrid.add(sellerNameHeader, 0, 1);
 		sellerInfoGrid.add(sellerNameLabel, 0, 2);
-
+		
 		return sellerInfoGrid;
 	}
-
-	private GridPane createBankInfoGrid() {
-		GridPane bankInfoGrid = new GridPane();
-
-		Label bankInformationHeader = new Label("Bankinformation :");
+	
+	private GridPane createBankInfoGrid()
+	{
+		GridPane bankInfoGrid=new GridPane();
+		
+		Label bankInformationHeader=new Label("Bankinformation :");
 		bankInformationHeader.setId("part_header_label");
-
-		Label bankNameHeader = new Label("Bankens Navn");
+		
+		Label bankNameHeader=new Label("Bankens Navn");
 		bankNameHeader.setId("header_label");
-
-		Label bankNameLabel = new Label("Realkredit Herning");
-
+		
+		Label bankNameLabel=new Label("Realkredit Herning");
+		
 		bankInfoGrid.add(bankInformationHeader, 0, 0);
 		bankInfoGrid.add(bankNameHeader, 0, 1);
 		bankInfoGrid.add(bankNameLabel, 0, 2);
-
+		
 		return bankInfoGrid;
 	}
-
-	private GridPane createCarInfoGrid() {
-		GridPane carInfoGrid = new GridPane();
-
-		Label carInformationHeader = new Label("Bilinformation :");
+	
+	private GridPane createCarInfoGrid()
+	{
+		GridPane carInfoGrid=new GridPane();
+		
+		Label carInformationHeader=new Label("Bilinformation :");
 		carInformationHeader.setId("part_header_label");
-
-		Label carNameHeader = new Label("Bilens Stel nr.");
+		
+		Label carNameHeader=new Label("Bilens Stel nr.");
 		carNameHeader.setId("header_label");
-
-		Label carNameLabel = new Label();
+		
+		Label carNameLabel=new Label();
 		carNameLabel.textProperty().bind(theController.getLoanAgreement().getCar().VINProperty());
-
+		
 		carInfoGrid.add(carInformationHeader, 0, 0);
 		carInfoGrid.add(carNameHeader, 0, 1);
 		carInfoGrid.add(carNameLabel, 0, 2);
-
+		
 		return carInfoGrid;
 	}
-
-	private GridPane createLoanInfoGrid() {
-		LoanAgreementDataModel loanAgreement = theController.getLoanAgreement();
-
-		GridPane loanInfoGrid = new GridPane();
+	
+	private GridPane createLoanInfoGrid()
+	{
+		LoanAgreementDataModel loanAgreement=theController.getLoanAgreement();
+		
+		GridPane loanInfoGrid=new GridPane();
 		loanInfoGrid.setPadding(new Insets(20, 0, 0, 0));
-
-		Label loanInformationHeader = new Label("Låneinformation :");
+		
+		Label loanInformationHeader=new Label("Låneinformation :");
 		loanInformationHeader.setId("part_header_label");
-
-		Label askingPriceHeader = new Label("Aftalt pris");
+		
+		Label askingPriceHeader=new Label("Aftalt pris");
 		askingPriceHeader.setId("header_label");
-
-		Label askingPriceLabel = new Label();
+		
+		Label askingPriceLabel=new Label();
 		askingPriceLabel.textProperty().bind(loanAgreement.askingPriceProperty());
-
-		Label downpaymentHeader = new Label("Kundens udbetaling");
+		
+		Label downpaymentHeader=new Label("Kundens udbetaling");
 		downpaymentHeader.setId("header_label");
-
-		Label downpaymentLabel = new Label();
+		
+		Label downpaymentLabel=new Label();
 		downpaymentLabel.textProperty().bind(loanAgreement.downPaymentProperty());
-
-		Label loanPeriodHeader = new Label("Lånets løbetid");
+		
+		Label loanPeriodHeader=new Label("Lånets løbetid");
 		loanPeriodHeader.setId("header_label");
-
-		Label loanPeriodLabel = new Label();
+		
+		Label loanPeriodLabel=new Label();
 		loanPeriodLabel.textProperty().bind(loanAgreement.durationProperty().asString());
-
-		Label loanStartDateHeader = new Label("Lånets startdato");
+		
+		Label loanStartDateHeader=new Label("Lånets startdato");
 		loanStartDateHeader.setId("header_label");
-
-		Label loanStartDateLabel = new Label();
+		
+		Label loanStartDateLabel=new Label();
 		loanStartDateLabel.textProperty().bind(loanAgreement.startDateProperty().asString());
-
-		Label loanExpirationDateHeader = new Label("Lånets slutdato");
+		
+		Label loanExpirationDateHeader=new Label("Lånets slutdato");
 		loanExpirationDateHeader.setId("header_label");
-
-		// TODO make better, faster, stronger
-		Label loanExpirationDateLabel = new Label("2/2/3");
-		LocalDate endDate = loanAgreement.getStartDate().plusMonths(loanAgreement.getDuration() * 12 - 1);
+		
+		//TODO make better, faster, stronger
+		Label loanExpirationDateLabel=new Label("2/2/3");
+		LocalDate endDate =loanAgreement.getStartDate().plusMonths(loanAgreement.getDuration()*12-1);
 		loanExpirationDateLabel.setText(endDate.toString());
-
-		Label interestRateHeader = new Label("Rentesats");
+		
+		Label interestRateHeader=new Label("Rentesats");
 		interestRateHeader.setId("header_label");
-
-		Label interestRateLabel = new Label();
-		interestRateLabel.textProperty()
-				.bind(Bindings.format("%.4f", Double.parseDouble(loanAgreement.getInterestRate())));
-
-		Label yearlyPaymentPercentageHeader = new Label("ÅOP");
+		
+		Label interestRateLabel=new Label();
+		interestRateLabel.textProperty().bind(Bindings.format("%.4f", Double.parseDouble(loanAgreement.getInterestRate())));
+		
+		Label yearlyPaymentPercentageHeader=new Label("ÅOP");
 		yearlyPaymentPercentageHeader.setId("header_label");
-
-		Label yearlyPaymentPercentageLabel = new Label("???");
-
-		Label montlyPaymentHeader = new Label("Månedlig Ydelse");
+		
+		Label yearlyPaymentPercentageLabel=new Label("???");
+		
+		Label montlyPaymentHeader=new Label("Månedlig Ydelse");
 		montlyPaymentHeader.setId("header_label");
-
-		Label montlyPaymentLabel = new Label("???");
-
+		
+		Label montlyPaymentLabel=new Label("???");
+		
 		loanInfoGrid.add(loanInformationHeader, 0, 0);
 		loanInfoGrid.add(askingPriceHeader, 0, 1);
 		loanInfoGrid.add(askingPriceLabel, 0, 2);
@@ -226,90 +228,68 @@ public class ShowLoanAgreementView implements View {
 		loanInfoGrid.add(yearlyPaymentPercentageLabel, 2, 4);
 		loanInfoGrid.add(montlyPaymentHeader, 3, 3);
 		loanInfoGrid.add(montlyPaymentLabel, 3, 4);
-
+		
 		GridPane.setMargin(askingPriceHeader, new Insets(0, 12, 0, 0));
 		GridPane.setMargin(downpaymentHeader, new Insets(0, 12, 0, 0));
 		GridPane.setMargin(loanPeriodHeader, new Insets(0, 12, 0, 0));
 		GridPane.setMargin(loanStartDateHeader, new Insets(0, 12, 0, 0));
-
+		
 		return loanInfoGrid;
 	}
-
-	private HBox createButtons() {
-		HBox buttonBox = new HBox();
+	
+	private HBox createButtons()
+	{
+		HBox buttonBox=new HBox();
 		buttonBox.setPadding(new Insets(20));
-
+		
 		Button saveButton = new Button("Gem & Luk");
 		saveButton.setId("view_button");
-		saveButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				theController.closeAndSaveAgreement();
-			}
+		saveButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    @Override
+		    public void handle(ActionEvent e) 
+		    {
+		    	theController.closeAndSaveAgreement();
+		    }
 		});
-
+		
 		Button exportButton = new Button("Eksporter");
 		exportButton.setId("view_button");
-		exportButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				theController.exportAgreementToCSVFile();
-			}
+		exportButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    @Override
+		    public void handle(ActionEvent e) 
+		    {
+		    	theController.exportAgreementToCSVFile();
+		    }
 		});
-
+		
 		Button cancelButton = new Button("Tilbage");
 		cancelButton.setId("view_button");
-		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				theController.returnToCreateAgreementScene();
-			}
+		cancelButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    @Override
+		    public void handle(ActionEvent e) 
+		    {
+		    	theController.returnToCreateAgreementScene();
+		    }
 		});
-
+		
 		buttonBox.getChildren().add(saveButton);
 		buttonBox.getChildren().add(exportButton);
 		buttonBox.getChildren().add(cancelButton);
 		HBox.setMargin(exportButton, new Insets(0, 12, 0, 12));
-
+		
 		return buttonBox;
 	}
-
+	
 	private Node createLoanPaymentOverview() {
-		TableView<Payment> table = new TableView<>();
-		ObservableList<Payment> payments = (ObservableList<Payment>) theController.getPaymentOverview();
-		table.setItems(payments);
-
-		// Payment number column
-		TableColumn<Payment, String> paymentNoColumn = new TableColumn<>("L�benummer");
-		paymentNoColumn.setCellValueFactory(new PropertyValueFactory<>("paymentNo"));
-
-		// Date column
-		TableColumn<Payment, LocalDate> dateColumn = new TableColumn<>("Dato");
-		dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-
-		// Payment column
-		TableColumn<Payment, String> paymentColumn = new TableColumn<>("Ydelse");
-		paymentColumn.setCellValueFactory(new PropertyValueFactory<>("payment"));
-
-		// Interest column
-		TableColumn<Payment, String> interestColumn = new TableColumn<>("Renter");
-		interestColumn.setCellValueFactory(new PropertyValueFactory<>("interest"));
-
-		// Instalment column
-		TableColumn<Payment, String> instalmentColumn = new TableColumn<>("Afdrag");
-		instalmentColumn.setCellValueFactory(new PropertyValueFactory<>("instalment"));
-
-		// Principal column
-		TableColumn<Payment, String> principalColumn = new TableColumn<>("Ny restg�ld");
-		principalColumn.setCellValueFactory(new PropertyValueFactory<>("principal"));
-
-		table.getColumns().addAll(paymentNoColumn, dateColumn, paymentColumn, interestColumn, instalmentColumn, principalColumn);
-
-		return table;
+		return theController.getPaymentOverview();
 	}
 
 	@Override
-	public boolean onClose() {
+	public boolean onClose()
+	{
 		// TODO Warning about Dataloss
 		return true;
 	}

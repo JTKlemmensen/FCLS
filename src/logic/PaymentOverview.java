@@ -4,12 +4,15 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.List;
-
-import org.nevec.rjm.BigDecimalMath;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import org.nevec.rjm.*;
 
 public class PaymentOverview {
 	private LocalDate startDate;
@@ -27,13 +30,15 @@ public class PaymentOverview {
 		startDate = LADM.getStartDate();
 	}
 	
-	public List<Payment> getPaymentList() {
-		List<Payment> payments = FXCollections.observableArrayList();
+	//TODO convert to List and separate logic and View
+	
+	private ObservableList<Payment> getPaymentList() {
+		ObservableList<Payment> payments = FXCollections.observableArrayList();
 		BigDecimal payment = getPayment();
 		BigDecimal newPrincipal = principal;
 		for (int x = 0; x < noOfInstalments; x++) {
 			Payment pay = new Payment();
-			pay.setPaymentNo(x + 1);
+			pay.setPaymentNo(Integer.toString(x + 1));
 			pay.setPayment(payment.toString());
 			pay.setDate(startDate.plusMonths(x));
 			
@@ -49,9 +54,42 @@ public class PaymentOverview {
 			payments.add(pay);
 		}
 		
-		payments.sort(Comparator.comparingInt(Payment::getPaymentNo));
+		//TODO Sort list before return
 		
 		return payments;
+	}
+
+	public Node getPaymentOverview() {
+		TableView<Payment> table = new TableView<>();
+		table.setItems(getPaymentList());
+		
+		//Payment number column
+		TableColumn<Payment, String> paymentNoColumn = new TableColumn<>("Payment number");
+		paymentNoColumn.setCellValueFactory(new PropertyValueFactory<>("paymentNo"));
+
+		//Payment number column
+		TableColumn<Payment, LocalDate> dateColumn = new TableColumn<>("Date");
+		dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+		//Payment number column
+		TableColumn<Payment, String> paymentColumn = new TableColumn<>("Payment");
+		paymentColumn.setCellValueFactory(new PropertyValueFactory<>("payment"));
+
+		//Payment number column
+		TableColumn<Payment, String> interestColumn = new TableColumn<>("Interest");
+		interestColumn.setCellValueFactory(new PropertyValueFactory<>("interest"));
+
+		//Payment number column
+		TableColumn<Payment, String> instalmentColumn = new TableColumn<>("Instalment");
+		instalmentColumn.setCellValueFactory(new PropertyValueFactory<>("instalment"));
+
+		//Payment number column
+		TableColumn<Payment, String> principalColumn = new TableColumn<>("Principal");
+		principalColumn.setCellValueFactory(new PropertyValueFactory<>("principal"));
+		
+		table.getColumns().addAll(paymentNoColumn, dateColumn, paymentColumn, interestColumn, instalmentColumn, principalColumn);
+		
+		return table;
 	}
 
 	private BigDecimal getPayment() {
@@ -67,7 +105,7 @@ public class PaymentOverview {
 	private BigDecimal getMonthlyRate() {
 		
 		BigDecimal one = rateYear.add(new BigDecimal("1"));
-		BigDecimal two = (new BigDecimal("1")).divide(new BigDecimal("12"), mc);
+		BigDecimal two = (new BigDecimal("1")).add(new BigDecimal("12"), mc);
 		one = BigDecimalMath.pow(one, two);
 		one = one.subtract(new BigDecimal("1"));
 		

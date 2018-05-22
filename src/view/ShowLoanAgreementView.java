@@ -3,18 +3,24 @@
 import java.time.LocalDate;
 
 import javafx.beans.binding.Bindings;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+
 import logic.CustomerDataModel;
 import logic.LoanAgreementDataModel;
+import logic.Payment;
 
 public class ShowLoanAgreementView implements View
 {
@@ -284,7 +290,37 @@ private ShowLoanAgreementController theController;
 	}
 	
 	private Node createLoanPaymentOverview() {
-		return theController.getPaymentOverview();
+		TableView<Payment> table = new TableView<>();
+				ObservableList<Payment> payments = (ObservableList<Payment>) theController.getPaymentOverview();
+				table.setItems(payments);
+		
+				// Payment number column
+				TableColumn<Payment, String> paymentNoColumn = new TableColumn<>("Løbenummer");
+				paymentNoColumn.setCellValueFactory(new PropertyValueFactory<>("paymentNo"));
+		
+				// Date column
+				TableColumn<Payment, LocalDate> dateColumn = new TableColumn<>("Dato");
+				dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+		
+				// Payment column
+				TableColumn<Payment, String> paymentColumn = new TableColumn<>("Ydelse");
+				paymentColumn.setCellValueFactory(new PropertyValueFactory<>("payment"));
+		
+				// Interest column
+				TableColumn<Payment, String> interestColumn = new TableColumn<>("Renter");
+				interestColumn.setCellValueFactory(new PropertyValueFactory<>("interest"));
+		
+				// Instalment column
+				TableColumn<Payment, String> instalmentColumn = new TableColumn<>("Afdrag");
+				instalmentColumn.setCellValueFactory(new PropertyValueFactory<>("instalment"));
+		
+				// Principal column
+			TableColumn<Payment, String> principalColumn = new TableColumn<>("Ny restgæld");
+				principalColumn.setCellValueFactory(new PropertyValueFactory<>("principal"));
+		
+				table.getColumns().addAll(paymentNoColumn, dateColumn, paymentColumn, interestColumn, instalmentColumn, principalColumn);
+		
+				return table;
 	}
 
 	@Override

@@ -2,12 +2,13 @@ package logic;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.List;
 import java.util.Observable;
+
 import com.ferrari.finances.dk.rki.Rating;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.scene.Node;
 
 public class LoanHandler extends Observable {
 	private LoanAgreementDataModel loanAgreement;
@@ -93,9 +94,9 @@ public class LoanHandler extends Observable {
 		return loanAgreement;
 	}
 	
-	public Node getPaymentOverview() {
+	public List<Payment> getPaymentList() {
 		PaymentOverview overview = new PaymentOverview(loanAgreement);
 		
-		return overview.getPaymentOverview();
+		return overview.getPaymentList();
 	}
 }

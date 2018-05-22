@@ -105,10 +105,10 @@ public class CreateLoanAgreementView implements View
 		GridPane loanInformationGrid=new GridPane();
 		loanInformationGrid.setPadding(new Insets(8, 0, 0, 0));
 		
-		Label loanInfoLabel=new Label("Låneinfo :");
+		Label loanInfoLabel=new Label("LÃ¥neinfo :");
 		loanInfoLabel.setId("part_header_label");
 		
-		Label carPriceHeader = new Label("Købspris");
+		Label carPriceHeader = new Label("KÃ¸bspris");
 		carPriceHeader.setId("header_label");
 		
 		TextField carPriceField = new TextField(loanAgreement.getAskingPrice());
@@ -193,7 +193,7 @@ public class CreateLoanAgreementView implements View
 		
 		VBox periodContainer=new VBox();
 		
-		Label loanPeriodHeader=new Label("Lånets løbetid");
+		Label loanPeriodHeader=new Label("LÃ¥nets lÃ¸betid");
 		loanPeriodHeader.setId("header_label");
 		
 		Slider periodSlider=new Slider(2, 10, loanAgreement.getDuration());
@@ -256,7 +256,7 @@ public class CreateLoanAgreementView implements View
 		HBox buttonHolder=new HBox();
 		buttonContainer.getChildren().add(buttonHolder);
 		
-		Button calculateAgreementButton = new Button("Beregn låneaftale");
+		Button calculateAgreementButton = new Button("Beregn lÃ¥neaftale");
 		calculateAgreementButton.setId("view_button");
 		calculateAgreementButton.setDisable(true);
 		
@@ -338,8 +338,8 @@ public class CreateLoanAgreementView implements View
 		if(theController.canClose())
 			return true;
 		
-		Alert alert = new FCLSAlert(AlertType.NONE,"Vil du anullere oprettelsen af Låneaftalen?",ButtonType.OK,new ButtonType("Anuller",ButtonData.CANCEL_CLOSE));
-		alert.setTitle("Bekræft Afslutning");
+		Alert alert = new FCLSAlert(AlertType.NONE,"Vil du anullere oprettelsen af LÃ¥neaftalen?",ButtonType.OK,new ButtonType("Anuller",ButtonData.CANCEL_CLOSE));
+		alert.setTitle("Bekraft Afslutning");
 		alert.showAndWait();
 		return alert.getResult() == ButtonType.OK;
 	}

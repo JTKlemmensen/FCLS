@@ -33,11 +33,11 @@ public class FCLS
 		//create top part
 		HBox topMenuContainer= new HBox();
 		topMenuContainer.setId("top_bar");
-		currentUserLabel=new Label("Sælger profil:");
+		currentUserLabel=new Label("SÃ¦lger profil:");
 		currentUserLabel.setId("dark_label");
 		topMenuContainer.getChildren().add(currentUserLabel);
 		
-		Hyperlink changeLoginLink=new Hyperlink("Skift sælger");
+		Hyperlink changeLoginLink=new Hyperlink("Skift sÃ¦lger");
 		changeLoginLink.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent e) 
@@ -106,7 +106,7 @@ public class FCLS
 	
 	public void setCurrentUserField(SellerDataModel newSalesPerson)
 	{
-		currentUserLabel.setText("Sælger profil: "+newSalesPerson.getUsername());
+		currentUserLabel.setText("SÃ¦lger profil: "+newSalesPerson.getUsername());
 		showAdministrativeButtons(newSalesPerson.getIsAdministrator());	
 	}
 	
@@ -120,7 +120,7 @@ public class FCLS
 			return;
 		}
 		
-		Button acceptLoanAgreementButton= new Button("Godkend låneaftaler");
+		Button acceptLoanAgreementButton= new Button("Godkend lÃ¥neaftaler");
 		acceptLoanAgreementButton.setId("menu_button");
 		acceptLoanAgreementButton.setStyle("-fx-font-size: 12px;");
 		acceptLoanAgreementButton.setPadding(new Insets(4));

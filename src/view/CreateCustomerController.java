@@ -84,7 +84,7 @@ public class CreateCustomerController {
 		} else if(itsCustomer.getCustomerCPR().length() != 10)
 		{
 			dataIsViable=false;
-			itsView.addWarning("CPR er forkert l�ngde");
+			itsView.addWarning("CPR er forkert længde");
 		}
 		if(itsCustomer.getPostalCode()==null||itsCustomer.getPostalCode().equals(""))
 		{

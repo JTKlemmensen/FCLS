@@ -38,7 +38,7 @@ public class FindCustomerView implements View
 		containerBox.setAlignment(Pos.CENTER);
 		containerBox.setPadding(new Insets(10,0,10,0));
 		containerBox.setHgap(30);
-		Button calculateAgreementButton = new Button("Beregn låneaftale");
+		Button calculateAgreementButton = new Button("Beregn lÃ¥neaftale");
 		calculateAgreementButton.setId("view_button");
 		calculateAgreementButton.setOnAction(new EventHandler<ActionEvent>() 
 		{
@@ -50,7 +50,7 @@ public class FindCustomerView implements View
 		    		theController.createLoanAgreementPressed(customer);
 		    	else
 		    	{
-		    		Alert a = new FCLSAlert(AlertType.NONE,"Du skal først vælge en kunde før du kan beregne en låneaftale.",ButtonType.OK);
+		    		Alert a = new FCLSAlert(AlertType.NONE,"Du skal vÃ¦lge en kunde fÃ¸r du kan beregne en lÃ¥neaftale.",ButtonType.OK);
 		    		a.setHeaderText("");
 		    		a.setTitle("Fejl");
 		    		a.showAndWait();

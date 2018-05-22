@@ -1,6 +1,7 @@
 package view;
 
 import javafx.application.Platform;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.SellerDataModel;
@@ -73,6 +74,8 @@ public class FCLSController
 	{
 		Stage loginStage=new Stage();
 		LoginController theController=new LoginController(loginStage);
+		Image image= new Image(getClass().getResourceAsStream("ferrariLogo.png"));
+		loginStage.getIcons().add(image);
 		loginStage.setTitle("Login");
 		loginStage.initModality(Modality.APPLICATION_MODAL);
 		loginStage.setScene(theController.getView().getSceneGUI(theController));

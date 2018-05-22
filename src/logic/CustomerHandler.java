@@ -19,7 +19,7 @@ public class CustomerHandler {
 		return customerDAO.createNewCustomer(customer);	
 	}
 	
-	public List<CustomerDataModel> getCustomers(String customerID, String firstName, String lastName, String phoneNumber)
+	public List<CustomerDataModel> getCustomers(String firstName, String lastName, String phoneNumber)
 	{
 		if(customers==null)
 			customers = customerDAO.getCustomerList();
@@ -28,8 +28,7 @@ public class CustomerHandler {
 		
 		for(CustomerDataModel cdm : this.customers)
 		{
-			if( !considerProperty(cdm.getCustomerID()+"",customerID) ||
-				!considerProperty(cdm.getFirstName(),firstName) ||
+			if( !considerProperty(cdm.getFirstName(),firstName) ||
 				!considerProperty(cdm.getLastName(),lastName) ||
 				!considerProperty(cdm.getPhone(),phoneNumber) )
 				continue;

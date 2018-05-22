@@ -1,9 +1,11 @@
 package view;
 
-import javafx.scene.Node;
+import java.util.List;
+
 import database.LoanDAO;
 import logic.LoanAgreementDataModel;
 import logic.LoanHandler;
+import logic.Payment;
 
 public class ShowLoanAgreementController 
 {
@@ -43,7 +45,7 @@ public class ShowLoanAgreementController
 		FCLSController.INSTANCE.changeView(controller.getView());
 	}
 	
-	public Node getPaymentOverview() {
-		return itsLoanHandler.getPaymentOverview();
+	public List<Payment> getPaymentOverview() {
+		return itsLoanHandler.getPaymentList();
 	}
 }

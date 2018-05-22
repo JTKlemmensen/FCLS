@@ -91,9 +91,16 @@ public class FindCustomerView implements View
         table.getColumns().add(lastNameCol);
         table.getColumns().add(phoneCol);
 
+        TextField customerIDTextField = new TextField();
+        customerIDTextField.setMaxWidth(80);
+        Label customerIDTextFieldLabel = new Label("Customer ID:");
+        VBox customerIDTextFieldBox = new VBox();
+        customerIDTextFieldBox.getChildren().addAll(customerIDTextFieldLabel,customerIDTextField);
+        
         TextField firstNameTextField = new TextField();
         Label firstNameLabel = new Label("First Name:");
         VBox firstNameBox = new VBox();
+        firstNameBox.setPadding(new Insets(0,0,0,20));
         firstNameBox.getChildren().addAll(firstNameLabel,firstNameTextField);
         
         TextField lastNameTextField = new TextField();
@@ -111,28 +118,29 @@ public class FindCustomerView implements View
         HBox searchArea = new HBox();
         searchArea.setAlignment(Pos.CENTER);
         searchArea.setPadding(new Insets(10,0,20,0));
-        searchArea.getChildren().addAll(firstNameBox,lastNameBox,phoneBox);
+        searchArea.getChildren().addAll(customerIDTextFieldBox,firstNameBox,lastNameBox,phoneBox);
 
-        ChangeListener<String> tableUpdate = getTableChangeListener(table, firstNameTextField, lastNameTextField, phoneTextField);
+        ChangeListener<String> tableUpdate = getTableChangeListener(table, customerIDTextField, firstNameTextField, lastNameTextField, phoneTextField);
+        customerIDTextField.textProperty().addListener(tableUpdate);
         firstNameTextField.textProperty().addListener(tableUpdate);
         lastNameTextField.textProperty().addListener(tableUpdate);
         phoneTextField.textProperty().addListener(tableUpdate);
         
-        theController.updateTableView(table,firstNameTextField.getText(), lastNameTextField.getText(), phoneTextField.getText());
+        theController.updateTableView(table, customerIDTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), phoneTextField.getText());
         
         VBox everything = new VBox();
 		everything.getChildren().addAll(searchArea,table);
 		return everything;
 	}
 	
-	public ChangeListener<String> getTableChangeListener(TableView<CustomerDataModel> table, TextField firstName, TextField lastName, TextField phone)
+	public ChangeListener<String> getTableChangeListener(TableView<CustomerDataModel> table, TextField customerIDTextField, TextField firstName, TextField lastName, TextField phone)
 	{
 	    return new ChangeListener<String>() {
 	            @Override
 	            public void changed(ObservableValue<? extends String> observable,
 	                    String oldValue, String newValue) 
 	            {
-	                theController.updateTableView(table,firstName.getText(), lastName.getText(), phone.getText());
+	                theController.updateTableView(table, customerIDTextField.getText(), firstName.getText(), lastName.getText(), phone.getText());
 	            }
 	        };
 	}

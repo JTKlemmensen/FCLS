@@ -27,7 +27,7 @@ public class TestLoanHandler {
 		loanHandler.setupLoanAgreement(new CustomerDataModel("", "", "", "", "", "", "", "1234567890"));
 		loanHandler.getLoanAgreementDataModel().setAskingPrice("10000000");
 		loanHandler.getLoanAgreementDataModel().setDownPayment( "2000000");
-		loanHandler.getLoanAgreementDataModel().setDuration("6");
+		loanHandler.getLoanAgreementDataModel().setDuration(6);
 		loanHandler.setRating(Rating.A);
 		loanHandler.setRate(8);
 
@@ -48,7 +48,7 @@ public class TestLoanHandler {
 		loanHandler.setupLoanAgreement(new CustomerDataModel("", "", "", "", "", "", "", "1234567890"));
 		loanHandler.getLoanAgreementDataModel().setAskingPrice("10000000");
 		loanHandler.getLoanAgreementDataModel().setDownPayment( "2000000");
-		loanHandler.getLoanAgreementDataModel().setDuration("1");
+		loanHandler.getLoanAgreementDataModel().setDuration(1);
 		loanHandler.setRating(Rating.A);
 		loanHandler.setRate(8);
 
@@ -68,7 +68,7 @@ public class TestLoanHandler {
 		loanHandler.setupLoanAgreement(new CustomerDataModel("", "", "", "", "", "", "", "1234567890"));
 		loanHandler.getLoanAgreementDataModel().setAskingPrice("10000000");
 		loanHandler.getLoanAgreementDataModel().setDownPayment( "2000000");
-		loanHandler.getLoanAgreementDataModel().setDuration("6");
+		loanHandler.getLoanAgreementDataModel().setDuration(6);
 		loanHandler.setRating(Rating.B);
 		loanHandler.setRate(8);
 
@@ -88,7 +88,7 @@ public class TestLoanHandler {
 		loanHandler.setupLoanAgreement(new CustomerDataModel("", "", "", "", "", "", "", "1234567890"));
 		loanHandler.getLoanAgreementDataModel().setAskingPrice("10000000");
 		loanHandler.getLoanAgreementDataModel().setDownPayment( "6000000");
-		loanHandler.getLoanAgreementDataModel().setDuration("6");
+		loanHandler.getLoanAgreementDataModel().setDuration(6);
 		loanHandler.setRating(Rating.A);
 		loanHandler.setRate(8);
 

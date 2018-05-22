@@ -68,14 +68,14 @@ public class TestLoanAgreementDataModel {
 	@Test
 	public void testDuration() {
 		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
-		String duration = "20";
+		int duration = 20;
 		lGDM.setDuration(duration);
 		assertEquals(duration, lGDM.getDuration());
 	}
 	@Test
 	public void testDuration2() {
 		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
-		String duration = "30";
+		int duration = 30;
 		lGDM.setDuration(duration);
 		assertEquals(duration, lGDM.getDuration());
 	}

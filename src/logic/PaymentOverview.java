@@ -12,6 +12,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import org.nevec.rjm.*;
+
 public class PaymentOverview {
 	private LocalDate startDate;
 	private BigDecimal rateYear;
@@ -99,19 +101,15 @@ public class PaymentOverview {
 		first = first.setScale(2, RoundingMode.HALF_UP);
 		return first;
 	}
-	
+
 	private BigDecimal getMonthlyRate() {
 		
-		//TODO convert to BigDecimalMath
+		BigDecimal one = rateYear.add(new BigDecimal("1"));
+		BigDecimal two = (new BigDecimal("1")).add(new BigDecimal("12"), mc);
+		one = BigDecimalMath.pow(one, two);
+		one = one.subtract(new BigDecimal("1"));
 		
-		double dd = 1+rateYear.doubleValue();
-		double one = 1;
-		double twelve = 12;
-		double dds = one/twelve;
-		dd = Math.pow(dd, dds);
-		dd = dd-1;
-		
-		return new BigDecimal(dd, mc);
+		return one;
 	}
 
 }

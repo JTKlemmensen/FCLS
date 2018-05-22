@@ -98,10 +98,10 @@ private ShowLoanAgreementController theController;
 	{
 		GridPane sellerInfoGrid=new GridPane();
 		
-		Label sellerInformationHeader=new Label("Sælgerinformation :");
+		Label sellerInformationHeader=new Label("SÃ¦lgerinformation :");
 		sellerInformationHeader.setId("part_header_label");
 		
-		Label sellerNameHeader=new Label("Sælgers Navn");
+		Label sellerNameHeader=new Label("SÃ¦lgers Navn");
 		sellerNameHeader.setId("header_label");
 		
 		Label sellerNameLabel=new Label();
@@ -160,7 +160,7 @@ private ShowLoanAgreementController theController;
 		GridPane loanInfoGrid=new GridPane();
 		loanInfoGrid.setPadding(new Insets(20, 0, 0, 0));
 		
-		Label loanInformationHeader=new Label("Låneinformation :");
+		Label loanInformationHeader=new Label("LÃ¥neinformation :");
 		loanInformationHeader.setId("part_header_label");
 		
 		Label askingPriceHeader=new Label("Aftalt pris");
@@ -175,19 +175,19 @@ private ShowLoanAgreementController theController;
 		Label downpaymentLabel=new Label();
 		downpaymentLabel.textProperty().bind(loanAgreement.downPaymentProperty());
 		
-		Label loanPeriodHeader=new Label("Lånets løbetid");
+		Label loanPeriodHeader=new Label("LÃ¥nets lÃ¸betid");
 		loanPeriodHeader.setId("header_label");
 		
 		Label loanPeriodLabel=new Label();
 		loanPeriodLabel.textProperty().bind(loanAgreement.durationProperty().asString());
 		
-		Label loanStartDateHeader=new Label("Lånets startdato");
+		Label loanStartDateHeader=new Label("LÃ¥nets startdato");
 		loanStartDateHeader.setId("header_label");
 		
 		Label loanStartDateLabel=new Label();
 		loanStartDateLabel.textProperty().bind(loanAgreement.startDateProperty().asString());
 		
-		Label loanExpirationDateHeader=new Label("Lånets slutdato");
+		Label loanExpirationDateHeader=new Label("LÃ¥nets slutdato");
 		loanExpirationDateHeader.setId("header_label");
 		
 		//TODO make better, faster, stronger
@@ -201,12 +201,12 @@ private ShowLoanAgreementController theController;
 		Label interestRateLabel=new Label();
 		interestRateLabel.textProperty().bind(Bindings.format("%.4f", Double.parseDouble(loanAgreement.getInterestRate())));
 		
-		Label yearlyPaymentPercentageHeader=new Label("ÅOP");
+		Label yearlyPaymentPercentageHeader=new Label("Ã…OP");
 		yearlyPaymentPercentageHeader.setId("header_label");
 		
 		Label yearlyPaymentPercentageLabel=new Label("???");
 		
-		Label montlyPaymentHeader=new Label("Månedlig Ydelse");
+		Label montlyPaymentHeader=new Label("MÃ¥nedlig Ydelse");
 		montlyPaymentHeader.setId("header_label");
 		
 		Label montlyPaymentLabel=new Label("???");

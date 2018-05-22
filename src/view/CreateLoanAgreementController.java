@@ -63,7 +63,7 @@ public class CreateLoanAgreementController
 		if(loanAgreement.getAskingPrice()==null||loanAgreement.getAskingPrice().equals(""))
 		{
 			dataIsViable=false;
-			itsView.addWarning("Indtast købspris");
+			itsView.addWarning("Indtast kÃ¸bspris");
 		}
 		if(loanAgreement.getDownPayment()==null||loanAgreement.getDownPayment().equals(""))
 		{
@@ -73,12 +73,12 @@ public class CreateLoanAgreementController
 		if(loanAgreement.getStartDate()==null)
 		{
 			dataIsViable=false;
-			itsView.addWarning("Vælg startdato");
+			itsView.addWarning("VÃ¦lg startdato");
 		}
 		if(loanAgreement.getCar().getVIN()==null||loanAgreement.getCar().getVIN().equals(""))
 		{
 			dataIsViable=false;
-			itsView.addWarning("Vælg bil");
+			itsView.addWarning("VÃ¦lg bil");
 		}
 		return dataIsViable;
 	}

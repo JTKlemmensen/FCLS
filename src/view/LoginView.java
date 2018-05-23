@@ -42,6 +42,7 @@ public class LoginView
 
 		passwordField = new PasswordField();
 		root.add(passwordField, 1, 1);
+		Label warningLabel = new Label("Incorrect Username or Password");
 		
 		//add login button
 		Button loginButton = new Button("Login");
@@ -50,9 +51,8 @@ public class LoginView
 		    @Override
 		    public void handle(ActionEvent e) 
 		    {
-		       if(theController.login(userTextField.getText(), passwordField.getText())==false)
+		       if(theController.login(userTextField.getText(), passwordField.getText())==false && !root.getChildren().contains(warningLabel))
 		       {
-		    	Label warningLabel = new Label("Incorrect Username or Password");
 		   		root.add(warningLabel, 0, 4, 2,1);
 		       }
 		    }

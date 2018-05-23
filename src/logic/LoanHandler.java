@@ -21,6 +21,13 @@ public class LoanHandler extends Observable {
 	public final Boolean getCanReturnLoanAgreement() {return canReturnLoanAgreement.get();}
 	public final void setCanReturnLoanAgreement(Boolean value){canReturnLoanAgreement.set(value);}
 	public BooleanProperty canReturnLoanAgreementProperty(){return canReturnLoanAgreement;}
+
+	public LoanHandler(CustomerDataModel customer)
+	{
+		loanAgreement = new LoanAgreementDataModel(customer);
+		loanAgreement.setCar(new CarDataModel("", ""));
+
+	}
 	
 	public void requestLoanAgreement(SellerDataModel salesPerson) 
 	{	
@@ -42,14 +49,12 @@ public class LoanHandler extends Observable {
 		}
 	}
 
-	public void setupLoanAgreement(CustomerDataModel customer) 
+	public void setupLoanAgreement() 
 	{
 		//TODO keep or change to notifyobserver instead?
 		setCanReturnLoanAgreement(false);
-		loanAgreement = new LoanAgreementDataModel(customer);
-		loanAgreement.setCar(new CarDataModel("", ""));
 		RKIandBank rkiandBank = new RKIandBank(loanAgreement.getCustomer().getCPR(), this);
-		rkiandBank.start();
+		rkiandBank.run();
 	}
 
 	private double calculateRate(BigDecimal carPrice, BigDecimal downPayment, int duration) 

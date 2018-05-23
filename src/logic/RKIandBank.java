@@ -12,7 +12,7 @@ import view.FCLSAlert;
 import view.FCLSController;
 
 //TODO remove loanhandler and move to view
-public class RKIandBank extends Thread
+public class RKIandBank
 {
 	private String CPR;
 	private LoanHandler loanHandler;
@@ -24,32 +24,35 @@ public class RKIandBank extends Thread
 	
 	public void run(){	
 		Rating rating = CreditRator.i().rate(this.CPR);
-		this.loanHandler.setRating(rating);
-		
-		if(Rating.D != rating)
-		{
-			this.loanHandler.setRate((InterestRate.i().todaysRate()));
 
-			Platform.runLater(new Runnable() {
-				public void run() 
-				{
-				//TODO is this proper procedure?
-				loanHandler.setCanReturnLoanAgreement(true);
-			}
-			});
-		}
-		else
-		{
-			Platform.runLater(new Runnable() {
-				public void run() 
-				{
-				Alert alert = new FCLSAlert(AlertType.NONE,"Kunden er registreret hos RKI. Lånetilbud er afvist",new ButtonType("Accepter"));
-				alert.setTitle("RKI Afvisning");
-				alert.showAndWait();
-				FCLSController.INSTANCE.changeView(null);
-				}
-			});
-		}
+		this.loanHandler.setRating(rating);
+		this.loanHandler.setRate((InterestRate.i().todaysRate()));
+
+		
+//		if(Rating.D != rating)
+//		{
+//			this.loanHandler.setRate((InterestRate.i().todaysRate()));
+//
+//			Platform.runLater(new Runnable() {
+//				public void run() 
+//				{
+//				//TODO is this proper procedure?
+//				loanHandler.setCanReturnLoanAgreement(true);
+//			}
+//			});
+//		}
+//		else
+//		{
+//			Platform.runLater(new Runnable() {
+//				public void run() 
+//				{
+//				Alert alert = new FCLSAlert(AlertType.NONE,"Kunden er registreret hos RKI. Lï¿½netilbud er afvist",new ButtonType("Accepter"));
+//				alert.setTitle("RKI Afvisning");
+//				alert.showAndWait();
+//				FCLSController.INSTANCE.changeView(null);
+//				}
+//			});
+//		}
 	}
 	
 }

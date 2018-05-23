@@ -104,4 +104,9 @@ public class CreateLoanAgreementController
 		
 		return true;
 	}
+
+	public void setCanClose(boolean canClose)
+	{
+		isCloseable=canClose;
+	}
 }

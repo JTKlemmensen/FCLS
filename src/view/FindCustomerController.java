@@ -44,6 +44,7 @@ public class FindCustomerController
 				    Alert alert = new FCLSAlert(AlertType.NONE,"Kunden er registreret hos RKI. Lånetilbud er afvist",new ButtonType("Accepter"));
 				    alert.setTitle("RKI Afvisning");
 				    alert.showAndWait();
+				    controller.setCanClose(true);
 				    FCLSController.INSTANCE.changeView(null);
 				}
 				

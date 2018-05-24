@@ -116,7 +116,7 @@ public class CreateLoanAgreementView implements View
 		carPriceField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                if (!newValue.matches("\\d{0,10}([\\,\\.]\\d{0,2})?")) {
                 	carPriceField.setText(oldValue);
                 }
                 //replace , with . due to danish use of ,
@@ -132,7 +132,7 @@ public class CreateLoanAgreementView implements View
 		downPaymentField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d{0,13}([\\,\\.]\\d{0,2})?")) {
+                if (!newValue.matches("\\d{0,10}([\\,\\.]\\d{0,2})?")) {
                 	downPaymentField.setText(oldValue);
                 }
               //replace , with . due to danish use of ,

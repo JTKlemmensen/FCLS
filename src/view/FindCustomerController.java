@@ -66,10 +66,10 @@ public class FindCustomerController
 		FCLSController.INSTANCE.changeView(controller.getView());
 	}
 	
-	public void updateTableView(TableView<CustomerDataModel> table, String firstName, String lastName, String phoneNumber)
+	public void updateTableView(TableView<CustomerDataModel> table, String customerID, String firstName, String lastName, String phoneNumber)
 	{
 		table.getItems().clear();
-		table.getItems().addAll(customerHandler.getCustomers(firstName, lastName, phoneNumber));
+		table.getItems().addAll(customerHandler.getCustomers(customerID, firstName, lastName, phoneNumber));
 	}
 	
 	public void closePane()

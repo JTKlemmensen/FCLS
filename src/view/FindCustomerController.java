@@ -71,4 +71,9 @@ public class FindCustomerController
 		table.getItems().clear();
 		table.getItems().addAll(customerHandler.getCustomers(firstName, lastName, phoneNumber));
 	}
+	
+	public void closePane()
+	{
+		FCLSController.INSTANCE.changeView(null);
+	}
 }

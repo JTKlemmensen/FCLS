@@ -68,9 +68,21 @@ public class FindCustomerView implements View
 		    	theController.createCustomerPressed();
 		    }
 		});
+		
+		Button closePaneButton = new Button("Luk");
+		closePaneButton.setId("view_button");
+		closePaneButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    @Override
+		    public void handle(ActionEvent e) 
+		    {
+		    	theController.closePane();
+		    }
+		});
 	
 		containerBox.add(calculateAgreementButton, 0, 0);
 		containerBox.add(createCustomer,1,0);
+		containerBox.add(closePaneButton,2,0);
 		
 		return root;
 	}

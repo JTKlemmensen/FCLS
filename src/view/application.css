@@ -166,11 +166,7 @@
 	-fx-font-size: 14px;
    	-fx-font-family: "Helvetica";
    	-fx-text-fill: #d1cbb8; 	
-	-fx-padding: 10 0 0 0;
-}
-
-#create_customer_info_grid{
-	-fx-hgap: 10;
+	-fx-padding: 10 10 0 0;
 }
 
 .table-view .column-header-background{
@@ -211,5 +207,7 @@
 .table-view .filler {
 	-fx-background-color: transparent;
 }
+
+
 
 

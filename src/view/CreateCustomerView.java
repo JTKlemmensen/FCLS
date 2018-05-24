@@ -42,10 +42,10 @@ public class CreateCustomerView implements View{
 		CustomerDataModel customer=theController.getCustomer();
 		
 		GridPane customerInformationGrid=new GridPane();
-		customerInformationGrid.setId("create_customer_info_grid");
+		customerInformationGrid.setHgap(10);
 		
 		Label customerInformationHeader=new Label("Kundeinformation :");
-		customerInformationHeader.setId("part_create_customer_label");
+		customerInformationHeader.setId("part_header_label");
 		
 		Label customerFirstNameHeader=new Label("Fornavn");
 		customerFirstNameHeader.setId("create_customer_label");
@@ -54,7 +54,7 @@ public class CreateCustomerView implements View{
 		customerFirstNameTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\w{0,32}")) {
+                if (!newValue.matches(".{0,32}")) {
                 	customerFirstNameTextField.setText(oldValue);
                 }
                 customer.setFirstName(customerFirstNameTextField.getText());
@@ -69,7 +69,7 @@ public class CreateCustomerView implements View{
 		customerLastNameTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\w{0,32}")) {
+                if (!newValue.matches(".{0,32}")) {
                 	customerLastNameTextField.setText(oldValue);
                 }
                 customer.setLastName(customerLastNameTextField.getText());
@@ -83,7 +83,7 @@ public class CreateCustomerView implements View{
 		customerAdressTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("[\\w\\s]{0,32}")) {
+                if (!newValue.matches(".{0,32}")) {
                 	customerAdressTextField.setText(oldValue);
                 }
                 customer.setAddress(customerAdressTextField.getText());
@@ -139,9 +139,9 @@ public class CreateCustomerView implements View{
 		customerEmailTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                //if (!newValue.matches("\\w{0,20}")) {
-                //	customerEmailTextField.setText(oldValue);
-                //}
+                if (!newValue.matches(".{0,50}")) {
+                	customerEmailTextField.setText(oldValue);
+                }
                 customer.setEmail(customerEmailTextField.getText());
             }
         });
@@ -153,7 +153,7 @@ public class CreateCustomerView implements View{
 		customerCityTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("[\\w\\s]{0,32}{0,32}")) {
+                if (!newValue.matches(".{0,32}")) {
                 	customerCityTextField.setText(oldValue);
                 }
                 customer.setCity(customerCityTextField.getText());

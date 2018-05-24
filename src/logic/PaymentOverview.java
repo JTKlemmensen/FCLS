@@ -3,6 +3,7 @@ package logic;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
@@ -17,8 +18,10 @@ public class PaymentOverview {
 	private BigDecimal rateMonth;
 	private int noOfInstalments;
 	private BigDecimal principal;
-	private MathContext mc = new MathContext(20, RoundingMode.HALF_UP);
+	private MathContext mc = new MathContext(50, RoundingMode.HALF_UP);
 	private BigDecimal monthlyPayment;
+	private DecimalFormat dTwoFormat=new DecimalFormat("#.##");
+	private DecimalFormat dFourFormat=new DecimalFormat("#.####");
 
 	public PaymentOverview(LoanAgreementDataModel LADM) {
 		rateYear = (new BigDecimal(LADM.getInterestRate(), mc)).divide(new BigDecimal("100", mc));
@@ -37,17 +40,17 @@ public class PaymentOverview {
 		for (int x = 0; x < noOfInstalments; x++) {
 			Payment pay = new Payment();
 			pay.setPaymentNo(x + 1);
-			pay.setPayment(monthlyPayment.toString());
+			pay.setPayment(dFourFormat.format(monthlyPayment));
 			pay.setDate(startDate.plusMonths(x));
 			
-			BigDecimal rateAmount = (newPrincipal.multiply(rateMonth, mc)).setScale(2, RoundingMode.HALF_UP);
-			pay.setInterest(rateAmount.toString());
+			BigDecimal rateAmount = (newPrincipal.multiply(rateMonth, mc)).setScale(25, RoundingMode.HALF_UP);
+			pay.setInterest(dTwoFormat.format(rateAmount));
 			
-			BigDecimal instalment = (monthlyPayment.subtract(rateAmount, mc)).setScale(2, RoundingMode.HALF_UP);
-			pay.setInstalment(instalment.toString());
+			BigDecimal instalment = (monthlyPayment.subtract(rateAmount, mc)).setScale(25, RoundingMode.HALF_UP);
+			pay.setInstalment(dTwoFormat.format(instalment));
 			
-			newPrincipal = (newPrincipal.subtract(instalment, mc)).setScale(2, RoundingMode.HALF_UP);
-			pay.setPrincipal(newPrincipal.toString());
+			newPrincipal = (newPrincipal.subtract(instalment, mc)).setScale(25, RoundingMode.HALF_UP);
+			pay.setPrincipal(dTwoFormat.format(newPrincipal));
 			
 			payments.add(pay);
 		}
@@ -70,7 +73,7 @@ public class PaymentOverview {
 		first = first.subtract(second, mc);
 		second = rateMonth.divide(first, mc);
 		first = principal.multiply(second, mc);
-		first = first.setScale(2, RoundingMode.HALF_UP);
+		first = first.setScale(25, RoundingMode.HALF_UP);
 		return first;
 	}
 

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -72,7 +73,7 @@ public class CreateLoanAgreementView implements View
 		customerAdressHeader.setId("header_label");
 		
 		Label customerAdressLabel=new Label();
-		customerAdressLabel.textProperty().bind(customer.addressProperty());
+		customerAdressLabel.textProperty().bind(Bindings.concat(customer.addressProperty(), " \n", customer.cityProperty()," ",customer.postalCodeProperty()));
 		
 		Label customerTlfHeader=new Label("Tlf. nr");
 		customerTlfHeader.setId("header_label");
@@ -80,11 +81,12 @@ public class CreateLoanAgreementView implements View
 		Label customerTlfLabel=new Label();
 		customerTlfLabel.textProperty().bind(customer.phoneProperty());
 		
-		Label customerCPRHeader=new Label("CPR nr.");
-		customerCPRHeader.setId("header_label");
+		Label customerIDHeader=new Label("Kunde ID");
+		customerIDHeader.setId("header_label");
 		
-		Label customerCPRLabel=new Label();
-		customerCPRLabel.textProperty().bind(customer.CPRProperty());
+		Label customerIDLabel=new Label();
+		//TODO add property in customer instead
+		customerIDLabel.textProperty().bind(new SimpleStringProperty(""+customer.getCustomerID()));
 		
 		customerInformationGrid.add(customerInformationHeader, 0, 0);
 		customerInformationGrid.add(customerNameHeader, 0, 1);
@@ -93,8 +95,8 @@ public class CreateLoanAgreementView implements View
 		customerInformationGrid.add(customerAdressLabel, 1, 2);
 		customerInformationGrid.add(customerTlfHeader, 0, 3);
 		customerInformationGrid.add(customerTlfLabel, 0, 4);
-		customerInformationGrid.add(customerCPRHeader, 1, 3);
-		customerInformationGrid.add(customerCPRLabel, 1, 4);
+		customerInformationGrid.add(customerIDHeader, 1, 3);
+		customerInformationGrid.add(customerIDLabel, 1, 4);
 		
 		return customerInformationGrid;
 	}

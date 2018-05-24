@@ -77,12 +77,26 @@ public class FCLS
 		    }
 		});
 		
+		Button searchLoanAgreementButton= new Button("Find låneaftale");
+		searchLoanAgreementButton.setId("menu_button");
+		searchLoanAgreementButton.setPadding(new Insets(4));
+		searchLoanAgreementButton.setPrefSize(140, 30);
+		searchLoanAgreementButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    @Override
+		    public void handle(ActionEvent e) 
+		    {
+		    	theController.openSearchLoanAgreement();
+		    }
+		});
+		
 		//create administrative box
 		administrativeButtonBox = new VBox();
 		administrativeButtonBox.setAlignment(Pos.CENTER);
 		
 		
 		actionMenu.getChildren().add(searchCustomerButton);
+		actionMenu.getChildren().add(searchLoanAgreementButton);
 		actionMenu.getChildren().add(administrativeButtonBox);
 		VBox.setMargin(searchCustomerButton, new Insets(6, 0, 6, 0));
 		VBox.setMargin(administrativeButtonBox, new Insets(6, 0, 6, 0));

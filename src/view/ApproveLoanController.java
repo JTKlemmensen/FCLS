@@ -19,7 +19,7 @@ public class ApproveLoanController
 	
 	public void updateAgreementTable()
 	{
-		itsView.updateTable(LoanDAO.getNonapprovedLoanList());
+		itsView.updateTable(LoanDAO.getLoanList(true));
 	}
 	
 	public void approveLoan(LoanAgreementDataModel loanAgreement)

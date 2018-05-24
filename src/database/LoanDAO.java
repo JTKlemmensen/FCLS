@@ -55,7 +55,7 @@ public class LoanDAO
 		return result!=0;
 	}
 	
-	public static List<LoanAgreementDataModel> getNonapprovedLoanList()
+	public static List<LoanAgreementDataModel> getLoanList(boolean onlyNonApproved)
 	{
 		List<LoanAgreementDataModel> resultList=new ArrayList<LoanAgreementDataModel>();
 		PreparedStatement statement=null;
@@ -65,7 +65,14 @@ public class LoanDAO
 		try
 		{      
 			con=DbConnector.getConnection();
-			statement =con.prepareStatement("SELECT * FROM LoanAgreement_table loan INNER JOIN Customer_table ctm ON loan.customer=ctm.customerID INNER JOIN Car_table car ON loan.car=car.VIN INNER JOIN Salesman_table sale ON loan.salesPerson=sale.userName WHERE loan.approved=0");
+			if(onlyNonApproved)
+			{
+				statement =con.prepareStatement("SELECT * FROM LoanAgreement_table loan INNER JOIN Customer_table ctm ON loan.customer=ctm.customerID INNER JOIN Car_table car ON loan.car=car.VIN INNER JOIN Salesman_table sale ON loan.salesPerson=sale.userName WHERE loan.approved=0");
+			}
+			else
+			{
+				statement =con.prepareStatement("SELECT * FROM LoanAgreement_table loan INNER JOIN Customer_table ctm ON loan.customer=ctm.customerID INNER JOIN Car_table car ON loan.car=car.VIN INNER JOIN Salesman_table sale ON loan.salesPerson=sale.userName");
+			}
 			rs = statement.executeQuery();
 			
 	        while(rs.next())

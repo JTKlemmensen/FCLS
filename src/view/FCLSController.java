@@ -38,6 +38,13 @@ public class FCLSController
 		controller.updateAgreementTable();
 	}
 	
+	public void openSearchLoanAgreement()
+	{
+		FindLoanAgreementController controller = new FindLoanAgreementController();
+		changeView(controller.getView());
+		
+	}
+	
 	public void changeView(View view)
 	{
 		//TODO change variable names

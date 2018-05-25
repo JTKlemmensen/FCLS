@@ -16,8 +16,6 @@ import javafx.scene.layout.HBox;
 public class Login 
 {
 	private LoginController theController;
-	private TextField userTextField;
-	private PasswordField passwordField;
 	private GridPane root;
 	
 	public Scene getSceneGUI(LoginController controller)
@@ -33,14 +31,14 @@ public class Login
 		Label userNameLabel = new Label("User Name:");
 		root.add(userNameLabel, 0, 0);
 
-		userTextField = new TextField();
+		TextField userTextField = new TextField();
 		root.add(userTextField, 1, 0);
 
 		//add password and password field
 		Label passwordLabel = new Label("Password:");
 		root.add(passwordLabel, 0, 1);
 
-		passwordField = new PasswordField();
+		PasswordField passwordField = new PasswordField();
 		root.add(passwordField, 1, 1);
 		Label warningLabel = new Label("Incorrect Username or Password");
 		

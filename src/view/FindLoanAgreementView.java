@@ -174,7 +174,7 @@ public class FindLoanAgreementView implements View
         searchArea.setPadding(new Insets(10,0,20,0));
         searchArea.getChildren().addAll(loanIDBox,customerInfoBox,sellerNameBox, carIDBox);
 
-        ChangeListener<String> tableUpdate = getTableChangeListener(table, loanIDTextField, customerInfoTextField, sellerNameTextField, carIDTextField);
+        ChangeListener<String> tableUpdate = getTableChangeListener(loanIDTextField, customerInfoTextField, sellerNameTextField, carIDTextField);
         loanIDTextField.textProperty().addListener(tableUpdate);
         customerInfoTextField.textProperty().addListener(tableUpdate);
         sellerNameTextField.textProperty().addListener(tableUpdate);
@@ -185,7 +185,7 @@ public class FindLoanAgreementView implements View
 		return searchArea;
 	}
 	
-	private ChangeListener<String> getTableChangeListener(TableView<LoanAgreementDataModel> table, TextField loanID, TextField customerInfo, TextField sellerName, TextField carID)
+	private ChangeListener<String> getTableChangeListener(TextField loanID, TextField customerInfo, TextField sellerName, TextField carID)
 	{
 	    return new ChangeListener<String>() {
 	            @Override

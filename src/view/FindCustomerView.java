@@ -143,7 +143,7 @@ public class FindCustomerView implements View
         searchArea.setPadding(new Insets(10,0,20,0));
         searchArea.getChildren().addAll(customerIDTextFieldBox,firstNameBox,lastNameBox,phoneBox);
 
-        ChangeListener<String> tableUpdate = getTableChangeListener(table, customerIDTextField, firstNameTextField, lastNameTextField, phoneTextField);
+        ChangeListener<String> tableUpdate = getTableChangeListener(customerIDTextField, firstNameTextField, lastNameTextField, phoneTextField);
         customerIDTextField.textProperty().addListener(tableUpdate);
         firstNameTextField.textProperty().addListener(tableUpdate);
         lastNameTextField.textProperty().addListener(tableUpdate);
@@ -156,7 +156,7 @@ public class FindCustomerView implements View
 		return everything;
 	}
 	
-	private ChangeListener<String> getTableChangeListener(TableView<CustomerDataModel> table, TextField customerIDTextField, TextField firstName, TextField lastName, TextField phone)
+	private ChangeListener<String> getTableChangeListener(TextField customerIDTextField, TextField firstName, TextField lastName, TextField phone)
 	{
 	    return new ChangeListener<String>() {
 	            @Override

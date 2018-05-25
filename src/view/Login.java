@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
@@ -73,10 +74,15 @@ public class Login
 		
 		//add cancel button
 		Scene scene= new Scene(root, 400, 200);
-		scene.setOnKeyPressed(e -> {
-		    if (e.getCode() == KeyCode.ENTER) {
-		        loginButton.fire();
-		    }
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent e)
+			{
+			    if (e.getCode() == KeyCode.ENTER) {
+			        loginButton.fire();
+			    }						
+			}
 		});
 		
 		return scene;

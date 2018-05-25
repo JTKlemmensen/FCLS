@@ -202,9 +202,4 @@ public class FindLoanAgreementView implements View
 	{
 		return true;
 	}
-	
-	public void updateTable(List<LoanAgreementDataModel> loanList)
-	{
-		table.setItems(FXCollections.observableArrayList(loanList));
-	}
 }

@@ -185,7 +185,7 @@ public class FindLoanAgreementView implements View
 		return searchArea;
 	}
 	
-	public ChangeListener<String> getTableChangeListener(TableView<LoanAgreementDataModel> table, TextField loanID, TextField customerInfo, TextField sellerName, TextField carID)
+	private ChangeListener<String> getTableChangeListener(TableView<LoanAgreementDataModel> table, TextField loanID, TextField customerInfo, TextField sellerName, TextField carID)
 	{
 	    return new ChangeListener<String>() {
 	            @Override

@@ -156,7 +156,7 @@ public class FindCustomerView implements View
 		return everything;
 	}
 	
-	public ChangeListener<String> getTableChangeListener(TableView<CustomerDataModel> table, TextField customerIDTextField, TextField firstName, TextField lastName, TextField phone)
+	private ChangeListener<String> getTableChangeListener(TableView<CustomerDataModel> table, TextField customerIDTextField, TextField firstName, TextField lastName, TextField phone)
 	{
 	    return new ChangeListener<String>() {
 	            @Override

@@ -9,12 +9,12 @@ import logic.SellerDataModel;
 
 public class LoginController 
 {
-	private LoginView itsView;
+	private Login itsView;
 	private Stage itsStage;
 	
 	public LoginController(Stage stage)
 	{
-		itsView=new LoginView();
+		itsView=new Login();
 		itsStage=stage;
 		itsStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			
@@ -25,7 +25,7 @@ public class LoginController
 		});
 	}
 	
-	public LoginView getView()
+	public Login getView()
 	{
 		return itsView;
 	}

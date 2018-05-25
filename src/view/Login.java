@@ -13,7 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-public class LoginView 
+public class Login 
 {
 	private LoginController theController;
 	private TextField userTextField;

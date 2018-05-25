@@ -80,7 +80,7 @@ public class ApproveLoanView  implements View
         containerBox.getChildren().add(buttonBox);
         
         //create buttons
-        Button approveLoanButton=new Button("Godkend L�n");
+        Button approveLoanButton=new Button("Godkend Lån");
         approveLoanButton.setId("view_button");
         approveLoanButton.setOnAction(new EventHandler<ActionEvent>() 
 		{

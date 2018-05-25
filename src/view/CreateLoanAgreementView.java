@@ -341,7 +341,7 @@ public class CreateLoanAgreementView implements View
 		if(theController.canClose())
 			return true;
 		
-		Alert alert = new FCLSAlert(AlertType.NONE,"Vil du anullere oprettelsen af Låneaftalen?",ButtonType.OK,new ButtonType("Anuller",ButtonData.CANCEL_CLOSE));
+		Alert alert = new FCLSAlert(AlertType.NONE,"Vil du annullere oprettelsen af Låneaftalen?",ButtonType.OK,new ButtonType("Annuller",ButtonData.CANCEL_CLOSE));
 		alert.setTitle("Bekraft Afslutning");
 		alert.showAndWait();
 		return alert.getResult() == ButtonType.OK;

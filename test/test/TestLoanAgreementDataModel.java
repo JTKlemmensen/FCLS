@@ -7,6 +7,12 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import logic.CarDataModel;
 import logic.CustomerDataModel;
 import logic.LoanAgreementDataModel;
@@ -80,6 +86,15 @@ public class TestLoanAgreementDataModel {
 		assertEquals(duration, lGDM.getDuration());
 	}
 	@Test
+	public void testDurationProperty() {
+		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
+		int duration = 30;
+		lGDM.setDuration(duration);
+		IntegerProperty pattern = new SimpleIntegerProperty();
+		pattern.set(duration);
+		assertEquals(pattern.getValue(), lGDM.durationProperty().getValue());
+	}
+	@Test
 	public void testAskingPrice() {
 		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
 		String askingPrice = "2000000";
@@ -94,11 +109,36 @@ public class TestLoanAgreementDataModel {
 		assertEquals(askingPrice, lGDM.getAskingPrice());
 	}
 	@Test
+	public void testAskingPriceProperty() {
+		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
+		String askingPrice = "3000000";
+		lGDM.setAskingPrice(askingPrice);
+		StringProperty pattern = new SimpleStringProperty();
+		pattern.set(askingPrice);
+		assertEquals(pattern.getValue(), lGDM.askingPriceProperty().getValue());
+	}
+	@Test
 	public void testDownPayment() {
 		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
 		String downPayment = "2000000";
 		lGDM.setDownPayment(downPayment);
 		assertEquals(downPayment, lGDM.getDownPayment());
+	}
+	@Test
+	public void testDownPayment2() {
+		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
+		String downPayment = "3000000";
+		lGDM.setDownPayment(downPayment);
+		assertEquals(downPayment, lGDM.getDownPayment());
+	}
+	@Test
+	public void testDownPaymentProperty() {
+		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
+		String downPayment = "3000000";
+		lGDM.setDownPayment(downPayment);
+		StringProperty pattern = new SimpleStringProperty();
+		pattern.set(downPayment);
+		assertEquals(pattern.getValue(), lGDM.downPaymentProperty().getValue());
 	}
 	@Test
 	public void testInterestRate() {
@@ -115,6 +155,15 @@ public class TestLoanAgreementDataModel {
 		assertEquals(interestRate, lGDM.getInterestRate());
 	}
 	@Test
+	public void testInterestRateProperty() {
+		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
+		String interestRate = "4";
+		lGDM.setInterestRate(interestRate);
+		StringProperty pattern = new SimpleStringProperty();
+		pattern.set(interestRate);
+		assertEquals(pattern.getValue(), lGDM.interestRateProperty().getValue());
+	}
+	@Test
 	public void testLocalDate() {
 		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
 		LocalDate localDate = LocalDate.of(2019, 10, 12);
@@ -127,5 +176,28 @@ public class TestLoanAgreementDataModel {
 		LocalDate localDate = LocalDate.of(2020, 11, 9);
 		lGDM.setStartDate(localDate);
 		assertEquals(localDate, lGDM.getStartDate());
+	}
+	@Test
+	public void testLocalDateProperty() {
+		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
+		LocalDate localDate = LocalDate.of(2020, 11, 9);
+		lGDM.setStartDate(localDate);
+		ObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>();
+		startDate.set(localDate);
+		assertEquals(startDate.getValue(), lGDM.startDateProperty().getValue());
+	}
+	@Test
+	public void testLoanID() {
+		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
+		int ID = 10;
+		lGDM.setLoanIDNumber(ID);
+		assertEquals(ID, lGDM.getLoanIDNumber());
+	}
+	@Test
+	public void testLoanID2() {
+		LoanAgreementDataModel lGDM = new LoanAgreementDataModel(customer);
+		int ID = 20;
+		lGDM.setLoanIDNumber(ID);
+		assertEquals(ID, lGDM.getLoanIDNumber());
 	}
 }

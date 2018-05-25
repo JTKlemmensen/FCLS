@@ -22,37 +22,11 @@ public class RKIandBank
 		this.loanHandler = loanHandler;
 	}
 	
-	public void run(){	
+	public void run()
+	{	
 		Rating rating = CreditRator.i().rate(this.CPR);
 
 		this.loanHandler.setRating(rating);
 		this.loanHandler.setRate((InterestRate.i().todaysRate()));
-
-		
-//		if(Rating.D != rating)
-//		{
-//			this.loanHandler.setRate((InterestRate.i().todaysRate()));
-//
-//			Platform.runLater(new Runnable() {
-//				public void run() 
-//				{
-//				//TODO is this proper procedure?
-//				loanHandler.setCanReturnLoanAgreement(true);
-//			}
-//			});
-//		}
-//		else
-//		{
-//			Platform.runLater(new Runnable() {
-//				public void run() 
-//				{
-//				Alert alert = new FCLSAlert(AlertType.NONE,"Kunden er registreret hos RKI. L�netilbud er afvist",new ButtonType("Accepter"));
-//				alert.setTitle("RKI Afvisning");
-//				alert.showAndWait();
-//				FCLSController.INSTANCE.changeView(null);
-//				}
-//			});
-//		}
 	}
-	
 }

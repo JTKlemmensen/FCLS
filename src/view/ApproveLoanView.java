@@ -29,7 +29,7 @@ public class ApproveLoanView  implements View
 	}
 	
 	@Override
-	public Pane getViewContent() {
+	public Pane getContent() {
 		StackPane root = new StackPane();
 		root.setId("view_screen");
 		root.setPadding(new Insets(14));
@@ -80,7 +80,7 @@ public class ApproveLoanView  implements View
         containerBox.getChildren().add(buttonBox);
         
         //create buttons
-        Button approveLoanButton=new Button("Godkend Lån");
+        Button approveLoanButton=new Button("Godkend Lï¿½n");
         approveLoanButton.setId("view_button");
         approveLoanButton.setOnAction(new EventHandler<ActionEvent>() 
 		{

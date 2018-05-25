@@ -42,7 +42,7 @@ public class FindLoanAgreementView implements View
 	}
 	
 	@Override
-	public Pane getViewContent() {
+	public Pane getContent() {
 		StackPane root = new StackPane();
 		root.setId("view_screen");
 		root.setPadding(new Insets(14));

@@ -38,7 +38,7 @@ public class ShowLoanAgreementView implements View
 		theController=controller;
 	}
 
-	public StackPane getViewContent() {
+	public StackPane getContent() {
 		StackPane root = new StackPane();
 		root.setId("view_screen");
 		root.setPadding(new Insets(14));

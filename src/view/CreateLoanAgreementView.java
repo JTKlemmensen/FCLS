@@ -38,7 +38,7 @@ public class CreateLoanAgreementView implements View
 		theController=controller;
 	}
 	
-	public GridPane getViewContent()
+	public GridPane getContent()
 	{
 		GridPane root = new GridPane();
 		root.setId("view_screen");

@@ -10,12 +10,12 @@ import logic.Payment;
 public class ShowLoanAgreementController 
 {
 	private ShowLoanAgreementView itsView;
-	private LoanHandler itsLoanHandler;
+	private LoanHandler loanHandler;
 	
-	public ShowLoanAgreementController(LoanHandler handler)
+	public ShowLoanAgreementController(LoanHandler loanHandler)
 	{
 		itsView=new ShowLoanAgreementView(this);
-		itsLoanHandler=handler;
+		this.loanHandler=loanHandler;
 	}
 	
 	public ShowLoanAgreementView getView()
@@ -25,12 +25,12 @@ public class ShowLoanAgreementController
 	
 	public LoanAgreementDataModel getLoanAgreement()
 	{
-		return itsLoanHandler.getLoanAgreementDataModel();
+		return loanHandler.getLoanAgreementDataModel();
 	}
 	
 	public void closeAndSaveAgreement()
 	{
-		LoanDAO.insertLoanAgreementDB(itsLoanHandler.getLoanAgreementDataModel());
+		LoanDAO.insertLoanAgreementDB(loanHandler.getLoanAgreementDataModel());
 		FCLSController.INSTANCE.changeView(null);
 	}
 	
@@ -41,19 +41,19 @@ public class ShowLoanAgreementController
 	
 	public void returnToCreateAgreementScene()
 	{
-		CreateLoanAgreementController controller = new CreateLoanAgreementController(itsLoanHandler);
+		CreateLoanAgreementController controller = new CreateLoanAgreementController(loanHandler);
 		FCLSController.INSTANCE.changeView(controller.getView());
 	}
 	
 	public List<Payment> getPayments() {
-		return itsLoanHandler.getPayments();
+		return loanHandler.getPayments();
 	}
 
 	public String getAPR() {
-		return itsLoanHandler.getAPR();
+		return loanHandler.getAPR();
 	}
 	
 	public String getMonthlyPayment() {
-		return itsLoanHandler.getMonthlyPayment();
+		return loanHandler.getMonthlyPayment();
 	}
 }

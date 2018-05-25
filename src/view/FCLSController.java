@@ -57,7 +57,7 @@ public class FCLSController
 			else
 			{
 				this.view = view;
-				FCLSContent.setView(view.getViewContent());
+				FCLSContent.setView(view.getContent());
 			}
 	}
 	

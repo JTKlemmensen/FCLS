@@ -90,7 +90,7 @@ public class TestLoanHandler {
 		assertEquals("10.0",loanHandler.getLoanAgreementDataModel().getInterestRate());
 	}
 	
-	// Rating D					+3
+	// Rating C					+3
 	// DownPaymen NOT under 50%	+0	<--
 	// Duration over 3 years	+1
 	// Rate from bank is 8		+8	

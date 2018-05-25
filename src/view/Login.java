@@ -16,12 +16,11 @@ import javafx.scene.layout.HBox;
 public class Login 
 {
 	private LoginController theController;
-	private GridPane root;
 	
 	public Scene getSceneGUI(LoginController controller)
 	{
 		theController=controller;
-		root = new GridPane();
+		GridPane root = new GridPane();
 		root.setAlignment(Pos.CENTER);
 		root.setHgap(10);
 		root.setVgap(10);

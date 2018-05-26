@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-.classpath
-/bin
-/.settings
-=======
-
 /bin
 /.settings
 .classpath
 /target/
-/.classpath
->>>>>>> opret-kunde2

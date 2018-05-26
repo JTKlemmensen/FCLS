@@ -4,15 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.LoanDAO;
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
-import logic.CustomerDataModel;
-import logic.CustomerHandler;
 import logic.LoanAgreementDataModel;
-import logic.LoanHandler;
 
 public class FindLoanAgreementController 
 {

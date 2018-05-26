@@ -131,7 +131,13 @@ public class LoanHandler extends Observable {
 		return (one.setScale(4, RoundingMode.HALF_UP)).toString();
 	}
 	
+	/**
+	 * Create String representation of the monthly payment rounded 2 decimals.
+	 *  
+	 * @return
+	 * BigDecimal
+	 */
 	public String getMonthlyPayment() {
-		return getPaymentList().getMonthlyPayment().toString();
+		return (getPaymentList().getMonthlyPayment().setScale(2, RoundingMode.HALF_UP)).toString();
 	}
 }

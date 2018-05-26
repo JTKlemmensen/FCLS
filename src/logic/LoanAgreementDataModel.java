@@ -93,4 +93,10 @@ public class LoanAgreementDataModel
 		this.customer = customer;
 	}
 	
+	@Override
+	public String toString() {
+		
+		// TODO Finish the CSV string
+		return "LoanAgreementDataModel";
+	}
 }

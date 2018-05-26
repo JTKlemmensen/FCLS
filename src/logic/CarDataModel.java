@@ -20,4 +20,9 @@ public class CarDataModel
     	setVIN(VIN);
     	setCarDescription(description);
     }
+    
+    @Override
+    public String toString() {
+    	return getVIN() + "," + getCarDescription();
+    }
 }

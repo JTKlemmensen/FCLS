@@ -34,4 +34,9 @@ public class SellerDataModel
 		setFullName(fullName);
 		isAdministrator=administrator;
 	}
+	
+    @Override
+    public String toString() {
+    	return getFullName();
+    }
 }

@@ -3,29 +3,37 @@ package csv;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 
 import logic.LoanHandler;
 
-public class CSVWriter {
+public class LoanToCSV {
 	private BufferedWriter writer;
-	private String separator;
 
-	public CSVWriter(String fileName, String separator) throws IOException {
+	public LoanToCSV(String fileName) throws IOException {
 		writer = new BufferedWriter(new FileWriter(fileName + ".csv"));
-		this.separator = separator;
 	}
 
 	public void write(LoanHandler loanHandler) throws IOException {
 		writer.write(loanHandler.toString());
+		Object[] list = new Object[5];
+		Object[] payments = loanHandler.getPayments().toArray();
+		 // TODO Is the LoanHandler needed?
+		list[0] = loanHandler;
+		list[1] = loanHandler.getLoanAgreementDataModel();
+		list[2] = loanHandler.getLoanAgreementDataModel().getCustomer();
+		list[3] = loanHandler.getLoanAgreementDataModel().getSeller();
+		list[4] = loanHandler.getLoanAgreementDataModel().getCar();
+		
+		writeLine(list);
+		writeLine(payments);
 	}
 
 	public void writeLine(Object[] line) throws IOException {
 		for (int i = 0; i < line.length; i++) {
-			if (i != 0)
-				writer.write(separator);
 			writer.write(line[i].toString());
+			writer.newLine();
 		}
-		writer.newLine();
 	}
 
 	public void flush() throws IOException {

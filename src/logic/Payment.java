@@ -26,4 +26,8 @@ public class Payment {
 	private String principal;
 	public void setPrincipal(String principal) {this.principal = principal;}
 	public String getPrincipal() {return principal;}
+	
+	public String toString() {
+		return getPaymentNo() + "," + getDate().toString() + "," + getPayment() + "," + getInterest() + "," + getInstalment() + "," + getPrincipal();
+	}
 }

@@ -26,7 +26,7 @@ public class FindCustomerView implements View
 {
 	private FindCustomerController theController;
 	private TableView<CustomerDataModel> table;
-	//TODO CustomerID as search parameter
+
 	public VBox getContent()
 	{
 		theController=new FindCustomerController();

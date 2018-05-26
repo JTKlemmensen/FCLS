@@ -3,7 +3,7 @@ package view;
 import java.io.IOException;
 import java.util.List;
 
-import csv.CSVWriter;
+import csv.LoanToCSV;
 import database.LoanDAO;
 import logic.LoanAgreementDataModel;
 import logic.LoanHandler;
@@ -39,7 +39,7 @@ public class ShowLoanAgreementController
 	public void exportAgreementToCSVFile()
 	{
 		try {
-			CSVWriter csvWriter = new CSVWriter("" + loanHandler.getLoanAgreementDataModel().getLoanIDNumber(), ",");
+			LoanToCSV csvWriter = new LoanToCSV("" + loanHandler.getLoanAgreementDataModel().getLoanIDNumber());
 			csvWriter.write(loanHandler);
 			csvWriter.flush();
 			csvWriter.close();

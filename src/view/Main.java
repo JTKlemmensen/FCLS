@@ -11,7 +11,7 @@ public class Main extends Application {
 		
 		try {
 			primaryStage.setResizable(false);
-			primaryStage.setScene(FCLSController.INSTANCE.getView().createMainScreenScene());
+			primaryStage.setScene(FCLSController.INSTANCE.getFCLS().createMainScreenScene());
 			setupStage(primaryStage);
 			primaryStage.show();
 			

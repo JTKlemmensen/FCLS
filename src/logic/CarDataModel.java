@@ -20,4 +20,13 @@ public class CarDataModel
     	setVIN(VIN);
     	setCarDescription(description);
     }
+    
+    private String replaceCommaWithSemicolon(String word) {
+		return word.replace(',', ';');
+	}
+    
+    @Override
+    public String toString() {
+    	return getVIN() + "," + replaceCommaWithSemicolon(getCarDescription());
+    }
 }

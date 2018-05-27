@@ -111,6 +111,14 @@ public class LoanHandler extends Observable {
 		return getPaymentList().getPayments();
 	}
 	
+	/**
+	 * Calculates the compounded yearly rate or actual percentage yield using the following formula: 
+	 * 
+	 * (((r/100)/12+1)^12-1)*100
+	 * 
+	 * @return
+	 * String
+	 */
 	public String getAPR() {
 		MathContext mc = new MathContext(20, RoundingMode.HALF_UP);
 		BigDecimal one = (new BigDecimal(loanAgreement.getInterestRate(), mc)).divide(new BigDecimal("100", mc));
@@ -123,7 +131,22 @@ public class LoanHandler extends Observable {
 		return (one.setScale(4, RoundingMode.HALF_UP)).toString();
 	}
 	
+	/**
+	 * Create String representation of the monthly payment rounded 2 decimals.
+	 *  
+	 * @return
+	 * BigDecimal
+	 */
 	public String getMonthlyPayment() {
-		return getPaymentList().getMonthlyPayment().toString();
+		return (getPaymentList().getMonthlyPayment().setScale(2, RoundingMode.HALF_UP)).toString();
+	}
+	
+	private String replaceCommaWithSemicolon(String word) {
+		return word.replace(',', ';');
+	}
+	
+	@Override
+	public String toString() {
+		return replaceCommaWithSemicolon("" + dailyRate) + "," + rating + "," + getCanReturnLoanAgreement(); 
 	}
 }

@@ -2,7 +2,6 @@ package logic;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
- //TODO remove customer from methods and variables
 
 public class CustomerDataModel
 {
@@ -47,7 +46,6 @@ public class CustomerDataModel
 		public final void setEmail(String value){email.set(value);}
 		public StringProperty emailProperty(){return email;}
 		
-		//TODO CustomerID as search parameter
 		private int customerID;
 		public int getCustomerID() {return customerID;};
 		public void setCustomerID(int value) {customerID=value;};
@@ -64,4 +62,29 @@ public class CustomerDataModel
 		setEmail(email);
 		setCPR(CPR);
 	}
+	
+	private String anonymousCPR() {
+		StringBuilder sb = new StringBuilder();
+    	char[] ch = getCPR().toCharArray();
+    	for(int x = 0; x < ch.length; x++) {
+    		if(x<6) {
+    			sb.append(ch[x]);
+    		} else if(x==6) {
+    			sb.append("-x");
+    		} else {
+    			sb.append("x");
+    		}
+    	}
+    	return sb.toString();
+	}
+	
+	private String replaceCommaWithSemicolon(String word) {
+		return word.replace(',', ';');
+	}
+	
+    @Override
+    public String toString() {
+    	return getFirstName() + "," + getLastName()  + "," + replaceCommaWithSemicolon(getAddress()) + "," + getPostalCode() + "," + getCity() + ","
+    		   + getPhone() + "," + getEmail() + "," + anonymousCPR() + "," + getCustomerID();
+    }
 }

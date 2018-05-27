@@ -1,7 +1,9 @@
 package view;
 
+import java.io.IOException;
 import java.util.List;
 
+import csv.LoanToCSV;
 import database.LoanDAO;
 import logic.LoanAgreementDataModel;
 import logic.LoanHandler;
@@ -36,7 +38,15 @@ public class ShowLoanAgreementController
 	
 	public void exportAgreementToCSVFile()
 	{
-		
+		try {
+			LoanToCSV csvWriter = new LoanToCSV("" + loanHandler.getLoanAgreementDataModel().getLoanIDNumber());
+			csvWriter.write(loanHandler);
+			csvWriter.flush();
+			csvWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void returnToCreateAgreementScene()

@@ -32,7 +32,12 @@ public class PaymentOverview {
 		monthlyPayment = getMonthlyPayment();
 	}
 	
-	//TODO convert to List and separate logic and View
+	/**
+	 * Creates a complete list of payments
+	 * 
+	 * @return
+	 * List<Payment>
+	 */
 	
 	public List<Payment> getPayments() {
 		List<Payment> payments = FXCollections.observableArrayList();
@@ -59,7 +64,7 @@ public class PaymentOverview {
 		
 		return payments;
 	}
-
+	
 	public BigDecimal getMonthlyPayment() {
 		if (monthlyPayment==null) {
 			monthlyPayment = calculateMonthlyPayment();
@@ -67,6 +72,14 @@ public class PaymentOverview {
 		return monthlyPayment;
 	}
 	
+	/**
+	 * Calculates the monthly payment on the Loan using the following formula:
+	 * 
+	 * principal * (rate_month / ((1 + rate_month)^(-1 * noOfInstallments) - 1))
+	 * 
+	 * @return
+	 * BigDecimal
+	 */
 	private BigDecimal calculateMonthlyPayment() {
 		BigDecimal first = new BigDecimal("1", mc);
 		BigDecimal second = (first.add(rateMonth)).pow(noOfInstalments * -1, mc);
@@ -76,7 +89,15 @@ public class PaymentOverview {
 		first = first.setScale(25, RoundingMode.HALF_UP);
 		return first;
 	}
-
+	
+	/**
+	 * Calculates the monthly rate from the yearly rate using the following formula:
+	 * 
+	 * rate_month = (1 + rate_Year)^(1/12) - 1
+	 * 
+	 * @return
+	 * BigDecimal
+	 */
 	private BigDecimal getMonthlyRate() {
 		
 		BigDecimal one = rateYear.add(new BigDecimal("1"));

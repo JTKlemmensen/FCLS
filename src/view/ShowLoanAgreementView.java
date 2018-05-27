@@ -25,6 +25,7 @@ import javafx.scene.layout.VBox;
 
 import logic.CustomerDataModel;
 import logic.LoanAgreementDataModel;
+import logic.LoanHandler;
 import logic.Payment;
 
 public class ShowLoanAgreementView implements View
@@ -33,9 +34,9 @@ public class ShowLoanAgreementView implements View
 	private boolean hasSaved = false;
 	private boolean hasExported = false;
 	
-	public ShowLoanAgreementView(ShowLoanAgreementController controller)
+	public ShowLoanAgreementView(LoanHandler loanHandler)
 	{
-		theController=controller;
+		theController = new ShowLoanAgreementController(this, loanHandler);
 	}
 
 	public StackPane getContent() {

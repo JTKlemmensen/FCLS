@@ -32,16 +32,13 @@ public class FCLSController
 	
 	public void showApproveDeals()
 	{
-		ApproveLoanController controller = new ApproveLoanController();
-		changeView(controller.getView());
-		//update table, do this elsewhere later
-		controller.updateAgreementTable();
+		ApproveLoanView approveLoanView = new ApproveLoanView();
+		changeView(approveLoanView);
 	}
 	
 	public void openSearchLoanAgreement()
 	{
-		FindLoanAgreementController controller = new FindLoanAgreementController();
-		changeView(controller.getView());
+		changeView( new FindLoanAgreementView() );
 		
 	}
 	

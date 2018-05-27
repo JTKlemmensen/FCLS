@@ -27,15 +27,16 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import logic.CustomerDataModel;
 import logic.LoanAgreementDataModel;
+import logic.LoanHandler;
 
 public class CreateLoanAgreementView implements View
 {
 	private CreateLoanAgreementController theController;
 	private VBox warningContainer;
 	
-	public CreateLoanAgreementView(CreateLoanAgreementController controller)
+	public CreateLoanAgreementView( LoanHandler loanHandler )
 	{
-		theController=controller;
+		theController = new CreateLoanAgreementController(this, loanHandler);
 	}
 	
 	public GridPane getContent()
@@ -57,7 +58,7 @@ public class CreateLoanAgreementView implements View
 	
 	private GridPane createCustomerInfoGrid()
 	{
-		CustomerDataModel customer=theController.getHandler().getLoanAgreementDataModel().getCustomer();
+		CustomerDataModel customer=theController.getLoanHandler().getLoanAgreementDataModel().getCustomer();
 		GridPane customerInformationGrid=new GridPane();
 		
 		Label customerInformationHeader=new Label("Kundeinformation :");
@@ -103,7 +104,7 @@ public class CreateLoanAgreementView implements View
 	
 	private GridPane createLoanInfoGrid()
 	{
-		LoanAgreementDataModel loanAgreement=theController.getHandler().getLoanAgreementDataModel();
+		LoanAgreementDataModel loanAgreement=theController.getLoanHandler().getLoanAgreementDataModel();
 		
 		GridPane loanInformationGrid=new GridPane();
 		loanInformationGrid.setPadding(new Insets(8, 0, 0, 0));
@@ -156,7 +157,7 @@ public class CreateLoanAgreementView implements View
 	
 	private HBox createLoanPeriodContainer()
 	{
-		LoanAgreementDataModel loanAgreement=theController.getHandler().getLoanAgreementDataModel();
+		LoanAgreementDataModel loanAgreement=theController.getLoanHandler().getLoanAgreementDataModel();
 		HBox loanPeriodContainer= new HBox();
 		
 		VBox dateContainer=new VBox();
@@ -218,7 +219,7 @@ public class CreateLoanAgreementView implements View
 	
 	private GridPane createCarInfoGrid()
 	{
-		LoanAgreementDataModel loanAgreement=theController.getHandler().getLoanAgreementDataModel();
+		LoanAgreementDataModel loanAgreement=theController.getLoanHandler().getLoanAgreementDataModel();
 		GridPane carInformationGrid=new GridPane();
 
 		Label carInformationHeader= new Label("Bil ID");
@@ -299,14 +300,14 @@ public class CreateLoanAgreementView implements View
 				ProgressIndicator progress=new ProgressIndicator();
 				buttonContainer.getChildren().add(progress);
 				
-				if(theController.getHandler().canReturnLoanAgreementProperty().get())
+				if(theController.getLoanHandler().canReturnLoanAgreementProperty().get())
 				{
 					waitingLabel.setText("");
 	            	 calculateAgreementButton.setDisable(false);
 	            	 progress.setVisible(false);
 				}
 				
-				theController.getHandler().canReturnLoanAgreementProperty().addListener(new ChangeListener<Boolean>() {
+				theController.getLoanHandler().canReturnLoanAgreementProperty().addListener(new ChangeListener<Boolean>() {
 			        @Override public void changed(ObservableValue<? extends Boolean> o,Boolean oldVal, 
 			        		Boolean newVal)
 			        {
@@ -346,5 +347,9 @@ public class CreateLoanAgreementView implements View
 		alert.showAndWait();
 		return alert.getResult() == ButtonType.OK;
 	}
-	
+
+	public void setCanClose(boolean canClose)
+	{
+		theController.setCanClose(canClose);
+	}	
 }

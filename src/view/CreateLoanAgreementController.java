@@ -8,13 +8,18 @@ import logic.LoanHandler;
 public class CreateLoanAgreementController 
 {
 	private CreateLoanAgreementView itsView;
-	private LoanHandler itsLoanHandler;
+	private LoanHandler loanHandler;
 	private boolean isCloseable;
 	
-	public CreateLoanAgreementController(LoanHandler handler)
+	public CreateLoanAgreementController(CreateLoanAgreementView view, LoanHandler loanHandler)
 	{
-		itsLoanHandler=handler;
-		itsView=new CreateLoanAgreementView(this);
+		itsView=view;
+		this.loanHandler = loanHandler;
+	}
+	
+	public LoanHandler getLoanHandler()
+	{
+		return loanHandler;
 	}
 	
 	public CreateLoanAgreementView getView()
@@ -31,9 +36,9 @@ public class CreateLoanAgreementController
 		}
 		
 		isCloseable = true;
-		itsLoanHandler.requestLoanAgreement(FCLSController.INSTANCE.getCurrentUser());
-		ShowLoanAgreementController showLoan=new ShowLoanAgreementController(itsLoanHandler);
-		FCLSController.INSTANCE.changeView(showLoan.getView());
+		loanHandler.requestLoanAgreement(FCLSController.INSTANCE.getCurrentUser());
+		ShowLoanAgreementView showLoan=new ShowLoanAgreementView(loanHandler);
+		FCLSController.INSTANCE.changeView(showLoan);
 	}
 	
 	public void cancelLoanAgreement()
@@ -46,18 +51,13 @@ public class CreateLoanAgreementController
 	{
 		CarDataModel car=CarDAO.getRandomCarFromDb();
 		
-		itsLoanHandler.getLoanAgreementDataModel().getCar().setVIN(car.getVIN());
-		itsLoanHandler.getLoanAgreementDataModel().getCar().setCarDescription(car.getCarDescription());
-	}
-	
-	public LoanHandler getHandler()
-	{
-		return itsLoanHandler;
+		loanHandler.getLoanAgreementDataModel().getCar().setVIN(car.getVIN());
+		loanHandler.getLoanAgreementDataModel().getCar().setCarDescription(car.getCarDescription());
 	}
 	
 	private boolean checkInputViability()
 	{
-		LoanAgreementDataModel loanAgreement=itsLoanHandler.getLoanAgreementDataModel();
+		LoanAgreementDataModel loanAgreement=loanHandler.getLoanAgreementDataModel();
 		boolean dataIsViable=true;
 		
 		if(loanAgreement.getAskingPrice()==null||loanAgreement.getAskingPrice().equals(""))
@@ -88,7 +88,7 @@ public class CreateLoanAgreementController
 		if (isCloseable) 
 			return true;
 		
-		LoanAgreementDataModel loanAgreement=itsLoanHandler.getLoanAgreementDataModel();
+		LoanAgreementDataModel loanAgreement=loanHandler.getLoanAgreementDataModel();
 
 		if(loanAgreement.getAskingPrice()!=null && loanAgreement.getAskingPrice().length()>0)
 			return false;

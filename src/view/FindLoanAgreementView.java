@@ -36,9 +36,9 @@ public class FindLoanAgreementView implements View
 	private FindLoanAgreementController theController;
 	private TableView<LoanAgreementDataModel> table;
 	
-	public FindLoanAgreementView(FindLoanAgreementController controller)
+	public FindLoanAgreementView()
 	{
-		theController=controller;
+		theController= new FindLoanAgreementController(this);
 	}
 	
 	@Override

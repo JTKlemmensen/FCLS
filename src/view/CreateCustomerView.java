@@ -20,9 +20,9 @@ public class CreateCustomerView implements View{
 	private VBox warningContainer;
 	private Button createCustomer;
 	
-	public CreateCustomerView(CreateCustomerController controller)
+	public CreateCustomerView()
 	{
-		theController=controller;
+		theController = new CreateCustomerController(this);
 	}
 	
 	public GridPane getContent()

@@ -11,7 +11,6 @@ import logic.LoanHandler;
 
 public class FindCustomerController 
 {
-
 	private CustomerHandler customerHandler;
 	
 	public FindCustomerController()
@@ -23,9 +22,9 @@ public class FindCustomerController
 	{
 		//setup loanagreementcalled
 		LoanHandler loanHandler=new LoanHandler(selectedCustomer);
-		CreateLoanAgreementController controller = new CreateLoanAgreementController(loanHandler);
+		CreateLoanAgreementView view = new CreateLoanAgreementView(loanHandler);
 		
-		FCLSController.INSTANCE.changeView(controller.getView());
+		FCLSController.INSTANCE.changeView(view);
 		
 		Thread t = new Thread(new Runnable() {
 		    @Override
@@ -37,33 +36,28 @@ public class FindCustomerController
 			    @Override
 			    public void run()
 			    {
-				if(loanHandler.isRatingApproved())
-				    loanHandler.setCanReturnLoanAgreement(true);
-				else
-				{
-				    Alert alert = new FCLSAlert(AlertType.NONE,"Kunden er registreret hos RKI. Lånetilbud er afvist",new ButtonType("Accepter"));
-				    alert.setTitle("RKI Afvisning");
-				    alert.showAndWait();
-				    controller.setCanClose(true);
-				    FCLSController.INSTANCE.changeView(null);
-				}
-				
-			    }
-			    
+			    	if(loanHandler.isRatingApproved())
+			    		loanHandler.setCanReturnLoanAgreement(true);
+			    	else
+			    	{
+			    		Alert alert = new FCLSAlert(AlertType.NONE,"Kunden er registreret hos RKI. Lånetilbud er afvist",new ButtonType("Accepter"));
+			    		alert.setTitle("RKI Afvisning");
+			    		alert.showAndWait();
+			    		view.setCanClose(true);
+			    		FCLSController.INSTANCE.changeView(null);
+			    	}
+			    } 
 			});
-			
-		    }
-		    
+		    }  
 		});
 		t.start();
-		//create loanagreementview 
 	}
 	
 	public void createCustomerPressed() 
 	{
-		CreateCustomerController controller = new CreateCustomerController(customerHandler);
+		CreateCustomerView controller = new CreateCustomerView();
 		
-		FCLSController.INSTANCE.changeView(controller.getView());
+		FCLSController.INSTANCE.changeView(controller);
 	}
 	
 	public void updateTableView(TableView<CustomerDataModel> table, String customerID, String firstName, String lastName, String phoneNumber)

@@ -25,5 +25,4 @@ public class FCLSAlert extends Alert
 		Image image= new Image(getClass().getResourceAsStream("ferrariLogo.png"));
 		stage.getIcons().add(image);
 	}
-
 }

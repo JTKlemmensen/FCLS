@@ -23,9 +23,9 @@ public class ApproveLoanView  implements View
 	private ApproveLoanController theController;
 	private TableView<LoanAgreementDataModel> table;
 	
-	public ApproveLoanView(ApproveLoanController controller)
+	public ApproveLoanView()
 	{
-		theController=controller;
+		theController = new ApproveLoanController(this);
 	}
 	
 	@Override
@@ -108,7 +108,7 @@ public class ApproveLoanView  implements View
         
         buttonBox.getChildren().add(approveLoanButton);
         buttonBox.getChildren().add(closeButton);
-        
+        theController.updateAgreementTable();
 		return root;
 	}
 

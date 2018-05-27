@@ -12,10 +12,10 @@ public class CreateCustomerController {
 	private CustomerHandler itsHandler;
 	private CustomerDataModel itsCustomer;
 	
-	public CreateCustomerController(CustomerHandler handler)
+	public CreateCustomerController(CreateCustomerView view)
 	{
-		itsHandler = handler;
-		itsView = new CreateCustomerView(this);
+		itsHandler = new CustomerHandler();
+		itsView = view;
 		itsCustomer = new CustomerDataModel("", "", "", "", "", "", "", "");
 	}
 	

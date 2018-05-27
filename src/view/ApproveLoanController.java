@@ -7,9 +7,9 @@ public class ApproveLoanController
 {
 	private ApproveLoanView itsView;
 	
-	public ApproveLoanController()
+	public ApproveLoanController( ApproveLoanView view )
 	{
-		itsView=new ApproveLoanView(this);
+		itsView=view;
 	}
 	
 	public ApproveLoanView getView()

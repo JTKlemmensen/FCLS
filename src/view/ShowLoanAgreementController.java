@@ -12,9 +12,9 @@ public class ShowLoanAgreementController
 	private ShowLoanAgreementView itsView;
 	private LoanHandler loanHandler;
 	
-	public ShowLoanAgreementController(LoanHandler loanHandler)
+	public ShowLoanAgreementController(ShowLoanAgreementView view, LoanHandler loanHandler)
 	{
-		itsView=new ShowLoanAgreementView(this);
+		itsView=view;
 		this.loanHandler=loanHandler;
 	}
 	
@@ -41,8 +41,8 @@ public class ShowLoanAgreementController
 	
 	public void returnToCreateAgreementScene()
 	{
-		CreateLoanAgreementController controller = new CreateLoanAgreementController(loanHandler);
-		FCLSController.INSTANCE.changeView(controller.getView());
+		CreateLoanAgreementView controller = new CreateLoanAgreementView(loanHandler);
+		FCLSController.INSTANCE.changeView(controller);
 	}
 	
 	public List<Payment> getPayments() {

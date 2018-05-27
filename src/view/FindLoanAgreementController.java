@@ -19,9 +19,9 @@ public class FindLoanAgreementController
 private FindLoanAgreementView itsView;
 private List<LoanAgreementDataModel> loanAgreements;
 	
-	public FindLoanAgreementController()
+	public FindLoanAgreementController(FindLoanAgreementView view)
 	{
-		itsView=new FindLoanAgreementView(this);
+		itsView=view;
 	}
 	
 	public FindLoanAgreementView getView()

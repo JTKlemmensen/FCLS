@@ -78,9 +78,13 @@ public class CustomerDataModel
     	return sb.toString();
 	}
 	
+	private String replaceCommaWithSemicolon(String word) {
+		return word.replace(',', ';');
+	}
+	
     @Override
     public String toString() {
-    	return getFirstName() + "," + getLastName()  + "," + getAddress() + "," + getPostalCode() + "," + getCity() + ","
+    	return getFirstName() + "," + getLastName()  + "," + replaceCommaWithSemicolon(getAddress()) + "," + getPostalCode() + "," + getCity() + ","
     		   + getPhone() + "," + getEmail() + "," + anonymousCPR() + "," + getCustomerID();
     }
 }

@@ -13,12 +13,16 @@ public class LoanToCSV {
 		writer = new BufferedWriter(new FileWriter(fileName + ".csv"));
 	}
 
+	/**
+	 * Prints all info connected to the loan in this order:
+	 * LoanHandler, LoanAgreementDataModel, Customer, Seller, Car and Payments
+	 * @param loanHandler
+	 * @throws IOException
+	 */
 	public void write(LoanHandler loanHandler) throws IOException {
-		writer.write(loanHandler.toString());
 		Object[] list = new Object[5];
 		Object[] payments = loanHandler.getPayments().toArray();
 		
-		// TODO Is the LoanHandler needed?
 		list[0] = loanHandler;
 		list[1] = loanHandler.getLoanAgreementDataModel();
 		list[2] = loanHandler.getLoanAgreementDataModel().getCustomer();

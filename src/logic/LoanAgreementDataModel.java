@@ -93,10 +93,13 @@ public class LoanAgreementDataModel
 		this.customer = customer;
 	}
 	
+	private String replaceCommaWithSemicolon(String word) {
+		return word.replace(',', ';');
+	}
+	
 	@Override
 	public String toString() {
-		
-		// TODO Finish the CSV string
-		return "LoanAgreementDataModel";
+		return getLoanIDNumber() + "," + isApproved() + "," + getDuration() + "," + replaceCommaWithSemicolon(getAskingPrice())
+				+ "," + replaceCommaWithSemicolon(getDownPayment()) + "," + replaceCommaWithSemicolon(getInterestRate()) + "," + getStartDate();
 	}
 }

@@ -140,4 +140,13 @@ public class LoanHandler extends Observable {
 	public String getMonthlyPayment() {
 		return (getPaymentList().getMonthlyPayment().setScale(2, RoundingMode.HALF_UP)).toString();
 	}
+	
+	private String replaceCommaWithSemicolon(String word) {
+		return word.replace(',', ';');
+	}
+	
+	@Override
+	public String toString() {
+		return replaceCommaWithSemicolon("" + dailyRate) + "," + rating + "," + getCanReturnLoanAgreement(); 
+	}
 }

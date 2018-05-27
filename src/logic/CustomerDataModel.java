@@ -63,9 +63,8 @@ public class CustomerDataModel
 		setCPR(CPR);
 	}
 	
-    @Override
-    public String toString() {
-    	StringBuilder sb = new StringBuilder();
+	private String anonymousCPR() {
+		StringBuilder sb = new StringBuilder();
     	char[] ch = getCPR().toCharArray();
     	for(int x = 0; x < ch.length; x++) {
     		if(x<6) {
@@ -76,6 +75,12 @@ public class CustomerDataModel
     			sb.append("x");
     		}
     	}
-    	return getFirstName() + "," + getLastName()  + "," + getAddress() + "," + getPostalCode() + "," + getCity() + "," + getPhone() + "," + getEmail() + "," + sb.toString() + "," + getCustomerID();
+    	return sb.toString();
+	}
+	
+    @Override
+    public String toString() {
+    	return getFirstName() + "," + getLastName()  + "," + getAddress() + "," + getPostalCode() + "," + getCity() + ","
+    		   + getPhone() + "," + getEmail() + "," + anonymousCPR() + "," + getCustomerID();
     }
 }

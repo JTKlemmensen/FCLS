@@ -3,7 +3,6 @@ package csv;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 
 import logic.LoanHandler;
 
@@ -18,7 +17,8 @@ public class LoanToCSV {
 		writer.write(loanHandler.toString());
 		Object[] list = new Object[5];
 		Object[] payments = loanHandler.getPayments().toArray();
-		 // TODO Is the LoanHandler needed?
+		
+		// TODO Is the LoanHandler needed?
 		list[0] = loanHandler;
 		list[1] = loanHandler.getLoanAgreementDataModel();
 		list[2] = loanHandler.getLoanAgreementDataModel().getCustomer();

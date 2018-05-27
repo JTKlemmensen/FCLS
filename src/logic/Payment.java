@@ -27,7 +27,20 @@ public class Payment {
 	public void setPrincipal(String principal) {this.principal = principal;}
 	public String getPrincipal() {return principal;}
 	
+	private String replaceCommaWithDot(String word) {
+		StringBuilder sb = new StringBuilder();
+		for (char ch : word.toCharArray()) {
+			if (ch == ',') {
+				sb.append(".");
+			} else {
+				sb.append(ch);
+			}
+		}
+		return word;
+	}
+	
 	public String toString() {
-		return getPaymentNo() + "," + getDate().toString() + "," + getPayment() + "," + getInterest() + "," + getInstalment() + "," + getPrincipal();
+		return getPaymentNo() + "," + getDate().toString() + "," + replaceCommaWithDot(getPayment()) + "," + replaceCommaWithDot(getInterest())
+		+ "," + replaceCommaWithDot(getInstalment()) + "," + replaceCommaWithDot(getPrincipal());
 	}
 }

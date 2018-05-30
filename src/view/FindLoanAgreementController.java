@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.LoanDAO;
+import database.LoanDBDAO;
 import logic.LoanAgreementDataModel;
 
 public class FindLoanAgreementController 
@@ -29,7 +30,10 @@ private List<LoanAgreementDataModel> loanAgreements;
 	public List<LoanAgreementDataModel> filterCustomers(String loanID, String customerID, String sellerID, String carID)
 	{
 		if(loanAgreements==null)
-			loanAgreements = LoanDAO.getLoanList(false);
+		{
+			LoanDAO dao=new LoanDBDAO();
+			loanAgreements = dao.getLoanList(false);
+		}
 		
 		List<LoanAgreementDataModel> resultList = new ArrayList<LoanAgreementDataModel>();
 		

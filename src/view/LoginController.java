@@ -1,6 +1,7 @@
 package view;
 
 import database.SellerDAO;
+import database.SellerDBDAO;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -32,7 +33,8 @@ public class LoginController
 	
 	public boolean login(String username, String password)
 	{
-		SellerDataModel user=SellerDAO.checkLogin(username, password);
+		SellerDAO dao = new SellerDBDAO();
+		SellerDataModel user=dao.checkLogin(username, password);
 		
 		if(user!=null)
 		{

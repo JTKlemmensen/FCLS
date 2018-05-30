@@ -5,6 +5,7 @@ import java.util.List;
 
 import csv.LoanToCSV;
 import database.LoanDAO;
+import database.LoanDBDAO;
 import logic.LoanAgreementDataModel;
 import logic.LoanHandler;
 import logic.Payment;
@@ -32,7 +33,8 @@ public class ShowLoanAgreementController
 	
 	public void closeAndSaveAgreement()
 	{
-		LoanDAO.insertLoanAgreementDB(loanHandler.getLoanAgreementDataModel());
+		LoanDAO dao = new LoanDBDAO();
+		dao.insertLoanAgreementDB(loanHandler.getLoanAgreementDataModel());
 		FCLSController.INSTANCE.changeView(null);
 	}
 	

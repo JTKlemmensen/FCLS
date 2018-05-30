@@ -1,6 +1,7 @@
 package view;
 
 import database.CarDAO;
+import database.CarDBDAO;
 import logic.CarDataModel;
 import logic.LoanAgreementDataModel;
 import logic.LoanHandler;
@@ -10,6 +11,7 @@ public class CreateLoanAgreementController
 	private CreateLoanAgreementView itsView;
 	private LoanHandler loanHandler;
 	private boolean isCloseable;
+	private Thread rkiThread;
 	
 	public CreateLoanAgreementController(CreateLoanAgreementView view, LoanHandler loanHandler)
 	{
@@ -43,13 +45,13 @@ public class CreateLoanAgreementController
 	
 	public void cancelLoanAgreement()
 	{
-		//TODO Thread still running, bad?
 		FCLSController.INSTANCE.changeView(null);
 	}
 	
 	public void findCar()
 	{
-		CarDataModel car=CarDAO.getRandomCarFromDb();
+		CarDAO dao = new CarDBDAO();
+		CarDataModel car=dao.getRandomCar();
 		
 		loanHandler.getLoanAgreementDataModel().getCar().setVIN(car.getVIN());
 		loanHandler.getLoanAgreementDataModel().getCar().setCarDescription(car.getCarDescription());

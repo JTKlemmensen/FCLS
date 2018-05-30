@@ -3,16 +3,16 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
-import database.CustomerDAO;
+import database.CustomerDBDAO;
 
 public class CustomerHandler {
 
 	private List<CustomerDataModel> customers;
-	private CustomerDAO customerDAO;
+	private CustomerDBDAO customerDAO;
 	
 	public CustomerHandler()
 	{
-		customerDAO = new CustomerDAO();
+		customerDAO = new CustomerDBDAO();
 	}
 	
 	public boolean insertCustomer(CustomerDataModel customer) {

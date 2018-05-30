@@ -1,6 +1,7 @@
 package view;
 
 import database.LoanDAO;
+import database.LoanDBDAO;
 import logic.LoanAgreementDataModel;
 
 public class ApproveLoanController 
@@ -19,14 +20,16 @@ public class ApproveLoanController
 	
 	public void updateAgreementTable()
 	{
-		itsView.updateTable(LoanDAO.getLoanList(true));
+		LoanDAO dao = new LoanDBDAO();
+		itsView.updateTable(dao.getLoanList(true));
 	}
 	
 	public void approveLoan(LoanAgreementDataModel loanAgreement)
 	{
 		loanAgreement.setApproved(true);
 		//update using dao
-		LoanDAO.updateLoanAgreementDb(loanAgreement);
+		LoanDAO dao = new LoanDBDAO();
+		dao.updateLoanAgreementDb(loanAgreement);
 		updateAgreementTable();
 	}
 	

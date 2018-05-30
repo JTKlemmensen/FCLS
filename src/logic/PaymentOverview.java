@@ -8,9 +8,11 @@ import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 
+import org.nevec.rjm.BigDecimalMath;
+
 import javafx.collections.FXCollections;
 
-import org.nevec.rjm.*;
+
 
 public class PaymentOverview {
 	private LocalDate startDate;

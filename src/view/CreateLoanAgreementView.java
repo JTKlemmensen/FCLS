@@ -33,7 +33,7 @@ public class CreateLoanAgreementView implements View
 	private CreateLoanAgreementController theController;
 	private VBox warningContainer;
 	
-	public CreateLoanAgreementView( LoanHandler loanHandler )
+	public CreateLoanAgreementView( LoanHandler loanHandler)
 	{
 		theController = new CreateLoanAgreementController(this, loanHandler);
 	}
@@ -118,12 +118,18 @@ public class CreateLoanAgreementView implements View
 		carPriceField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d{0,10}([\\,\\.]\\d{0,2})?")) {
+                if (!newValue.matches("\\d{0,10}([\\,\\.]\\d{0,2})?")) 
+                {
+                	if(oldValue==null)
+                	{
+                		oldValue="";
+                	}
                 	carPriceField.setText(oldValue);
                 }
                 //replace , with . due to danish use of ,
-                String replacedText=carPriceField.getText().replaceAll(",",".");
-                loanAgreement.setAskingPrice(replacedText);
+	            String replacedText=carPriceField.getText().replaceAll(",",".");
+	            loanAgreement.setAskingPrice(replacedText);
+                
             }
         });
 		
@@ -134,7 +140,12 @@ public class CreateLoanAgreementView implements View
 		downPaymentField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d{0,10}([\\,\\.]\\d{0,2})?")) {
+                if (!newValue.matches("\\d{0,10}([\\,\\.]\\d{0,2})?")) 
+                {
+                	if(oldValue==null)
+                	{
+                		oldValue="";
+                	}
                 	downPaymentField.setText(oldValue);
                 }
               //replace , with . due to danish use of ,
@@ -339,7 +350,7 @@ public class CreateLoanAgreementView implements View
 	public boolean onClose()
 	{
 		if(theController.canClose())
-			return true;
+			return true;	
 		
 		Alert alert = new FCLSAlert(AlertType.NONE,"Vil du annullere oprettelsen af Låneaftalen?",ButtonType.OK,new ButtonType("Annuller",ButtonData.CANCEL_CLOSE));
 		alert.setTitle("Bekraft Afslutning");

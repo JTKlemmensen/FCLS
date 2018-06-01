@@ -8,7 +8,8 @@ import java.sql.ResultSet;
 
 public final class DbConnector
 {
-	private static final String CONNECTIONURL = "jdbc:sqlserver://188.181.204.238:1433; instance=SQLEXPRESS; databaseName=FCLS; user=hkkrestless; password=Bamsefar123;";
+	private static final String CONNECTIONURL = "jdbc:sqlserver://188.181.204.238:1433; instance=SQLEXPRESS; databaseName=FCLS; user=eksaminator; password=DMU17HE;";
+//	private static final String CONNECTIONURL = "jdbc:sqlserver://localhost:1433;" + "instanceName=SQLEXPRESS;" + "databaseName=FCLS" + ";" + "integratedSecurity=true;";
 	
 	private DbConnector()
 	{

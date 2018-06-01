@@ -273,6 +273,9 @@ public class ShowLoanAgreementView implements View
 		    {
 		    	hasExported=true;
 		    	theController.exportAgreementToCSVFile();
+		    	
+		    	Alert alert = new FCLSAlert(AlertType.NONE, "CSV fil er nu eksporteret", ButtonType.OK);
+		    	alert.showAndWait();
 		    }
 		});
 

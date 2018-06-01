@@ -115,24 +115,24 @@ public class FindCustomerView implements View
 
         TextField customerIDTextField = new TextField();
         customerIDTextField.setMaxWidth(80);
-        Label customerIDTextFieldLabel = new Label("Customer ID:");
+        Label customerIDTextFieldLabel = new Label("Kunde ID:");
         VBox customerIDTextFieldBox = new VBox();
         customerIDTextFieldBox.getChildren().addAll(customerIDTextFieldLabel,customerIDTextField);
         
         TextField firstNameTextField = new TextField();
-        Label firstNameLabel = new Label("First Name:");
+        Label firstNameLabel = new Label("Fornavn:");
         VBox firstNameBox = new VBox();
         firstNameBox.setPadding(new Insets(0,0,0,20));
         firstNameBox.getChildren().addAll(firstNameLabel,firstNameTextField);
         
         TextField lastNameTextField = new TextField();
-        Label lastNameLabel = new Label("Last Name:");
+        Label lastNameLabel = new Label("Efternavn:");
         VBox lastNameBox = new VBox();
         lastNameBox.setPadding(new Insets(0,0,0,20));
         lastNameBox.getChildren().addAll(lastNameLabel,lastNameTextField);
         
         TextField phoneTextField = new TextField();
-        Label fphoneLabel = new Label("Phone Number:");
+        Label fphoneLabel = new Label("Telefonnummer:");
         VBox phoneBox = new VBox();
         phoneBox.setPadding(new Insets(0,0,0,20));
         phoneBox.getChildren().addAll(fphoneLabel,phoneTextField);
